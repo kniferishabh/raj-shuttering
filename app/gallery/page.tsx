@@ -1,0 +1,34 @@
+import type { Metadata } from 'next';
+import { safeReadArray } from '@/lib/db';
+import { getSettings } from '@/lib/settings';
+import type { GalleryItem } from '@/lib/types';
+import { PageHero } from '@/components/sections/PageHero/PageHero';
+import { GalleryGrid } from '@/components/sections/Gallery/GalleryGrid';
+import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
+
+export const dynamic = 'force-dynamic';
+
+export const metadata: Metadata = {
+  title: 'Gallery',
+  description:
+    'Browse our work - photos from project sites, equipment in action, and the materials we supply across Varanasi.',
+};
+
+export default function GalleryPage() {
+  const settings = getSettings();
+  const items = safeReadArray<GalleryItem>('gallery.json');
+
+  return (
+    <>
+      <PageHero
+        title="Project Gallery"
+        subtitle="Real projects, real materials. A visual record of the work we've supported across Purvanchal."
+        currentLabel="Gallery"
+      />
+
+      <GalleryGrid items={items} />
+
+      <ContactCTA phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />
+    </>
+  );
+}

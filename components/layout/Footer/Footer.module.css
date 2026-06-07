@@ -1,0 +1,194 @@
+.footer {
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+  padding: var(--space-3xl) 0 var(--space-lg);
+  margin-top: var(--space-3xl);
+}
+
+.footer::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--color-accent-primary) 50%,
+    transparent 100%
+  );
+}
+
+.inner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
+  gap: var(--space-2xl);
+  padding-bottom: var(--space-2xl);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.column h4 {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--text-lg);
+  letter-spacing: 0.04em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+  margin-bottom: var(--space-lg);
+}
+
+.brand {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.brandLogo {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.logoMark {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-hover));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-md);
+  color: var(--color-text-on-accent);
+  font-family: var(--font-display), sans-serif;
+  font-size: 1.25rem;
+  font-weight: 700;
+}
+
+.brandName {
+  font-family: var(--font-display), sans-serif;
+  font-size: var(--text-xl);
+  letter-spacing: 0.02em;
+  color: var(--color-text-primary);
+  text-transform: uppercase;
+}
+
+.tagline {
+  font-family: var(--font-accent), serif;
+  font-style: italic;
+  font-size: var(--text-lg);
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+  max-width: 320px;
+}
+
+.established {
+  font-size: var(--text-xs);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--color-accent-primary);
+  font-weight: 600;
+}
+
+.social {
+  display: flex;
+  gap: var(--space-sm);
+  margin-top: var(--space-sm);
+}
+
+.socialBtn {
+  width: 42px;
+  height: 42px;
+  border-radius: var(--radius-pill);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-text-secondary);
+  transition: background var(--duration-base) var(--ease-smooth),
+              color var(--duration-base) var(--ease-smooth),
+              border-color var(--duration-base) var(--ease-smooth),
+              transform var(--duration-base) var(--ease-smooth);
+  min-height: auto;
+  min-width: auto;
+}
+
+.socialBtn:hover {
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
+  border-color: var(--color-accent-primary);
+  transform: translateY(-2px);
+}
+
+.linkList {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+}
+
+.linkList a,
+.linkList span {
+  position: relative;
+  display: inline-flex;
+  align-items: flex-start;
+  gap: var(--space-sm);
+  color: var(--color-text-secondary);
+  font-size: var(--text-sm);
+  transition: color var(--duration-base) var(--ease-smooth);
+  width: fit-content;
+}
+
+.linkList a:hover {
+  color: var(--color-accent-primary);
+}
+
+.linkList .icon {
+  flex-shrink: 0;
+  color: var(--color-accent-primary);
+  margin-top: 3px;
+}
+
+.bottom {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: var(--space-lg);
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+  letter-spacing: 0.03em;
+  flex-wrap: wrap;
+  gap: var(--space-md);
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr 1fr;
+    gap: var(--space-xl);
+  }
+}
+
+@media (max-width: 640px) {
+  .grid {
+    grid-template-columns: 1fr;
+    gap: var(--space-2xl);
+  }
+
+  .inner {
+    padding: 0 var(--space-md);
+  }
+
+  .footer {
+    padding-top: var(--space-2xl);
+  }
+
+  .bottom {
+    flex-direction: column;
+    text-align: center;
+  }
+}

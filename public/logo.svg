@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64" role="img" aria-label="Raj Shuttering &amp; Scaffolding logo">
+  <defs>
+    <linearGradient id="rsGrad" x1="0" y1="0" x2="64" y2="64" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#F59E0B"/>
+      <stop offset="1" stop-color="#E07B00"/>
+    </linearGradient>
+  </defs>
+  <rect width="64" height="64" rx="14" fill="url(#rsGrad)"/>
+  <g fill="none" stroke="#ffffff" stroke-width="3.4" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M19 12v40M45 12v40"/>
+    <path d="M19 15h26M19 32h26M19 49h26"/>
+    <path d="M19 15l26 17M45 15 19 32"/>
+    <path d="M19 32l26 17M45 32 19 49"/>
+    <path d="M14 54h10M40 54h10"/>
+  </g>
+</svg>

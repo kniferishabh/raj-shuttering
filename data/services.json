@@ -1,0 +1,173 @@
+[
+  {
+    "id": "svc-001",
+    "name": "Steel Shuttering Plates",
+    "shortDescription": "Heavy-duty steel plates for concrete formwork in all standard sizes.",
+    "fullDescription": "Our steel shuttering plates are manufactured from high-grade MS steel, ensuring flatness and reuse up to 200 cycles. Available in sizes from 1ft x 2ft to 4ft x 8ft. Ideal for slabs, beams, columns, and walls.",
+    "category": "shuttering",
+    "availableFor": [
+      "rent",
+      "sale"
+    ],
+    "features": [
+      "High-grade MS steel",
+      "200+ reuse cycles",
+      "Multiple sizes",
+      "Anti-corrosion coating",
+      "Same-day delivery available"
+    ],
+    "icon": "Square",
+    "imageUrl": "/images/shuttering-slab.jpg",
+    "images": [
+      "/images/shuttering-slab.jpg",
+      "/images/shuttering-steel.jpg",
+      "/images/blueprint.jpg"
+    ],
+    "isActive": true,
+    "sortOrder": 1,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2026-06-07T15:57:52.334Z"
+  },
+  {
+    "id": "svc-002",
+    "name": "Aluminium Scaffolding Systems",
+    "shortDescription": "Lightweight, rust-free aluminium scaffolding for safe elevated work.",
+    "fullDescription": "Our aluminium scaffolding towers are ideal for construction, painting, plastering, and maintenance work. Lightweight yet load-bearing up to 250 kg per platform. Easy to assemble without tools. Complies with IS standards.",
+    "category": "scaffolding",
+    "availableFor": [
+      "rent",
+      "sale"
+    ],
+    "features": [
+      "250 kg load capacity",
+      "Tool-free assembly",
+      "IS compliant",
+      "Anti-slip platforms",
+      "Adjustable height"
+    ],
+    "icon": "Layers",
+    "imageUrl": "/images/scaffolding-towers.jpg",
+    "images": [
+      "/images/scaffolding-towers.jpg",
+      "/images/scaffolding-highrise.jpg",
+      "/images/project-modern.jpg"
+    ],
+    "isActive": true,
+    "sortOrder": 2,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "svc-003",
+    "name": "Steel Props (Acrow Props)",
+    "shortDescription": "Adjustable steel props for supporting slabs and beams during construction.",
+    "fullDescription": "Heavy-duty adjustable acrow props for temporary support of formwork and slabs. Height range: 1.8m to 3.3m. Load capacity up to 3 tonnes. Available in bulk quantities for large projects.",
+    "category": "shuttering",
+    "availableFor": [
+      "rent"
+    ],
+    "features": [
+      "1.8m-3.3m height range",
+      "3-tonne load capacity",
+      "Bulk availability",
+      "Regular inspection certified",
+      "Free delivery in Varanasi"
+    ],
+    "icon": "ArrowUpDown",
+    "imageUrl": "/images/shuttering-steel.jpg",
+    "images": [
+      "/images/shuttering-steel.jpg",
+      "/images/shuttering-slab.jpg",
+      "/images/equipment-worker.jpg"
+    ],
+    "isActive": true,
+    "sortOrder": 3,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "svc-004",
+    "name": "H-Frame Scaffolding",
+    "shortDescription": "Traditional H-frame scaffold systems for large-scale construction facades.",
+    "fullDescription": "Robust H-frame scaffolding for multi-storey building construction, bridge work, and industrial sites. Galvanised finish for weather resistance. Compatible with standard cross-braces and walk boards.",
+    "category": "scaffolding",
+    "availableFor": [
+      "rent",
+      "sale"
+    ],
+    "features": [
+      "Galvanised finish",
+      "Multi-storey compatible",
+      "Cross-brace included",
+      "Flexible configuration",
+      "Large inventory"
+    ],
+    "icon": "LayoutGrid",
+    "imageUrl": "/images/scaffolding-highrise.jpg",
+    "images": [
+      "/images/scaffolding-highrise.jpg",
+      "/images/scaffolding-towers.jpg",
+      "/images/project-skyline.jpg"
+    ],
+    "isActive": true,
+    "sortOrder": 4,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "svc-005",
+    "name": "Centering Plates & Jacks",
+    "shortDescription": "Complete centering systems for floor slab construction.",
+    "fullDescription": "Full range of centering equipment including plates, beams, and adjustable jacks. Available as complete sets or individual components. Suitable for residential and commercial slab work of all spans.",
+    "category": "shuttering",
+    "availableFor": [
+      "rent"
+    ],
+    "features": [
+      "Complete set rental",
+      "All spans covered",
+      "Flat plates for smooth finish",
+      "Accessories included",
+      "Technical guidance"
+    ],
+    "icon": "Grid3X3",
+    "imageUrl": "/images/equipment-worker.jpg",
+    "images": [
+      "/images/equipment-worker.jpg",
+      "/images/shuttering-slab.jpg",
+      "/images/shuttering-steel.jpg"
+    ],
+    "isActive": true,
+    "sortOrder": 5,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  },
+  {
+    "id": "svc-006",
+    "name": "Wholesale Supply",
+    "shortDescription": "Bulk procurement of shuttering and scaffolding materials for dealers.",
+    "fullDescription": "We supply to contractors, sub-dealers, and construction companies across Uttar Pradesh at wholesale rates. Minimum order quantities apply. GST invoice provided. Credit available for regular buyers.",
+    "category": "other",
+    "availableFor": [
+      "sale"
+    ],
+    "features": [
+      "Wholesale pricing",
+      "GST invoice",
+      "Credit facility",
+      "Pan-UP delivery",
+      "Dedicated account manager"
+    ],
+    "icon": "Package",
+    "imageUrl": "/images/project-skyline.jpg",
+    "images": [
+      "/images/project-skyline.jpg",
+      "/images/project-modern.jpg",
+      "/images/scaffolding-towers.jpg"
+    ],
+    "isActive": true,
+    "sortOrder": 6,
+    "createdAt": "2024-01-01T00:00:00Z",
+    "updatedAt": "2024-01-01T00:00:00Z"
+  }
+]

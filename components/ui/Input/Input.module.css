@@ -1,0 +1,77 @@
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  width: 100%;
+}
+
+.label {
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text-primary);
+}
+
+.required {
+  color: var(--color-accent-primary);
+  margin-left: 4px;
+}
+
+.input,
+.textarea,
+.select {
+  width: 100%;
+  padding: 14px 18px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border-strong);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-base);
+  transition: border-color var(--duration-base) var(--ease-smooth),
+              background var(--duration-base) var(--ease-smooth),
+              box-shadow var(--duration-base) var(--ease-smooth);
+  min-height: var(--touch-min);
+}
+
+.input::placeholder,
+.textarea::placeholder {
+  color: var(--color-text-muted);
+}
+
+.input:focus,
+.textarea:focus,
+.select:focus {
+  border-color: var(--color-accent-primary);
+  background: var(--color-bg-surface);
+  box-shadow: 0 0 0 3px rgba(224, 123, 0, 0.15);
+  outline: none;
+}
+
+.textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+.select {
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23E07B00' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 18px center;
+  padding-right: 44px;
+}
+
+.error {
+  border-color: var(--color-error) !important;
+}
+
+.errorText {
+  font-size: var(--text-xs);
+  color: var(--color-error);
+  font-weight: 500;
+}
+
+.hint {
+  font-size: var(--text-xs);
+  color: var(--color-text-muted);
+}

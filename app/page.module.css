@@ -1,0 +1,54 @@
+.page {
+  display: flex;
+  flex-direction: column;
+}
+
+.gallerySection {
+  padding: var(--space-4xl) 0;
+  background: var(--color-bg-secondary);
+}
+
+.galleryInner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.contactSection {
+  padding: var(--space-4xl) 0;
+  background: var(--color-bg-primary);
+}
+
+.contactInner {
+  width: 100%;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 var(--space-xl);
+}
+
+.contactGrid {
+  display: grid;
+  grid-template-columns: 1.1fr 1fr;
+  gap: var(--space-xl);
+  margin-top: var(--space-xl);
+  align-items: stretch;
+}
+
+@media (max-width: 1024px) {
+  .contactGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .galleryInner,
+  .contactInner {
+    padding: 0 var(--space-md);
+  }
+
+  .gallerySection,
+  .contactSection {
+    padding: var(--space-3xl) 0;
+  }
+}

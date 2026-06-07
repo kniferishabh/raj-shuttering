@@ -1,0 +1,55 @@
+[
+  {
+    "id": "rev-001",
+    "clientName": "Ramesh Verma",
+    "company": "Verma Constructions",
+    "location": "Varanasi",
+    "rating": 5,
+    "review": "Excellent quality shuttering plates, very durable and delivered on time. Raj bhaiya is very cooperative and rates are very reasonable. Will definitely rent again.",
+    "projectType": "Residential Slab",
+    "isApproved": true,
+    "createdAt": "2024-11-01T00:00:00Z"
+  },
+  {
+    "id": "rev-002",
+    "clientName": "Suresh Kumar Gupta",
+    "company": "SK Infra",
+    "location": "Chandauli",
+    "rating": 5,
+    "review": "Ek dum badhiya service. Scaffolding material top quality tha, delivery same day mili. Bilkul recommended for any contractor in Purvanchal area.",
+    "projectType": "Commercial Building",
+    "isApproved": true,
+    "createdAt": "2024-10-15T00:00:00Z"
+  },
+  {
+    "id": "rev-003",
+    "clientName": "Ashok Pandey",
+    "location": "Mirzapur",
+    "rating": 5,
+    "review": "Good quality products and honest pricing. The steel props were in very good condition. Minor delay in pickup but overall very satisfied with the service.",
+    "projectType": "Bridge Formwork",
+    "isApproved": true,
+    "createdAt": "2024-09-20T00:00:00Z"
+  },
+  {
+    "id": "rev-004",
+    "clientName": "Mohammad Aslam",
+    "company": "Aslam Builders",
+    "location": "Varanasi",
+    "rating": 5,
+    "review": "Working with Raj Shuttering for over 5 years now. Their material quality and delivery commitment is unmatched in Pandeypur area. Highly recommended.",
+    "projectType": "Apartment Construction",
+    "isApproved": true,
+    "createdAt": "2024-08-10T00:00:00Z"
+  },
+  {
+    "id": "rev-005",
+    "clientName": "Pooja Singh",
+    "location": "Jaunpur",
+    "rating": 5,
+    "review": "Got centering plates on rent for our 3-storey building. Plates were in excellent condition and price was very fair. Will use again for our next project.",
+    "projectType": "Residential Building",
+    "isApproved": true,
+    "createdAt": "2024-07-22T00:00:00Z"
+  }
+]

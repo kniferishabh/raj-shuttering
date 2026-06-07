@@ -1,0 +1,29 @@
+.floatBtn {
+  position: fixed;
+  bottom: max(20px, env(safe-area-inset-bottom));
+  right: max(16px, env(safe-area-inset-right));
+  width: 60px;
+  height: 60px;
+  border-radius: var(--radius-pill);
+  background: #25D366;
+  color: #fff;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 80;
+  box-shadow: 0 10px 30px rgba(37, 211, 102, 0.4);
+  animation: pulse-glow 2.2s ease-in-out infinite;
+  transition: transform var(--duration-base) var(--ease-smooth),
+              background var(--duration-base) var(--ease-smooth);
+}
+
+.floatBtn:hover {
+  transform: scale(1.08);
+  background: #1ebe5d;
+}
+
+@media (max-width: 768px) {
+  .floatBtn {
+    display: inline-flex;
+  }
+}
