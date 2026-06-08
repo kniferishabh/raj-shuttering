@@ -28,7 +28,7 @@
 }
 
 .clickLayer:hover {
-  background: rgba(224, 123, 0, 0.08);
+  background: rgba(var(--color-accent-rgb), 0.08);
 }
 
 .overlay {

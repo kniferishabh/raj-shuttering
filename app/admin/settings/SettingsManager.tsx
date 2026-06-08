@@ -1,7 +1,7 @@
 'use client';
 
-import { useState } from 'react';
-import { Save, Plus, X, CheckCircle2 } from 'lucide-react';
+import { useEffect, useState } from 'react';
+import { Save, Plus, X, CheckCircle2, Check } from 'lucide-react';
 import { Button } from '@/components/ui/Button/Button';
 import { Input, Textarea } from '@/components/ui/Input/Input';
 import {
@@ -9,6 +9,18 @@ import {
   HERO_VIDEO_PUBLIC_URL,
   HERO_VIDEO_UPLOAD_PATH,
 } from '@/lib/media';
+import {
+  applyPaletteToDocument,
+  COLOR_PALETTE_LIST,
+  CUSTOM_PALETTE_ID,
+  CUSTOM_PALETTE_OPTION,
+  DEFAULT_COLOR_PALETTE,
+  DEFAULT_CUSTOM_COLORS,
+  getCustomPreview,
+  normalizeHexColor,
+  resolvePaletteId,
+  type ColorPaletteId,
+} from '@/lib/themes';
 import type { BusinessSettings } from '@/lib/types';
 import styles from './settings.module.css';
 
@@ -17,6 +29,33 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
   const [saving, setSaving] = useState(false);
   const [success, setSuccess] = useState(false);
   const [error, setError] = useState<string | null>(null);
+
+  const activePalette = resolvePaletteId(settings.colorPalette ?? DEFAULT_COLOR_PALETTE);
+  const customColors = settings.customColors ?? DEFAULT_CUSTOM_COLORS;
+  const customPreview = getCustomPreview(customColors);
+
+  useEffect(() => {
+    applyPaletteToDocument({ colorPalette: activePalette, customColors });
+  }, [activePalette, customColors.accentPrimary, customColors.accentHover]);
+
+  const selectCustomPalette = () => {
+    setSettings((s) => ({
+      ...s,
+      colorPalette: CUSTOM_PALETTE_ID,
+      customColors: s.customColors ?? DEFAULT_CUSTOM_COLORS,
+    }));
+  };
+
+  const updateCustomColor = (key: 'accentPrimary' | 'accentHover', value: string) => {
+    setSettings((s) => ({
+      ...s,
+      colorPalette: CUSTOM_PALETTE_ID,
+      customColors: {
+        ...(s.customColors ?? DEFAULT_CUSTOM_COLORS),
+        [key]: normalizeHexColor(value, DEFAULT_CUSTOM_COLORS[key]),
+      },
+    }));
+  };
 
   const update = <K extends keyof BusinessSettings>(key: K, value: BusinessSettings[K]) => {
     setSettings((s) => ({ ...s, [key]: value }));
@@ -235,6 +274,162 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
           onChange={(e) => update('heroVideoPoster', e.target.value)}
           placeholder="/images/shuttering-slab.jpg"
         />
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Color Palette</h2>
+        <p className={styles.helpText}>
+          Choose a brand color theme for your public website. Changes apply to buttons, accents,
+          highlights, and section backgrounds. Preview updates instantly — click Save to keep your
+          choice.
+        </p>
+        <div className={styles.paletteGrid} role="radiogroup" aria-label="Site color palette">
+          {COLOR_PALETTE_LIST.map((palette) => {
+            const selected = activePalette === palette.id;
+            return (
+              <button
+                key={palette.id}
+                type="button"
+                role="radio"
+                aria-checked={selected}
+                className={[styles.paletteCard, selected ? styles.paletteCardActive : '']
+                  .filter(Boolean)
+                  .join(' ')}
+                onClick={() => update('colorPalette', palette.id as ColorPaletteId)}
+              >
+                <div className={styles.paletteSwatches}>
+                  {palette.preview.map((color) => (
+                    <span
+                      key={color}
+                      className={styles.paletteSwatch}
+                      style={{ backgroundColor: color }}
+                    />
+                  ))}
+                </div>
+                <div className={styles.paletteInfo}>
+                  <span className={styles.paletteName}>{palette.name}</span>
+                  <span className={styles.paletteDesc}>{palette.description}</span>
+                </div>
+                {selected && (
+                  <span className={styles.paletteCheck} aria-hidden="true">
+                    <Check size={16} />
+                  </span>
+                )}
+              </button>
+            );
+          })}
+
+          <button
+            type="button"
+            role="radio"
+            aria-checked={activePalette === CUSTOM_PALETTE_ID}
+            className={[
+              styles.paletteCard,
+              styles.paletteCardCustom,
+              activePalette === CUSTOM_PALETTE_ID ? styles.paletteCardActive : '',
+            ]
+              .filter(Boolean)
+              .join(' ')}
+            onClick={selectCustomPalette}
+          >
+            <div className={styles.paletteSwatches}>
+              {customPreview.map((color) => (
+                <span
+                  key={color}
+                  className={styles.paletteSwatch}
+                  style={{ backgroundColor: color }}
+                />
+              ))}
+            </div>
+            <div className={styles.paletteInfo}>
+              <span className={styles.paletteName}>{CUSTOM_PALETTE_OPTION.name}</span>
+              <span className={styles.paletteDesc}>{CUSTOM_PALETTE_OPTION.description}</span>
+            </div>
+            {activePalette === CUSTOM_PALETTE_ID && (
+              <span className={styles.paletteCheck} aria-hidden="true">
+                <Check size={16} />
+              </span>
+            )}
+          </button>
+        </div>
+
+        {activePalette === CUSTOM_PALETTE_ID && (
+          <div className={styles.customColorsPanel}>
+            <p className={styles.customColorsHint}>
+              Pick your brand colors below. Lighter backgrounds and accents are generated
+              automatically.
+            </p>
+            <div className={styles.customColorsGrid}>
+              <div className={styles.colorField}>
+                <label className={styles.label} htmlFor="custom-accent-primary">
+                  Primary Color
+                </label>
+                <div className={styles.colorInputRow}>
+                  <input
+                    id="custom-accent-primary"
+                    type="color"
+                    className={styles.colorPicker}
+                    value={customColors.accentPrimary}
+                    onChange={(e) => updateCustomColor('accentPrimary', e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    className={styles.colorHexInput}
+                    value={customColors.accentPrimary}
+                    onChange={(e) => updateCustomColor('accentPrimary', e.target.value)}
+                    placeholder="#E07B00"
+                    spellCheck={false}
+                  />
+                </div>
+              </div>
+
+              <div className={styles.colorField}>
+                <label className={styles.label} htmlFor="custom-accent-hover">
+                  Hover / Accent Color
+                </label>
+                <div className={styles.colorInputRow}>
+                  <input
+                    id="custom-accent-hover"
+                    type="color"
+                    className={styles.colorPicker}
+                    value={customColors.accentHover ?? DEFAULT_CUSTOM_COLORS.accentHover!}
+                    onChange={(e) => updateCustomColor('accentHover', e.target.value)}
+                  />
+                  <input
+                    type="text"
+                    className={styles.colorHexInput}
+                    value={customColors.accentHover ?? DEFAULT_CUSTOM_COLORS.accentHover!}
+                    onChange={(e) => updateCustomColor('accentHover', e.target.value)}
+                    placeholder="#F59E0B"
+                    spellCheck={false}
+                  />
+                </div>
+              </div>
+            </div>
+
+            <div className={styles.customPreviewBar}>
+              <span className={styles.customPreviewLabel}>Preview</span>
+              <div className={styles.customPreviewSamples}>
+                <span
+                  className={styles.customPreviewBtn}
+                  style={{ background: customColors.accentPrimary }}
+                >
+                  Button
+                </span>
+                <span
+                  className={styles.customPreviewChip}
+                  style={{
+                    background: customPreview[2],
+                    color: customColors.accentPrimary,
+                    borderColor: customColors.accentPrimary,
+                  }}
+                >
+                  Highlight
+                </span>
+              </div>
+            </div>
+          </div>
+        )}
       </section>
 
       <section className={styles.section}>

@@ -471,7 +471,7 @@
   .section {
     padding: var(--space-3xl) 0;
     background:
-      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(224, 123, 0, 0.1) 0%, transparent 55%),
+      radial-gradient(ellipse 120% 60% at 50% -10%, rgba(var(--color-accent-rgb), 0.1) 0%, transparent 55%),
       linear-gradient(180deg, var(--color-bg-light) 0%, var(--color-bg-primary) 45%, var(--color-bg-secondary) 100%);
   }
 
@@ -553,7 +553,7 @@
   .tabActive {
     background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-hover));
     border-color: transparent;
-    box-shadow: 0 4px 16px rgba(224, 123, 0, 0.35);
+    box-shadow: 0 4px 16px rgba(var(--color-accent-rgb), 0.35);
   }
 
   .tabActive:hover {
@@ -567,7 +567,7 @@
     -webkit-backdrop-filter: blur(20px);
     border: 1px solid rgba(255, 255, 255, 0.9);
     box-shadow:
-      0 12px 40px rgba(224, 123, 0, 0.14),
+      0 12px 40px rgba(var(--color-accent-rgb), 0.14),
       0 4px 12px rgba(0, 0, 0, 0.06),
       inset 0 1px 0 rgba(255, 255, 255, 1);
   }
@@ -585,7 +585,7 @@
       135deg,
       rgba(255, 255, 255, 0.45) 0%,
       transparent 42%,
-      rgba(224, 123, 0, 0.04) 100%
+      rgba(var(--color-accent-rgb), 0.04) 100%
     );
     pointer-events: none;
     z-index: 0;
@@ -613,8 +613,8 @@
   }
 
   @keyframes card-icon-pulse {
-    0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(224, 123, 0, 0.45); }
-    50% { transform: scale(1.06); box-shadow: 0 8px 28px rgba(224, 123, 0, 0.55); }
+    0%, 100% { transform: scale(1); box-shadow: 0 6px 20px rgba(var(--color-accent-rgb), 0.45); }
+    50% { transform: scale(1.06); box-shadow: 0 8px 28px rgba(var(--color-accent-rgb), 0.55); }
   }
 
   .cardBody {
@@ -680,7 +680,7 @@
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-md);
-    border-top: 1px solid rgba(224, 123, 0, 0.12);
+    border-top: 1px solid rgba(var(--color-accent-rgb), 0.12);
     padding-top: var(--space-md);
     margin-top: var(--space-sm);
   }
@@ -711,14 +711,14 @@
     font-size: var(--text-sm);
     font-weight: 700;
     letter-spacing: 0.04em;
-    box-shadow: 0 6px 20px rgba(224, 123, 0, 0.35);
+    box-shadow: 0 6px 20px rgba(var(--color-accent-rgb), 0.35);
     transition: box-shadow var(--duration-base) var(--ease-smooth),
                 transform var(--duration-base) var(--ease-smooth);
   }
 
   .cardClickable:active .viewPhotos {
     transform: scale(0.98);
-    box-shadow: 0 4px 14px rgba(224, 123, 0, 0.3);
+    box-shadow: 0 4px 14px rgba(var(--color-accent-rgb), 0.3);
   }
 
   .viewPhotos svg {

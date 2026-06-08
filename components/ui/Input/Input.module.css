@@ -44,7 +44,7 @@
 .select:focus {
   border-color: var(--color-accent-primary);
   background: var(--color-bg-surface);
-  box-shadow: 0 0 0 3px rgba(224, 123, 0, 0.15);
+  box-shadow: 0 0 0 3px rgba(var(--color-accent-rgb), 0.15);
   outline: none;
 }
 

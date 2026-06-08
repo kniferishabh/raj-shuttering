@@ -60,7 +60,7 @@
 }
 
 .primary:hover:not(:disabled) {
-  box-shadow: 0 12px 36px rgba(224, 123, 0, 0.35);
+  box-shadow: 0 12px 36px rgba(var(--color-accent-rgb), 0.35);
 }
 
 .secondary {

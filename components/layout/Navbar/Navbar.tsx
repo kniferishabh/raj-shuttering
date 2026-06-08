@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Menu, X, Phone, MessageCircle } from 'lucide-react';
+import { Menu, X, Phone, MessageCircle, ChevronRight } from 'lucide-react';
 import { Button } from '@/components/ui/Button/Button';
 import styles from './Navbar.module.css';
 
@@ -51,7 +51,15 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
 
   return (
     <>
-      <nav className={[styles.navbar, scrolled ? styles.scrolled : ''].filter(Boolean).join(' ')}>
+      <nav
+        className={[
+          styles.navbar,
+          scrolled ? styles.scrolled : '',
+          menuOpen ? styles.navbarMenuOpen : '',
+        ]
+          .filter(Boolean)
+          .join(' ')}
+      >
         <div className={styles.inner}>
           <Link href="/" className={styles.logo} aria-label="Raj Shuttering home">
             <span className={styles.logoMark} aria-hidden="true">
@@ -97,11 +105,19 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
               aria-label={menuOpen ? 'Close menu' : 'Open menu'}
               aria-expanded={menuOpen}
             >
-              {menuOpen ? <X size={26} /> : <Menu size={26} />}
+              {menuOpen ? <X size={22} strokeWidth={2.5} /> : <Menu size={22} strokeWidth={2.5} />}
             </button>
           </div>
         </div>
       </nav>
+
+      <div
+        className={[styles.mobileBackdrop, menuOpen ? styles.mobileBackdropOpen : '']
+          .filter(Boolean)
+          .join(' ')}
+        aria-hidden={!menuOpen}
+        onClick={() => setMenuOpen(false)}
+      />
 
       <div
         className={[styles.mobileMenu, menuOpen ? styles.mobileMenuOpen : ''].filter(Boolean).join(' ')}
@@ -116,7 +132,8 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
                   .filter(Boolean)
                   .join(' ')}
               >
-                {link.label}
+                <span>{link.label}</span>
+                <ChevronRight size={18} aria-hidden="true" />
               </Link>
             </li>
           ))}
@@ -126,18 +143,21 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
           <Button href="/contact" variant="primary" size="lg" fullWidth>
             Get a Quote
           </Button>
-          <a className={styles.mobilePhone} href={`tel:${cleanPhone}`}>
-            {phone}
-          </a>
-          <a
-            className={styles.mobileWhatsapp}
-            href={`https://wa.me/${cleanWa}`}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <MessageCircle size={20} />
-            <span>Chat on WhatsApp</span>
-          </a>
+          <div className={styles.mobileContactRow}>
+            <a className={styles.mobilePhone} href={`tel:${cleanPhone}`}>
+              <Phone size={18} />
+              <span>{phone}</span>
+            </a>
+            <a
+              className={styles.mobileWhatsapp}
+              href={`https://wa.me/${cleanWa}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Chat on WhatsApp"
+            >
+              <MessageCircle size={18} />
+            </a>
+          </div>
         </div>
       </div>
     </>

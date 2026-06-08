@@ -3,7 +3,17 @@ import { z } from 'zod';
 import { auth } from '@/lib/auth';
 import { writeData } from '@/lib/db';
 import { getSettings } from '@/lib/settings';
+import { COLOR_PALETTE_LIST, CUSTOM_PALETTE_ID, normalizeHexColor } from '@/lib/themes';
 import type { BusinessSettings } from '@/lib/types';
+
+const paletteIds = [
+  ...COLOR_PALETTE_LIST.map((p) => p.id),
+  CUSTOM_PALETTE_ID,
+] as [string, ...string[]];
+
+const hexColorSchema = z
+  .string()
+  .transform((value) => normalizeHexColor(value));
 
 const settingsSchema = z.object({
   businessName: z.string().min(2),
@@ -30,6 +40,13 @@ const settingsSchema = z.object({
   aboutText: z.string(),
   metaTitle: z.string(),
   metaDescription: z.string(),
+  colorPalette: z.enum(paletteIds).optional(),
+  customColors: z
+    .object({
+      accentPrimary: hexColorSchema,
+      accentHover: hexColorSchema.optional(),
+    })
+    .optional(),
 });
 
 export async function GET() {

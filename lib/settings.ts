@@ -24,6 +24,11 @@ const DEFAULT_SETTINGS: BusinessSettings = {
     'Raj Shuttering & Scaffolding has been the backbone of construction projects across Varanasi for over 16 years.',
   metaTitle: 'Raj Shuttering & Scaffolding | Varanasi',
   metaDescription: 'Trusted shuttering and scaffolding rental and wholesale in Varanasi since 2008.',
+  colorPalette: 'construction-orange',
+  customColors: {
+    accentPrimary: '#E07B00',
+    accentHover: '#F59E0B',
+  },
 };
 
 export function getSettings(): BusinessSettings {

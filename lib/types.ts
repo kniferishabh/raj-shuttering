@@ -1,3 +1,5 @@
+import type { ColorPaletteId, CustomColors } from './themes';
+
 export type ServiceCategory = 'shuttering' | 'scaffolding' | 'equipment' | 'other';
 export type AvailableFor = 'rent' | 'sale';
 export type GalleryCategory = 'shuttering' | 'scaffolding' | 'project' | 'equipment';
@@ -81,4 +83,8 @@ export interface BusinessSettings {
   aboutText: string;
   metaTitle: string;
   metaDescription: string;
+  /** Site-wide color palette — see lib/themes.ts */
+  colorPalette?: ColorPaletteId;
+  /** Used when colorPalette is "custom" */
+  customColors?: CustomColors;
 }

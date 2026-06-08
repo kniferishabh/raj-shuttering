@@ -13,7 +13,7 @@
   position: absolute;
   inset: 0;
   background:
-    radial-gradient(ellipse at 20% 30%, rgba(224, 123, 0, 0.1) 0%, transparent 60%),
+    radial-gradient(ellipse at 20% 30%, rgba(var(--color-accent-rgb), 0.1) 0%, transparent 60%),
     radial-gradient(ellipse at 80% 70%, rgba(74, 107, 138, 0.06) 0%, transparent 50%);
   pointer-events: none;
 }

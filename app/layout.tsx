@@ -1,6 +1,7 @@
 import type { Metadata, Viewport } from 'next';
 import { Bebas_Neue, DM_Sans, Instrument_Serif } from 'next/font/google';
 import { getSettings } from '@/lib/settings';
+import { ThemeStyles } from '@/components/theme/ThemeStyles';
 import { PublicChrome } from '@/components/layout/PublicChrome/PublicChrome';
 import './globals.css';
 
@@ -81,9 +82,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const settings = getSettings();
+
   return (
     <html lang="en" className={`${bebas.variable} ${dmSans.variable} ${instrument.variable}`}>
       <body>
+        <ThemeStyles paletteId={settings.colorPalette} customColors={settings.customColors} />
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <PublicChrome settings={settings}>{children}</PublicChrome>
       </body>

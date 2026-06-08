@@ -9,7 +9,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse at 30% 50%, rgba(224, 123, 0, 0.08) 0%, transparent 60%);
+  background: radial-gradient(ellipse at 30% 50%, rgba(var(--color-accent-rgb), 0.08) 0%, transparent 60%);
   pointer-events: none;
 }
 

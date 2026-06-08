@@ -140,14 +140,224 @@
   box-shadow: var(--shadow-card);
 }
 
+.paletteGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-md);
+}
+
+.paletteCard {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+  padding: var(--space-md);
+  background: var(--color-bg-surface);
+  border: 2px solid var(--color-border);
+  border-radius: var(--radius-md);
+  text-align: left;
+  cursor: pointer;
+  transition: border-color var(--duration-fast) var(--ease-smooth),
+              box-shadow var(--duration-fast) var(--ease-smooth);
+}
+
+.paletteCard:hover {
+  border-color: var(--color-border-accent);
+}
+
+.paletteCardActive {
+  border-color: var(--color-accent-primary);
+  box-shadow: var(--shadow-glow);
+}
+
+.paletteSwatches {
+  display: flex;
+  gap: 6px;
+}
+
+.paletteSwatch {
+  flex: 1;
+  height: 28px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.paletteInfo {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.paletteName {
+  font-family: var(--font-body), sans-serif;
+  font-size: var(--text-sm);
+  font-weight: 700;
+  color: var(--color-text-primary);
+}
+
+.paletteDesc {
+  font-size: var(--text-xs);
+  line-height: 1.45;
+  color: var(--color-text-muted);
+}
+
+.paletteCheck {
+  position: absolute;
+  top: var(--space-sm);
+  right: var(--space-sm);
+  width: 28px;
+  height: 28px;
+  border-radius: var(--radius-pill);
+  background: var(--color-accent-primary);
+  color: var(--color-text-on-accent);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.paletteCardCustom .paletteSwatches {
+  background: linear-gradient(
+    90deg,
+    var(--color-accent-primary),
+    var(--color-accent-hover),
+    var(--color-accent-subtle)
+  );
+  padding: 2px;
+  border-radius: var(--radius-sm);
+}
+
+.paletteCardCustom .paletteSwatch {
+  border: none;
+}
+
+.customColorsPanel {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-md);
+  padding: var(--space-lg);
+  background: var(--color-bg-surface);
+  border: 1px solid var(--color-border-accent);
+  border-radius: var(--radius-md);
+}
+
+.customColorsHint {
+  margin: 0;
+  font-size: var(--text-sm);
+  color: var(--color-text-secondary);
+  line-height: 1.55;
+}
+
+.customColorsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-md);
+}
+
+.colorField {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.colorInputRow {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+}
+
+.colorPicker {
+  width: 52px;
+  height: 44px;
+  padding: 2px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  background: var(--color-bg-surface);
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.colorHexInput {
+  flex: 1;
+  padding: 12px 14px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  color: var(--color-text-primary);
+  font-family: ui-monospace, monospace;
+  font-size: var(--text-sm);
+}
+
+.colorHexInput:focus {
+  outline: none;
+  border-color: var(--color-accent-primary);
+}
+
+.customPreviewBar {
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  flex-wrap: wrap;
+  padding-top: var(--space-sm);
+  border-top: 1px solid var(--color-border);
+}
+
+.customPreviewLabel {
+  font-size: var(--text-xs);
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--color-text-muted);
+}
+
+.customPreviewSamples {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  flex-wrap: wrap;
+}
+
+.customPreviewBtn {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 18px;
+  border-radius: var(--radius-pill);
+  color: #fff;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
+.customPreviewChip {
+  display: inline-flex;
+  align-items: center;
+  padding: 6px 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid;
+  font-size: var(--text-sm);
+  font-weight: 600;
+}
+
 .actions {
   display: flex;
   justify-content: flex-end;
   padding-top: var(--space-md);
 }
 
+@media (max-width: 900px) {
+  .paletteGrid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
 @media (max-width: 640px) {
   .row2 {
+    grid-template-columns: 1fr;
+  }
+
+  .paletteGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .customColorsGrid {
     grid-template-columns: 1fr;
   }
 

@@ -10,7 +10,7 @@ export default function AdminSettingsPage() {
       <header className={adminStyles.pageHead}>
         <h1 className={adminStyles.pageTitle}>Settings</h1>
         <p className={adminStyles.pageSubtitle}>
-          Business information, contact details, and SEO content.
+          Business information, contact details, color theme, and SEO content.
         </p>
       </header>
 
