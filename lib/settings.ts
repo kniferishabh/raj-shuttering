@@ -17,6 +17,9 @@ const DEFAULT_SETTINGS: BusinessSettings = {
   heroHeadline: 'Strength Above. Safety Below.',
   heroSubheadline:
     'Premium shuttering and scaffolding solutions for construction projects across Varanasi and Uttar Pradesh. Trusted since 2008.',
+  heroVideoUrl: '',
+  heroVideoUrlMobile: '',
+  heroVideoPoster: '',
   aboutText:
     'Raj Shuttering & Scaffolding has been the backbone of construction projects across Varanasi for over 16 years.',
   metaTitle: 'Raj Shuttering & Scaffolding | Varanasi',

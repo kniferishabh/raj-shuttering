@@ -154,9 +154,14 @@ ul, ol {
 }
 
 /* ---------- Scrollbar ---------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-accent-primary) var(--color-bg-secondary);
+}
+
 ::-webkit-scrollbar {
-  width: 8px;
-  height: 8px;
+  width: 10px;
+  height: 10px;
 }
 
 ::-webkit-scrollbar-track {
@@ -164,12 +169,13 @@ ul, ol {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #D4D0C8;
+  background: linear-gradient(180deg, var(--color-accent-hover), var(--color-accent-primary));
   border-radius: var(--radius-pill);
+  border: 2px solid var(--color-bg-secondary);
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: var(--color-accent-primary);
+  background: linear-gradient(180deg, #fbbf24, var(--color-accent-hover));
 }
 
 /* ---------- Focus ---------- */

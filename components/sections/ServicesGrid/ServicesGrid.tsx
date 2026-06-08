@@ -6,7 +6,6 @@ import {
   ArrowRight,
   ChevronLeft,
   ChevronRight,
-  Images,
   Square,
   Layers,
   ArrowUpDown,
@@ -22,7 +21,9 @@ import {
 import { Button } from '@/components/ui/Button/Button';
 import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { Modal } from '@/components/ui/Modal/Modal';
+import { Reveal } from '@/components/ui/Reveal/Reveal';
 import type { Service, ServiceCategory } from '@/lib/types';
+import { ServiceCard } from './ServiceCard';
 import styles from './ServicesGrid.module.css';
 
 function imagesOf(service: Service): string[] {
@@ -107,6 +108,7 @@ export function ServicesGrid({
   return (
     <section className={styles.section} id="services">
       <div className={styles.inner}>
+        <Reveal y={24}>
         <div className={styles.headRow}>
           <SectionHeader
             eyebrow="What We Offer"
@@ -114,78 +116,41 @@ export function ServicesGrid({
             subtitle="From small residential slabs to multi-storey commercial projects - we have the right materials and the right expertise."
           />
 
-          <div className={styles.tabs} role="tablist" aria-label="Service category filter">
-            {TABS.map((t) => (
-              <button
-                key={t.value}
-                role="tab"
-                aria-selected={tab === t.value}
-                className={[styles.tab, tab === t.value ? styles.tabActive : ''].filter(Boolean).join(' ')}
-                onClick={() => setTab(t.value)}
-                type="button"
-              >
-                {t.label}
-              </button>
-            ))}
+          <div className={styles.tabsWrap}>
+            <div className={styles.tabs} role="tablist" aria-label="Service category filter">
+              {TABS.map((t) => (
+                <button
+                  key={t.value}
+                  role="tab"
+                  aria-selected={tab === t.value}
+                  className={[styles.tab, tab === t.value ? styles.tabActive : ''].filter(Boolean).join(' ')}
+                  onClick={() => setTab(t.value)}
+                  type="button"
+                >
+                  {t.label}
+                </button>
+              ))}
+            </div>
           </div>
         </div>
+        </Reveal>
 
         <div className={styles.grid}>
           {loading
             ? Array.from({ length: limit ?? 6 }).map((_, i) => <div key={i} className={styles.skeleton} />)
             : filtered.length === 0
               ? <div className={styles.emptyState}>No services available in this category.</div>
-              : filtered.map((service) => {
+              : filtered.map((service, idx) => {
                   const Icon = ICON_MAP[service.icon] ?? Wrench;
-                  const photoCount = imagesOf(service).length;
                   return (
-                    <article
+                    <ServiceCard
                       key={service.id}
-                      className={[styles.card, photoCount > 0 ? styles.cardClickable : '']
-                        .filter(Boolean)
-                        .join(' ')}
-                      onClick={() => openGallery(service)}
-                      onKeyDown={(e) => {
-                        if (e.key === 'Enter' || e.key === ' ') {
-                          e.preventDefault();
-                          openGallery(service);
-                        }
-                      }}
-                      role={photoCount > 0 ? 'button' : undefined}
-                      tabIndex={photoCount > 0 ? 0 : undefined}
-                      aria-label={photoCount > 0 ? `View ${photoCount} photos of ${service.name}` : undefined}
-                    >
-                      <div className={styles.cardTop}>
-                        <span className={styles.iconCircle}>
-                          <Icon size={24} />
-                        </span>
-                        {photoCount > 0 && (
-                          <span className={styles.photoBadge}>
-                            <Images size={14} />
-                            {photoCount} Photos
-                          </span>
-                        )}
-                      </div>
-                      <h3 className={styles.cardTitle}>{service.name}</h3>
-                      <p className={styles.cardDesc}>{service.shortDescription}</p>
-                      <ul className={styles.features}>
-                        {service.features.slice(0, 3).map((f) => (
-                          <li key={f} className={styles.featurePill}>{f}</li>
-                        ))}
-                      </ul>
-                      <div className={styles.cardBottom}>
-                        <div className={styles.availability}>
-                          {service.availableFor.map((av) => (
-                            <span key={av} className={styles.availChip}>{av}</span>
-                          ))}
-                        </div>
-                        {photoCount > 0 && (
-                          <span className={styles.viewPhotos}>
-                            View Photos <ArrowRight size={14} />
-                          </span>
-                        )}
-                      </div>
-                    </article>
+                      service={service}
+                      index={idx}
+                      Icon={Icon}
+                      images={imagesOf(service)}
+                      onOpen={() => openGallery(service)}
+                    />
                   );
                 })}
         </div>

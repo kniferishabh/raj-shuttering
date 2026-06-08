@@ -54,6 +54,19 @@
   gap: var(--space-lg);
 }
 
+.gridReveal,
+.gridRevealFeatured {
+  min-width: 0;
+}
+
+.gridRevealFeatured {
+  grid-column: span 2;
+}
+
+.gridRevealFeatured .item {
+  aspect-ratio: 16 / 10;
+}
+
 .item {
   position: relative;
   display: block;
@@ -68,12 +81,6 @@
               border-color var(--duration-base) var(--ease-smooth);
   aspect-ratio: 4 / 3;
   width: 100%;
-}
-
-/* First tile spans two columns for editorial rhythm */
-.item:first-child {
-  grid-column: span 2;
-  aspect-ratio: 16 / 10;
 }
 
 .item:hover,
@@ -310,8 +317,11 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
-  .item:first-child {
+  .gridRevealFeatured {
     grid-column: span 2;
+  }
+
+  .gridRevealFeatured .item {
     aspect-ratio: 16 / 9;
   }
 }
@@ -331,9 +341,13 @@
     gap: var(--space-md);
   }
 
-  .item,
-  .item:first-child {
+  .gridReveal,
+  .gridRevealFeatured {
     grid-column: auto;
+  }
+
+  .gridReveal .item,
+  .gridRevealFeatured .item {
     aspect-ratio: 4 / 3;
   }
 

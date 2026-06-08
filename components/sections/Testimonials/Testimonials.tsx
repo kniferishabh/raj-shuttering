@@ -1,5 +1,6 @@
 import { Star } from 'lucide-react';
 import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
+import { Reveal } from '@/components/ui/Reveal/Reveal';
 import type { Testimonial } from '@/lib/types';
 import styles from './Testimonials.module.css';
 
@@ -39,8 +40,9 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
           <div className={styles.empty}>No reviews yet.</div>
         ) : (
           <div className={styles.grid}>
-            {approved.map((t) => (
-              <article key={t.id} className={styles.card}>
+            {approved.map((t, idx) => (
+              <Reveal key={t.id} delay={(idx % 3) * 0.1} y={32} x={idx % 2 === 0 ? -16 : 16} scale={0.96}>
+              <article className={styles.card}>
                 <StarRow rating={t.rating} />
                 <p className={styles.review}>&ldquo;{t.review}&rdquo;</p>
                 <div className={styles.author}>
@@ -54,6 +56,7 @@ export function Testimonials({ testimonials }: TestimonialsProps) {
                   <span className={styles.projectBadge}>{t.projectType}</span>
                 </div>
               </article>
+              </Reveal>
             ))}
           </div>
         )}

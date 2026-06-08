@@ -1,4 +1,5 @@
 import { safeReadArray } from '@/lib/db';
+import { getHeroVideoConfig } from '@/lib/media';
 import { getSettings } from '@/lib/settings';
 import type { Service, GalleryItem, Testimonial } from '@/lib/types';
 import { Hero } from '@/components/sections/Hero/Hero';
@@ -24,13 +25,17 @@ export default function HomePage() {
 
   return (
     <div className={styles.page}>
-      <Hero headline={settings.heroHeadline} subheadline={settings.heroSubheadline} />
+      <Hero
+        headline={settings.heroHeadline}
+        subheadline={settings.heroSubheadline}
+        video={getHeroVideoConfig(settings)}
+      />
 
-      <StatsBar />
-
-      <Reveal>
-        <ServicesGrid services={services} limit={6} />
+      <Reveal y={20}>
+        <StatsBar />
       </Reveal>
+
+      <ServicesGrid services={services} limit={6} />
 
       <Reveal>
         <WhyUs
@@ -51,14 +56,18 @@ export default function HomePage() {
             />
           </Reveal>
         </div>
-        <GalleryGrid items={gallery} showFilters={false} showFooterCta featuredOnly />
+        <Reveal delay={0.1}>
+          <GalleryGrid items={gallery} showFilters={false} showFooterCta featuredOnly />
+        </Reveal>
       </section>
 
       <Reveal>
         <Testimonials testimonials={testimonials} />
       </Reveal>
 
-      <ContactCTA phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />
+      <Reveal scale={0.96}>
+        <ContactCTA phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />
+      </Reveal>
 
       <section className={`${styles.contactSection} blueprint-grid`} id="contact">
         <div className={styles.contactInner}>
@@ -70,8 +79,12 @@ export default function HomePage() {
             />
           </Reveal>
           <div className={styles.contactGrid}>
-            <ContactForm />
-            <MapEmbed label={`${settings.address}, ${settings.city}`} />
+            <Reveal delay={0.05} x={-24}>
+              <ContactForm />
+            </Reveal>
+            <Reveal delay={0.15} x={24}>
+              <MapEmbed label={`${settings.address}, ${settings.city}`} />
+            </Reveal>
           </div>
         </div>
       </section>

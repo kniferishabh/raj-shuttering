@@ -26,6 +26,26 @@
   margin-bottom: var(--space-sm);
 }
 
+.helpText {
+  font-size: var(--text-sm);
+  line-height: 1.65;
+  color: var(--color-text-secondary);
+  margin: 0;
+}
+
+.helpText code {
+  font-size: 0.85em;
+  padding: 2px 6px;
+  background: var(--color-bg-muted);
+  border-radius: var(--radius-sm);
+  color: var(--color-text-primary);
+}
+
+.helpText a {
+  color: var(--color-accent-primary);
+  font-weight: 600;
+}
+
 .row2 {
   display: grid;
   grid-template-columns: 1fr 1fr;

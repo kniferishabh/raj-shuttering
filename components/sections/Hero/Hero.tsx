@@ -1,11 +1,13 @@
 import { ArrowRight, ChevronDown, HardHat, Layers, Square, Star, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/Button/Button';
+import type { HeroVideoConfig } from '@/lib/media';
 import { HeroVideo } from './HeroVideo';
 import styles from './Hero.module.css';
 
 interface HeroProps {
   headline: string;
   subheadline: string;
+  video: HeroVideoConfig;
 }
 
 function formatHeadline(text: string) {
@@ -33,12 +35,46 @@ const MATERIAL_BADGES = [
   { icon: HardHat, label: 'On-Site Support' },
 ];
 
-export function Hero({ headline, subheadline }: HeroProps) {
+function formatMobileHeadline(text: string) {
+  const parts = text.split(/(\.|\?|!)/).filter(Boolean);
+  if (parts.length < 2) return text;
+  const first = parts.slice(0, 2).join('').trim();
+  const second = parts.slice(2).join('').trim();
+  if (!second) return first;
+  return (
+    <>
+      {first}
+      <br />
+      <span className={styles.mobileHeadlineAccent}>{second}</span>
+    </>
+  );
+}
+
+export function Hero({ headline, subheadline, video }: HeroProps) {
   return (
     <section className={styles.hero} id="hero" aria-label="Hero banner">
       <div className={styles.videoWrap}>
-        <HeroVideo />
+        <HeroVideo video={video} />
         <div className={styles.videoOverlay} aria-hidden="true" />
+
+        <span className={styles.mobileEyebrow}>
+          <Zap size={11} />
+          Trusted Since 2008
+        </span>
+
+        <div className={styles.mobileOverlay}>
+          <h1 className={styles.mobileHeadline}>{formatMobileHeadline(headline)}</h1>
+          <Button
+            href="/contact"
+            variant="primary"
+            size="md"
+            fullWidth
+            icon={<ArrowRight size={16} />}
+            className={styles.mobileCta}
+          >
+            Get Free Quote
+          </Button>
+        </div>
       </div>
 
       <div className={styles.inner}>

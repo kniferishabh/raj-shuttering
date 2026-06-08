@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import { ArrowRight, ChevronLeft, ChevronRight, Maximize2, X } from 'lucide-react';
 import { Button } from '@/components/ui/Button/Button';
+import { Reveal } from '@/components/ui/Reveal/Reveal';
 import type { GalleryCategory, GalleryItem } from '@/lib/types';
 import styles from './GalleryGrid.module.css';
 
@@ -104,8 +105,14 @@ export function GalleryGrid({
         ) : (
           <div className={styles.grid}>
             {filtered.map((item, idx) => (
-              <button
+              <Reveal
                 key={item.id}
+                delay={(idx % 6) * 0.07}
+                y={40}
+                scale={0.94}
+                className={idx === 0 ? styles.gridRevealFeatured : styles.gridReveal}
+              >
+              <button
                 className={styles.item}
                 onClick={() => openLightbox(idx)}
                 type="button"
@@ -131,6 +138,7 @@ export function GalleryGrid({
                   <span className={styles.itemTitle}>{item.title}</span>
                 </span>
               </button>
+              </Reveal>
             ))}
           </div>
         )}

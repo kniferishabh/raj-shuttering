@@ -1,31 +1,26 @@
 'use client';
 
 import { useEffect, useRef, useState } from 'react';
-import { HERO_CONSTRUCTION_VIDEO } from '@/lib/media';
+import type { HeroVideoConfig } from '@/lib/media';
 import styles from './Hero.module.css';
 
-export function HeroVideo() {
+interface HeroVideoProps {
+  video: HeroVideoConfig;
+}
+
+export function HeroVideo({ video }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
   const [usePosterOnly, setUsePosterOnly] = useState(false);
-  const [isMobile, setIsMobile] = useState(false);
 
   useEffect(() => {
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-    const mobileQuery = window.matchMedia('(max-width: 768px)');
 
-    const update = () => {
-      setUsePosterOnly(motionQuery.matches);
-      setIsMobile(mobileQuery.matches);
-    };
+    const update = () => setUsePosterOnly(motionQuery.matches);
 
     update();
     motionQuery.addEventListener('change', update);
-    mobileQuery.addEventListener('change', update);
 
-    return () => {
-      motionQuery.removeEventListener('change', update);
-      mobileQuery.removeEventListener('change', update);
-    };
+    return () => motionQuery.removeEventListener('change', update);
   }, []);
 
   useEffect(() => {
@@ -41,15 +36,15 @@ export function HeroVideo() {
     play();
     video.addEventListener('loadeddata', play);
     return () => video.removeEventListener('loadeddata', play);
-  }, [usePosterOnly, isMobile]);
+  }, [usePosterOnly]);
 
   if (usePosterOnly) {
     return (
       <div
         className={styles.videoPoster}
-        style={{ backgroundImage: `url(${HERO_CONSTRUCTION_VIDEO.poster})` }}
+        style={{ backgroundImage: `url(${video.poster})` }}
         role="img"
-        aria-label={HERO_CONSTRUCTION_VIDEO.alt}
+        aria-label={video.alt}
       />
     );
   }
@@ -62,13 +57,11 @@ export function HeroVideo() {
       loop
       muted
       playsInline
-      poster={HERO_CONSTRUCTION_VIDEO.poster}
+      poster={video.poster}
       aria-hidden="true"
     >
-      <source
-        src={isMobile ? HERO_CONSTRUCTION_VIDEO.srcMobile : HERO_CONSTRUCTION_VIDEO.src}
-        type="video/mp4"
-      />
+      <source src={video.srcMobile} type="video/mp4" media="(max-width: 768px)" />
+      <source src={video.src} type="video/mp4" />
     </video>
   );
 }

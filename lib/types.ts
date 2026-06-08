@@ -72,6 +72,12 @@ export interface BusinessSettings {
   };
   heroHeadline: string;
   heroSubheadline: string;
+  /** Desktop hero banner MP4 — use /videos/hero.mp4 or a hosted URL */
+  heroVideoUrl?: string;
+  /** Mobile hero banner MP4 — optional; falls back to heroVideoUrl */
+  heroVideoUrlMobile?: string;
+  /** Poster/thumbnail image shown before video loads */
+  heroVideoPoster?: string;
   aboutText: string;
   metaTitle: string;
   metaDescription: string;

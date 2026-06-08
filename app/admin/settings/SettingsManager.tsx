@@ -4,6 +4,11 @@ import { useState } from 'react';
 import { Save, Plus, X, CheckCircle2 } from 'lucide-react';
 import { Button } from '@/components/ui/Button/Button';
 import { Input, Textarea } from '@/components/ui/Input/Input';
+import {
+  HERO_VIDEO_MOBILE_PUBLIC_URL,
+  HERO_VIDEO_PUBLIC_URL,
+  HERO_VIDEO_UPLOAD_PATH,
+} from '@/lib/media';
 import type { BusinessSettings } from '@/lib/types';
 import styles from './settings.module.css';
 
@@ -192,6 +197,43 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
           rows={6}
           value={settings.aboutText}
           onChange={(e) => update('aboutText', e.target.value)}
+        />
+      </section>
+
+      <section className={styles.section}>
+        <h2 className={styles.sectionTitle}>Hero Banner Video</h2>
+        <p className={styles.helpText}>
+          <strong>Option 1 — Upload to project folder:</strong> Copy your MP4 file to{' '}
+          <code>{HERO_VIDEO_UPLOAD_PATH}</code> (desktop) and optionally{' '}
+          <code>public/videos/hero-mobile.mp4</code> (mobile). Then set the URLs below to{' '}
+          <code>{HERO_VIDEO_PUBLIC_URL}</code> and <code>{HERO_VIDEO_MOBILE_PUBLIC_URL}</code>.
+          Redeploy to Vercel after adding the file.
+        </p>
+        <p className={styles.helpText}>
+          <strong>Option 2 — Hosted URL:</strong> Upload to{' '}
+          <a href="https://cloudinary.com" target="_blank" rel="noopener noreferrer">
+            Cloudinary
+          </a>{' '}
+          (free), Google Drive (direct MP4 link), or any CDN — then paste the direct MP4 link below.
+          Leave blank to use the default stock video.
+        </p>
+        <Input
+          label="Banner Video URL (Desktop)"
+          value={settings.heroVideoUrl ?? ''}
+          onChange={(e) => update('heroVideoUrl', e.target.value)}
+          placeholder={HERO_VIDEO_PUBLIC_URL}
+        />
+        <Input
+          label="Banner Video URL (Mobile — optional)"
+          value={settings.heroVideoUrlMobile ?? ''}
+          onChange={(e) => update('heroVideoUrlMobile', e.target.value)}
+          placeholder={HERO_VIDEO_MOBILE_PUBLIC_URL}
+        />
+        <Input
+          label="Video Poster Image URL"
+          value={settings.heroVideoPoster ?? ''}
+          onChange={(e) => update('heroVideoPoster', e.target.value)}
+          placeholder="/images/shuttering-slab.jpg"
         />
       </section>
 

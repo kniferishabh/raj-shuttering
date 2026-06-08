@@ -1,5 +1,6 @@
 import { ArrowRight, Check, Calendar, MapPin, Star, ShieldCheck } from 'lucide-react';
 import { Button } from '@/components/ui/Button/Button';
+import { Reveal } from '@/components/ui/Reveal/Reveal';
 import styles from './WhyUs.module.css';
 
 interface WhyUsProps {
@@ -26,8 +27,9 @@ export function WhyUs({ aboutText, establishedYear, city, area }: WhyUsProps) {
           <p className={styles.intro}>{aboutText}</p>
 
           <div className={styles.bullets}>
-            {BULLETS.map((b) => (
-              <div key={b.title} className={styles.bullet}>
+            {BULLETS.map((b, idx) => (
+              <Reveal key={b.title} delay={idx * 0.08} y={24} scale={0.97}>
+              <div className={styles.bullet}>
                 <span className={styles.checkIcon}>
                   <Check size={18} strokeWidth={3} />
                 </span>
@@ -36,6 +38,7 @@ export function WhyUs({ aboutText, establishedYear, city, area }: WhyUsProps) {
                   <span className={styles.bulletDesc}>{b.desc}</span>
                 </span>
               </div>
+              </Reveal>
             ))}
           </div>
 
