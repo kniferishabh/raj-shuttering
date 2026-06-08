@@ -231,6 +231,13 @@ const PALETTES: Record<PresetPaletteId, ColorPalette> = {
 
 export const COLOR_PALETTE_LIST = Object.values(PALETTES);
 
+/** Non-empty tuple for Zod `z.enum()` */
+export const PALETTE_IDS_ZOD: [ColorPaletteId, ...ColorPaletteId[]] = [
+  COLOR_PALETTE_LIST[0].id,
+  ...COLOR_PALETTE_LIST.slice(1).map((palette) => palette.id),
+  CUSTOM_PALETTE_ID,
+];
+
 export function normalizeHexColor(hex: string, fallback = '#E07B00'): string {
   let value = hex.trim().replace(/^#/, '');
   if (value.length === 3) {
