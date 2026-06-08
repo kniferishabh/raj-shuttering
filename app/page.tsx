@@ -17,11 +17,11 @@ import styles from './page.module.css';
 
 export const dynamic = 'force-dynamic';
 
-export default function HomePage() {
-  const settings = getSettings();
-  const services = safeReadArray<Service>('services.json').filter((s) => s.isActive);
-  const gallery = safeReadArray<GalleryItem>('gallery.json');
-  const testimonials = safeReadArray<Testimonial>('testimonials.json');
+export default async function HomePage() {
+  const settings = await getSettings();
+  const services = (await safeReadArray<Service>('services.json')).filter((s) => s.isActive);
+  const gallery = await safeReadArray<GalleryItem>('gallery.json');
+  const testimonials = await safeReadArray<Testimonial>('testimonials.json');
 
   return (
     <div className={styles.page}>

@@ -27,7 +27,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   try {
     const body = await req.json();
     const parsed = updateSchema.parse(body);
-    const services = safeReadArray<Service>('services.json');
+    const services = await safeReadArray<Service>('services.json');
     const idx = services.findIndex((s) => s.id === params.id);
 
     if (idx === -1) {
@@ -40,7 +40,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
       updatedAt: new Date().toISOString(),
     };
 
-    writeData('services.json', services);
+    await writeData('services.json', services);
     return NextResponse.json(services[idx]);
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -56,13 +56,13 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const services = safeReadArray<Service>('services.json');
+  const services = await safeReadArray<Service>('services.json');
   const filtered = services.filter((s) => s.id !== params.id);
 
   if (filtered.length === services.length) {
     return NextResponse.json({ error: 'Service not found' }, { status: 404 });
   }
 
-  writeData('services.json', filtered);
+  await writeData('services.json', filtered);
   return NextResponse.json({ success: true });
 }

@@ -22,7 +22,7 @@ const serviceSchema = z.object({
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const all = searchParams.get('all') === 'true';
-  const services = safeReadArray<Service>('services.json');
+  const services = await safeReadArray<Service>('services.json');
 
   if (all) {
     const session = await auth();
@@ -55,9 +55,9 @@ export async function POST(req: NextRequest) {
       updatedAt: now,
     };
 
-    const services = safeReadArray<Service>('services.json');
+    const services = await safeReadArray<Service>('services.json');
     services.push(newService);
-    writeData('services.json', services);
+    await writeData('services.json', services);
 
     return NextResponse.json(newService, { status: 201 });
   } catch (error) {

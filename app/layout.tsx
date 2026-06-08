@@ -28,7 +28,7 @@ const instrument = Instrument_Serif({
 });
 
 export async function generateMetadata(): Promise<Metadata> {
-  const settings = getSettings();
+  const settings = await getSettings();
   return {
     metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
     title: {
@@ -76,12 +76,12 @@ export const viewport: Viewport = {
   viewportFit: 'cover',
 };
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const settings = getSettings();
+  const settings = await getSettings();
 
   return (
     <html lang="en" className={`${bebas.variable} ${dmSans.variable} ${instrument.variable}`}>

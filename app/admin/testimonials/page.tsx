@@ -3,8 +3,8 @@ import type { Testimonial } from '@/lib/types';
 import { TestimonialsManager } from './TestimonialsManager';
 import adminStyles from '../admin.module.css';
 
-export default function AdminTestimonialsPage() {
-  const items = safeReadArray<Testimonial>('testimonials.json');
+export default async function AdminTestimonialsPage() {
+  const items = await safeReadArray<Testimonial>('testimonials.json');
 
   return (
     <div>

@@ -20,7 +20,7 @@ export async function GET() {
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  const enquiries = safeReadArray<Enquiry>('enquiries.json').sort(
+  const enquiries = (await safeReadArray<Enquiry>('enquiries.json')).sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
   return NextResponse.json(enquiries);
@@ -41,9 +41,9 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    const items = safeReadArray<Enquiry>('enquiries.json');
+    const items = await safeReadArray<Enquiry>('enquiries.json');
     items.push(item);
-    writeData('enquiries.json', items);
+    await writeData('enquiries.json', items);
 
     return NextResponse.json({ success: true, id: item.id }, { status: 201 });
   } catch (error) {

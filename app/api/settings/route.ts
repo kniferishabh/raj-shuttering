@@ -45,7 +45,7 @@ const settingsSchema = z.object({
 });
 
 export async function GET() {
-  const settings = getSettings();
+  const settings = await getSettings();
   return NextResponse.json(settings, {
     headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' },
   });
@@ -60,7 +60,7 @@ export async function PUT(req: NextRequest) {
   try {
     const body = await req.json();
     const parsed = settingsSchema.parse(body) as BusinessSettings;
-    writeData('settings.json', parsed);
+    await writeData('settings.json', parsed);
     return NextResponse.json(parsed);
   } catch (error) {
     if (error instanceof z.ZodError) {

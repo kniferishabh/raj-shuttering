@@ -18,7 +18,7 @@ async function handleSignOut() {
   await signOut({ redirectTo: '/admin/login' });
 }
 
-export default function AdminLayout({
+export default async function AdminLayout({
   children,
 }: {
   children: React.ReactNode;
@@ -31,7 +31,7 @@ export default function AdminLayout({
     return <>{children}</>;
   }
 
-  const enquiries = safeReadArray<Enquiry>('enquiries.json');
+  const enquiries = await safeReadArray<Enquiry>('enquiries.json');
   const unreadCount = enquiries.filter((e) => !e.isRead).length;
 
   return (

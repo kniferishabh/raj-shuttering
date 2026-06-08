@@ -3,8 +3,8 @@ import type { Enquiry } from '@/lib/types';
 import { EnquiriesManager } from './EnquiriesManager';
 import adminStyles from '../admin.module.css';
 
-export default function AdminEnquiriesPage() {
-  const enquiries = safeReadArray<Enquiry>('enquiries.json').sort(
+export default async function AdminEnquiriesPage() {
+  const enquiries = (await safeReadArray<Enquiry>('enquiries.json')).sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 

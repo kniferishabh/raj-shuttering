@@ -31,9 +31,9 @@ const DEFAULT_SETTINGS: BusinessSettings = {
   },
 };
 
-export function getSettings(): BusinessSettings {
+export async function getSettings(): Promise<BusinessSettings> {
   try {
-    return readData<BusinessSettings>('settings.json');
+    return await readData<BusinessSettings>('settings.json');
   } catch {
     return DEFAULT_SETTINGS;
   }

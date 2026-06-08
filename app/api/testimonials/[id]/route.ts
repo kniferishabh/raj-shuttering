@@ -23,13 +23,13 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   try {
     const body = await req.json();
     const parsed = updateSchema.parse(body);
-    const items = safeReadArray<Testimonial>('testimonials.json');
+    const items = await safeReadArray<Testimonial>('testimonials.json');
     const idx = items.findIndex((t) => t.id === params.id);
     if (idx === -1) {
       return NextResponse.json({ error: 'Not found' }, { status: 404 });
     }
     items[idx] = { ...items[idx], ...parsed };
-    writeData('testimonials.json', items);
+    await writeData('testimonials.json', items);
     return NextResponse.json(items[idx]);
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -44,11 +44,11 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  const items = safeReadArray<Testimonial>('testimonials.json');
+  const items = await safeReadArray<Testimonial>('testimonials.json');
   const filtered = items.filter((t) => t.id !== params.id);
   if (filtered.length === items.length) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
-  writeData('testimonials.json', filtered);
+  await writeData('testimonials.json', filtered);
   return NextResponse.json({ success: true });
 }

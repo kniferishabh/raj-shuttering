@@ -17,13 +17,13 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   try {
     const body = await req.json();
     const parsed = updateSchema.parse(body);
-    const items = safeReadArray<Enquiry>('enquiries.json');
+    const items = await safeReadArray<Enquiry>('enquiries.json');
     const idx = items.findIndex((e) => e.id === params.id);
     if (idx === -1) {
       return NextResponse.json({ error: 'Not found' }, { status: 404 });
     }
     items[idx] = { ...items[idx], ...parsed };
-    writeData('enquiries.json', items);
+    await writeData('enquiries.json', items);
     return NextResponse.json(items[idx]);
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -39,7 +39,7 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const items = safeReadArray<Enquiry>('enquiries.json');
+  const items = await safeReadArray<Enquiry>('enquiries.json');
   const target = items.find((e) => e.id === params.id);
   if (!target) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
@@ -50,6 +50,6 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
       { status: 400 }
     );
   }
-  writeData('enquiries.json', items.filter((e) => e.id !== params.id));
+  await writeData('enquiries.json', items.filter((e) => e.id !== params.id));
   return NextResponse.json({ success: true });
 }

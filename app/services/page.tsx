@@ -14,9 +14,9 @@ export const metadata: Metadata = {
     'Explore our complete range of shuttering, scaffolding, and construction formwork equipment available for rent and wholesale in Varanasi.',
 };
 
-export default function ServicesPage() {
-  const settings = getSettings();
-  const services = safeReadArray<Service>('services.json').filter((s) => s.isActive);
+export default async function ServicesPage() {
+  const settings = await getSettings();
+  const services = (await safeReadArray<Service>('services.json')).filter((s) => s.isActive);
 
   return (
     <>

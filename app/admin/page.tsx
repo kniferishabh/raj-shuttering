@@ -6,11 +6,11 @@ import { Badge } from '@/components/ui/Badge/Badge';
 import styles from './dashboard.module.css';
 import adminStyles from './admin.module.css';
 
-export default function AdminDashboardPage() {
-  const services = safeReadArray<Service>('services.json');
-  const gallery = safeReadArray<GalleryItem>('gallery.json');
-  const testimonials = safeReadArray<Testimonial>('testimonials.json');
-  const enquiries = safeReadArray<Enquiry>('enquiries.json').sort(
+export default async function AdminDashboardPage() {
+  const services = await safeReadArray<Service>('services.json');
+  const gallery = await safeReadArray<GalleryItem>('gallery.json');
+  const testimonials = await safeReadArray<Testimonial>('testimonials.json');
+  const enquiries = (await safeReadArray<Enquiry>('enquiries.json')).sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 

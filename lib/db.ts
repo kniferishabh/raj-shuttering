@@ -1,18 +1,28 @@
 import fs from 'fs';
 import path from 'path';
-
-/**
- * Simple JSON-flatfile data store.
- *
- * NOTE: For production deployment on Vercel (serverless), filesystem writes
- * are ephemeral and will NOT persist across deployments or cold starts.
- * For production, swap this layer for Vercel KV, Postgres (Neon),
- * Supabase, or any managed database.
- */
+import { isDatabaseEnabled, prisma } from './prisma';
 
 const dataDir = path.join(process.cwd(), 'data');
 
-export function readData<T>(filename: string): T {
+const FILE_KEYS = new Set([
+  'settings',
+  'services',
+  'gallery',
+  'testimonials',
+  'enquiries',
+]);
+
+function toKey(filename: string): string {
+  return filename.replace(/\.json$/i, '');
+}
+
+function assertKnownKey(key: string) {
+  if (!FILE_KEYS.has(key)) {
+    throw new Error(`Unknown data key: ${key}`);
+  }
+}
+
+function readFromFile<T>(filename: string): T {
   const filePath = path.join(dataDir, filename);
   if (!fs.existsSync(filePath)) {
     throw new Error(`Data file not found: ${filename}`);
@@ -21,14 +31,52 @@ export function readData<T>(filename: string): T {
   return JSON.parse(raw) as T;
 }
 
-export function writeData<T>(filename: string, data: T): void {
+function writeToFile<T>(filename: string, data: T): void {
   const filePath = path.join(dataDir, filename);
   fs.writeFileSync(filePath, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-export function safeReadArray<T>(filename: string): T[] {
+async function readFromDatabase<T>(filename: string): Promise<T> {
+  const key = toKey(filename);
+  assertKnownKey(key);
+
+  const doc = await prisma.appDocument.findUnique({ where: { key } });
+  if (!doc) {
+    throw new Error(`Data not found in database: ${filename}`);
+  }
+  return doc.data as T;
+}
+
+async function writeToDatabase<T>(filename: string, data: T): Promise<void> {
+  const key = toKey(filename);
+  assertKnownKey(key);
+
+  await prisma.appDocument.upsert({
+    where: { key },
+    create: { key, data: data as object },
+    update: { data: data as object },
+  });
+}
+
+export async function readData<T>(filename: string): Promise<T> {
+  if (isDatabaseEnabled()) {
+    return readFromDatabase<T>(filename);
+  }
+  return readFromFile<T>(filename);
+}
+
+export async function writeData<T>(filename: string, data: T): Promise<void> {
+  if (isDatabaseEnabled()) {
+    await writeToDatabase(filename, data);
+    return;
+  }
+  writeToFile(filename, data);
+}
+
+export async function safeReadArray<T>(filename: string): Promise<T[]> {
   try {
-    return readData<T[]>(filename);
+    const data = await readData<T[]>(filename);
+    return Array.isArray(data) ? data : [];
   } catch {
     return [];
   }

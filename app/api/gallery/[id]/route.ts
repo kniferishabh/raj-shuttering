@@ -22,7 +22,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   try {
     const body = await req.json();
     const parsed = updateSchema.parse(body);
-    const items = safeReadArray<GalleryItem>('gallery.json');
+    const items = await safeReadArray<GalleryItem>('gallery.json');
     const idx = items.findIndex((g) => g.id === params.id);
 
     if (idx === -1) {
@@ -30,7 +30,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     }
 
     items[idx] = { ...items[idx], ...parsed };
-    writeData('gallery.json', items);
+    await writeData('gallery.json', items);
     return NextResponse.json(items[idx]);
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -46,11 +46,11 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const items = safeReadArray<GalleryItem>('gallery.json');
+  const items = await safeReadArray<GalleryItem>('gallery.json');
   const filtered = items.filter((g) => g.id !== params.id);
   if (filtered.length === items.length) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
-  writeData('gallery.json', filtered);
+  await writeData('gallery.json', filtered);
   return NextResponse.json({ success: true });
 }

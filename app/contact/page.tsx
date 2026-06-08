@@ -12,8 +12,8 @@ export const metadata: Metadata = {
     'Get in touch with Raj Shuttering & Scaffolding. Call, WhatsApp or email us for quotes, bulk orders, or any enquiries.',
 };
 
-export default function ContactPage() {
-  const settings = getSettings();
+export default async function ContactPage() {
+  const settings = await getSettings();
   const cleanPhone = settings.phone[0]?.replace(/[^\d+]/g, '') ?? '';
   const cleanWa = settings.whatsapp.replace(/[^\d]/g, '');
   const waMessage = encodeURIComponent('Hello Raj Shuttering, I need a quote.');

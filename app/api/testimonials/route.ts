@@ -18,7 +18,7 @@ const testimonialSchema = z.object({
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const all = searchParams.get('all') === 'true';
-  const testimonials = safeReadArray<Testimonial>('testimonials.json');
+  const testimonials = await safeReadArray<Testimonial>('testimonials.json');
 
   if (all) {
     const session = await auth();
@@ -48,9 +48,9 @@ export async function POST(req: NextRequest) {
       ...parsed,
       createdAt: new Date().toISOString(),
     };
-    const items = safeReadArray<Testimonial>('testimonials.json');
+    const items = await safeReadArray<Testimonial>('testimonials.json');
     items.push(item);
-    writeData('testimonials.json', items);
+    await writeData('testimonials.json', items);
     return NextResponse.json(item, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {

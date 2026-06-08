@@ -15,7 +15,7 @@ const gallerySchema = z.object({
 });
 
 export async function GET() {
-  const items = safeReadArray<GalleryItem>('gallery.json').sort((a, b) => a.sortOrder - b.sortOrder);
+  const items = (await safeReadArray<GalleryItem>('gallery.json')).sort((a, b) => a.sortOrder - b.sortOrder);
   return NextResponse.json(items, {
     headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' },
   });
@@ -36,9 +36,9 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    const items = safeReadArray<GalleryItem>('gallery.json');
+    const items = await safeReadArray<GalleryItem>('gallery.json');
     items.push(item);
-    writeData('gallery.json', items);
+    await writeData('gallery.json', items);
 
     return NextResponse.json(item, { status: 201 });
   } catch (error) {

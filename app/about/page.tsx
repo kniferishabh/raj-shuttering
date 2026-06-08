@@ -44,8 +44,8 @@ const VALUES = [
   },
 ];
 
-export default function AboutPage() {
-  const settings = getSettings();
+export default async function AboutPage() {
+  const settings = await getSettings();
 
   return (
     <>

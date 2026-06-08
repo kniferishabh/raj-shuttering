@@ -2,8 +2,8 @@ import { getSettings } from '@/lib/settings';
 import { SettingsManager } from './SettingsManager';
 import adminStyles from '../admin.module.css';
 
-export default function AdminSettingsPage() {
-  const settings = getSettings();
+export default async function AdminSettingsPage() {
+  const settings = await getSettings();
 
   return (
     <div>

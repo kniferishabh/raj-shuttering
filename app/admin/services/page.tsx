@@ -3,8 +3,8 @@ import type { Service } from '@/lib/types';
 import { ServicesManager } from './ServicesManager';
 import adminStyles from '../admin.module.css';
 
-export default function AdminServicesPage() {
-  const services = safeReadArray<Service>('services.json').sort((a, b) => a.sortOrder - b.sortOrder);
+export default async function AdminServicesPage() {
+  const services = (await safeReadArray<Service>('services.json')).sort((a, b) => a.sortOrder - b.sortOrder);
 
   return (
     <div>

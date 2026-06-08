@@ -14,9 +14,9 @@ export const metadata: Metadata = {
     'Browse our work - photos from project sites, equipment in action, and the materials we supply across Varanasi.',
 };
 
-export default function GalleryPage() {
-  const settings = getSettings();
-  const items = safeReadArray<GalleryItem>('gallery.json');
+export default async function GalleryPage() {
+  const settings = await getSettings();
+  const items = await safeReadArray<GalleryItem>('gallery.json');
 
   return (
     <>
