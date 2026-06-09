@@ -123,9 +123,10 @@
       "Universal beam compatibility"
     ],
     "icon": "ArrowUpDown",
-    "imageUrl": "https://images.unsplash.com/photo-1504307651254-3561207c4988?w=800&q=80",
+    "imageUrl": "/images/services/u-jack/u-jack-single.png",
     "images": [
-      "https://images.unsplash.com/photo-1504307651254-3561207c4988?w=800&q=80"
+      "/images/services/u-jack/u-jack-single.png",
+      "/images/services/u-jack/u-jack-batch.png"
     ],
     "isActive": true,
     "sortOrder": 5,
