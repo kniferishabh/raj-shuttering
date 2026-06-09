@@ -148,9 +148,9 @@
       "Plain or zinc-plated finish"
     ],
     "icon": "ArrowUpDown",
-    "imageUrl": "https://images.unsplash.com/photo-1541976590-713941681591?w=800&q=80",
+    "imageUrl": "/images/services/base-jack/base-jack-plate.png",
     "images": [
-      "https://images.unsplash.com/photo-1541976590-713941681591?w=800&q=80"
+      "/images/services/base-jack/base-jack-plate.png"
     ],
     "isActive": true,
     "sortOrder": 6,
