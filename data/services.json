@@ -332,10 +332,12 @@
       "Powder-coated finish"
     ],
     "icon": "ArrowUpDown",
-    "imageUrl": "/images/shuttering-steel.jpg",
+    "imageUrl": "/images/services/jack-props/acro-props-closeup.png",
     "images": [
-      "/images/shuttering-steel.jpg",
-      "/images/shuttering-slab.jpg"
+      "/images/services/jack-props/acro-props-closeup.png",
+      "/images/services/jack-props/props-formwork-site.png",
+      "/images/services/jack-props/scaffolding-site.png",
+      "/images/services/jack-props/scaffolding-building.png"
     ],
     "isActive": true,
     "sortOrder": 13,
