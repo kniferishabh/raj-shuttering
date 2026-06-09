@@ -1,10 +1,9 @@
-import { safeReadArray } from '@/lib/db';
-import type { Enquiry } from '@/lib/types';
+import { listEnquiries } from '@/lib/data';
 import { EnquiriesManager } from './EnquiriesManager';
 import adminStyles from '../admin.module.css';
 
 export default async function AdminEnquiriesPage() {
-  const enquiries = (await safeReadArray<Enquiry>('enquiries.json')).sort(
+  const enquiries = (await listEnquiries()).sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 

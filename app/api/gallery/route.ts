@@ -2,8 +2,10 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { v4 as uuid } from 'uuid';
 import { auth } from '@/lib/auth';
-import { safeReadArray, writeData } from '@/lib/db';
+import { createGalleryItem, listGalleryItems } from '@/lib/data';
 import type { GalleryItem } from '@/lib/types';
+
+export const dynamic = 'force-dynamic';
 
 const gallerySchema = z.object({
   title: z.string().min(2),
@@ -15,7 +17,7 @@ const gallerySchema = z.object({
 });
 
 export async function GET() {
-  const items = (await safeReadArray<GalleryItem>('gallery.json')).sort((a, b) => a.sortOrder - b.sortOrder);
+  const items = (await listGalleryItems()).sort((a, b) => a.sortOrder - b.sortOrder);
   return NextResponse.json(items, {
     headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' },
   });
@@ -36,11 +38,8 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    const items = await safeReadArray<GalleryItem>('gallery.json');
-    items.push(item);
-    await writeData('gallery.json', items);
-
-    return NextResponse.json(item, { status: 201 });
+    const created = await createGalleryItem(item);
+    return NextResponse.json(created, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: 'Invalid data', issues: error.issues }, { status: 400 });

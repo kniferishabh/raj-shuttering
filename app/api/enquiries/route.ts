@@ -2,7 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { v4 as uuid } from 'uuid';
 import { auth } from '@/lib/auth';
-import { safeReadArray, writeData } from '@/lib/db';
+import { createEnquiry, listEnquiries } from '@/lib/data';
 import type { Enquiry } from '@/lib/types';
 
 const enquirySchema = z.object({
@@ -20,10 +20,10 @@ export async function GET() {
   if (!session) {
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
-  const enquiries = (await safeReadArray<Enquiry>('enquiries.json')).sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+  const enquiries = await listEnquiries();
+  return NextResponse.json(
+    enquiries.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()),
   );
-  return NextResponse.json(enquiries);
 }
 
 export async function POST(req: NextRequest) {
@@ -41,16 +41,13 @@ export async function POST(req: NextRequest) {
       createdAt: new Date().toISOString(),
     };
 
-    const items = await safeReadArray<Enquiry>('enquiries.json');
-    items.push(item);
-    await writeData('enquiries.json', items);
-
+    await createEnquiry(item);
     return NextResponse.json({ success: true, id: item.id }, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json(
         { error: 'Please check the form', issues: error.issues },
-        { status: 400 }
+        { status: 400 },
       );
     }
     return NextResponse.json({ error: 'Server error' }, { status: 500 });

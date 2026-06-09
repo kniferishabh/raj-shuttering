@@ -8,9 +8,96 @@ datasource db {
   directUrl = env("DIRECT_URL")
 }
 
-/// JSON document store — keys match former flat files (settings, services, etc.)
-model AppDocument {
-  key       String   @id
-  data      Json
-  updatedAt DateTime @updatedAt
+/// Singleton row — id is always "default"
+model SiteSettings {
+  id                 String   @id @default("default")
+  businessName       String   @map("business_name")
+  tagline            String
+  phones             String[]
+  whatsapp           String
+  email              String
+  address            String   @db.Text
+  city               String
+  pincode            String
+  openingHours       String   @map("opening_hours")
+  establishedYear    Int      @map("established_year")
+  gstNumber          String   @default("") @map("gst_number")
+  socialLinks        Json     @default("{}") @map("social_links")
+  heroHeadline       String   @map("hero_headline")
+  heroSubheadline    String   @map("hero_subheadline") @db.Text
+  heroVideoUrl       String   @default("") @map("hero_video_url")
+  heroVideoUrlMobile String   @default("") @map("hero_video_url_mobile")
+  heroVideoPoster    String   @default("") @map("hero_video_poster")
+  aboutText          String   @map("about_text") @db.Text
+  metaTitle          String   @map("meta_title")
+  metaDescription    String   @map("meta_description") @db.Text
+  colorPalette       String?  @map("color_palette")
+  customColors       Json?    @map("custom_colors")
+  updatedAt          DateTime @updatedAt @map("updated_at")
+
+  @@map("site_settings")
+}
+
+model Service {
+  id               String   @id
+  name             String
+  shortDescription String   @map("short_description")
+  fullDescription  String   @map("full_description") @db.Text
+  category         String
+  availableFor     String[] @map("available_for")
+  features         String[]
+  icon             String
+  imageUrl         String?  @map("image_url")
+  images           String[]
+  isActive         Boolean  @default(true) @map("is_active")
+  sortOrder        Int      @default(0) @map("sort_order")
+  createdAt        DateTime @default(now()) @map("created_at")
+  updatedAt        DateTime @updatedAt @map("updated_at")
+
+  @@index([isActive, sortOrder])
+  @@map("services")
+}
+
+model GalleryItem {
+  id          String   @id
+  title       String
+  description String?  @db.Text
+  imageUrl    String   @map("image_url")
+  category    String
+  isFeatured  Boolean  @default(false) @map("is_featured")
+  sortOrder   Int      @default(0) @map("sort_order")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([sortOrder])
+  @@index([isFeatured])
+  @@map("gallery_items")
+}
+
+model Testimonial {
+  id          String   @id
+  clientName  String   @map("client_name")
+  company     String?
+  location    String
+  rating      Int
+  review      String   @db.Text
+  projectType String   @map("project_type")
+  isApproved  Boolean  @default(false) @map("is_approved")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([isApproved])
+  @@map("testimonials")
+}
+
+model Enquiry {
+  id          String   @id
+  name        String
+  phone       String
+  email       String?
+  projectType String   @map("project_type")
+  message     String   @db.Text
+  isRead      Boolean  @default(false) @map("is_read")
+  createdAt   DateTime @default(now()) @map("created_at")
+
+  @@index([isRead, createdAt(sort: Desc)])
+  @@map("enquiries")
 }

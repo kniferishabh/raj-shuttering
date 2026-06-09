@@ -1,10 +1,12 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { auth } from '@/lib/auth';
-import { writeData } from '@/lib/db';
+import { saveSiteSettings } from '@/lib/data';
 import { getSettings } from '@/lib/settings';
 import { normalizeHexColor, PALETTE_IDS_ZOD } from '@/lib/themes';
 import type { BusinessSettings } from '@/lib/types';
+
+export const dynamic = 'force-dynamic';
 
 const hexColorSchema = z
   .string()
@@ -60,7 +62,7 @@ export async function PUT(req: NextRequest) {
   try {
     const body = await req.json();
     const parsed = settingsSchema.parse(body) as BusinessSettings;
-    await writeData('settings.json', parsed);
+    await saveSiteSettings(parsed);
     return NextResponse.json(parsed);
   } catch (error) {
     if (error instanceof z.ZodError) {

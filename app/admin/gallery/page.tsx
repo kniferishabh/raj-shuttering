@@ -1,10 +1,9 @@
-import { safeReadArray } from '@/lib/db';
-import type { GalleryItem } from '@/lib/types';
+import { listGalleryItems } from '@/lib/data';
 import { GalleryManager } from './GalleryManager';
 import adminStyles from '../admin.module.css';
 
 export default async function AdminGalleryPage() {
-  const items = (await safeReadArray<GalleryItem>('gallery.json')).sort((a, b) => a.sortOrder - b.sortOrder);
+  const items = (await listGalleryItems()).sort((a, b) => a.sortOrder - b.sortOrder);
 
   return (
     <div>

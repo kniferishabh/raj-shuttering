@@ -1,7 +1,6 @@
-import { safeReadArray } from '@/lib/db';
+import { listServices, listGalleryItems, listTestimonials } from '@/lib/data';
 import { getHeroVideoConfig } from '@/lib/media';
 import { getSettings } from '@/lib/settings';
-import type { Service, GalleryItem, Testimonial } from '@/lib/types';
 import { Hero } from '@/components/sections/Hero/Hero';
 import { StatsBar } from '@/components/sections/StatsBar/StatsBar';
 import { ServicesGrid } from '@/components/sections/ServicesGrid/ServicesGrid';
@@ -19,9 +18,9 @@ export const dynamic = 'force-dynamic';
 
 export default async function HomePage() {
   const settings = await getSettings();
-  const services = (await safeReadArray<Service>('services.json')).filter((s) => s.isActive);
-  const gallery = await safeReadArray<GalleryItem>('gallery.json');
-  const testimonials = await safeReadArray<Testimonial>('testimonials.json');
+  const services = (await listServices()).filter((s) => s.isActive);
+  const gallery = await listGalleryItems();
+  const testimonials = await listTestimonials();
 
   return (
     <div className={styles.page}>

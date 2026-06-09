@@ -1,8 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { auth } from '@/lib/auth';
-import { safeReadArray, writeData } from '@/lib/db';
-import type { Service } from '@/lib/types';
+import { deleteService, updateService } from '@/lib/data';
 
 const updateSchema = z.object({
   name: z.string().min(2).optional(),
@@ -27,21 +26,13 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   try {
     const body = await req.json();
     const parsed = updateSchema.parse(body);
-    const services = await safeReadArray<Service>('services.json');
-    const idx = services.findIndex((s) => s.id === params.id);
+    const updated = await updateService(params.id, parsed);
 
-    if (idx === -1) {
+    if (!updated) {
       return NextResponse.json({ error: 'Service not found' }, { status: 404 });
     }
 
-    services[idx] = {
-      ...services[idx],
-      ...parsed,
-      updatedAt: new Date().toISOString(),
-    };
-
-    await writeData('services.json', services);
-    return NextResponse.json(services[idx]);
+    return NextResponse.json(updated);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: 'Invalid data', issues: error.issues }, { status: 400 });
@@ -56,13 +47,10 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const services = await safeReadArray<Service>('services.json');
-  const filtered = services.filter((s) => s.id !== params.id);
-
-  if (filtered.length === services.length) {
+  const deleted = await deleteService(params.id);
+  if (!deleted) {
     return NextResponse.json({ error: 'Service not found' }, { status: 404 });
   }
 
-  await writeData('services.json', filtered);
   return NextResponse.json({ success: true });
 }

@@ -2,8 +2,10 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { v4 as uuid } from 'uuid';
 import { auth } from '@/lib/auth';
-import { safeReadArray, writeData } from '@/lib/db';
+import { createService, listServices } from '@/lib/data';
 import type { Service } from '@/lib/types';
+
+export const dynamic = 'force-dynamic';
 
 const serviceSchema = z.object({
   name: z.string().min(2),
@@ -22,7 +24,7 @@ const serviceSchema = z.object({
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const all = searchParams.get('all') === 'true';
-  const services = await safeReadArray<Service>('services.json');
+  const services = await listServices();
 
   if (all) {
     const session = await auth();
@@ -55,11 +57,8 @@ export async function POST(req: NextRequest) {
       updatedAt: now,
     };
 
-    const services = await safeReadArray<Service>('services.json');
-    services.push(newService);
-    await writeData('services.json', services);
-
-    return NextResponse.json(newService, { status: 201 });
+    const created = await createService(newService);
+    return NextResponse.json(created, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: 'Invalid data', issues: error.issues }, { status: 400 });

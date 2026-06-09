@@ -1,8 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { auth } from '@/lib/auth';
-import { safeReadArray, writeData } from '@/lib/db';
-import type { Enquiry } from '@/lib/types';
+import { deleteEnquiry, getEnquiryById, updateEnquiry } from '@/lib/data';
 
 const updateSchema = z.object({
   isRead: z.boolean(),
@@ -17,14 +16,13 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   try {
     const body = await req.json();
     const parsed = updateSchema.parse(body);
-    const items = await safeReadArray<Enquiry>('enquiries.json');
-    const idx = items.findIndex((e) => e.id === params.id);
-    if (idx === -1) {
+    const updated = await updateEnquiry(params.id, parsed);
+
+    if (!updated) {
       return NextResponse.json({ error: 'Not found' }, { status: 404 });
     }
-    items[idx] = { ...items[idx], ...parsed };
-    await writeData('enquiries.json', items);
-    return NextResponse.json(items[idx]);
+
+    return NextResponse.json(updated);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: 'Invalid data', issues: error.issues }, { status: 400 });
@@ -39,17 +37,17 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const items = await safeReadArray<Enquiry>('enquiries.json');
-  const target = items.find((e) => e.id === params.id);
+  const target = await getEnquiryById(params.id);
   if (!target) {
     return NextResponse.json({ error: 'Not found' }, { status: 404 });
   }
   if (!target.isRead) {
     return NextResponse.json(
       { error: 'Mark enquiry as read before deleting' },
-      { status: 400 }
+      { status: 400 },
     );
   }
-  await writeData('enquiries.json', items.filter((e) => e.id !== params.id));
+
+  await deleteEnquiry(params.id);
   return NextResponse.json({ success: true });
 }

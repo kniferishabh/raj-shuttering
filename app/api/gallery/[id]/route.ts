@@ -1,8 +1,7 @@
 import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { auth } from '@/lib/auth';
-import { safeReadArray, writeData } from '@/lib/db';
-import type { GalleryItem } from '@/lib/types';
+import { deleteGalleryItem, updateGalleryItem } from '@/lib/data';
 
 const updateSchema = z.object({
   title: z.string().min(2).optional(),
@@ -22,16 +21,13 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
   try {
     const body = await req.json();
     const parsed = updateSchema.parse(body);
-    const items = await safeReadArray<GalleryItem>('gallery.json');
-    const idx = items.findIndex((g) => g.id === params.id);
+    const updated = await updateGalleryItem(params.id, parsed);
 
-    if (idx === -1) {
-      return NextResponse.json({ error: 'Not found' }, { status: 404 });
+    if (!updated) {
+      return NextResponse.json({ error: 'Gallery item not found' }, { status: 404 });
     }
 
-    items[idx] = { ...items[idx], ...parsed };
-    await writeData('gallery.json', items);
-    return NextResponse.json(items[idx]);
+    return NextResponse.json(updated);
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: 'Invalid data', issues: error.issues }, { status: 400 });
@@ -46,11 +42,10 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: 'Unauthorized' }, { status: 401 });
   }
 
-  const items = await safeReadArray<GalleryItem>('gallery.json');
-  const filtered = items.filter((g) => g.id !== params.id);
-  if (filtered.length === items.length) {
-    return NextResponse.json({ error: 'Not found' }, { status: 404 });
+  const deleted = await deleteGalleryItem(params.id);
+  if (!deleted) {
+    return NextResponse.json({ error: 'Gallery item not found' }, { status: 404 });
   }
-  await writeData('gallery.json', filtered);
+
   return NextResponse.json({ success: true });
 }

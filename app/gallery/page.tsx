@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { safeReadArray } from '@/lib/db';
+import { listGalleryItems } from '@/lib/data';
 import { getSettings } from '@/lib/settings';
-import type { GalleryItem } from '@/lib/types';
 import { PageHero } from '@/components/sections/PageHero/PageHero';
 import { GalleryGrid } from '@/components/sections/Gallery/GalleryGrid';
 import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
 
 export default async function GalleryPage() {
   const settings = await getSettings();
-  const items = await safeReadArray<GalleryItem>('gallery.json');
+  const items = await listGalleryItems();
 
   return (
     <>

@@ -1,10 +1,9 @@
-import { safeReadArray } from '@/lib/db';
-import type { Testimonial } from '@/lib/types';
+import { listTestimonials } from '@/lib/data';
 import { TestimonialsManager } from './TestimonialsManager';
 import adminStyles from '../admin.module.css';
 
 export default async function AdminTestimonialsPage() {
-  const items = await safeReadArray<Testimonial>('testimonials.json');
+  const items = await listTestimonials();
 
   return (
     <div>

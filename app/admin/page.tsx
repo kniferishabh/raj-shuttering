@@ -1,16 +1,15 @@
 import Link from 'next/link';
 import { Wrench, Image as ImageIcon, Inbox, MessageSquare, Plus, ArrowRight } from 'lucide-react';
-import { safeReadArray } from '@/lib/db';
-import type { Service, GalleryItem, Testimonial, Enquiry } from '@/lib/types';
+import { listServices, listGalleryItems, listTestimonials, listEnquiries } from '@/lib/data';
 import { Badge } from '@/components/ui/Badge/Badge';
 import styles from './dashboard.module.css';
 import adminStyles from './admin.module.css';
 
 export default async function AdminDashboardPage() {
-  const services = await safeReadArray<Service>('services.json');
-  const gallery = await safeReadArray<GalleryItem>('gallery.json');
-  const testimonials = await safeReadArray<Testimonial>('testimonials.json');
-  const enquiries = (await safeReadArray<Enquiry>('enquiries.json')).sort(
+  const services = await listServices();
+  const gallery = await listGalleryItems();
+  const testimonials = await listTestimonials();
+  const enquiries = (await listEnquiries()).sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 

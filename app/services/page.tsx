@@ -1,7 +1,6 @@
 import type { Metadata } from 'next';
-import { safeReadArray } from '@/lib/db';
+import { listServices } from '@/lib/data';
 import { getSettings } from '@/lib/settings';
-import type { Service } from '@/lib/types';
 import { PageHero } from '@/components/sections/PageHero/PageHero';
 import { ServicesGrid } from '@/components/sections/ServicesGrid/ServicesGrid';
 import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
@@ -16,7 +15,7 @@ export const metadata: Metadata = {
 
 export default async function ServicesPage() {
   const settings = await getSettings();
-  const services = (await safeReadArray<Service>('services.json')).filter((s) => s.isActive);
+  const services = (await listServices()).filter((s) => s.isActive);
 
   return (
     <>

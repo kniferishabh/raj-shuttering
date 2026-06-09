@@ -1,9 +1,8 @@
 import type { Metadata } from 'next';
 import { headers } from 'next/headers';
 import { signOut } from '@/lib/auth';
-import { safeReadArray } from '@/lib/db';
+import { listEnquiries } from '@/lib/data';
 import { AdminSidebar } from '@/components/layout/AdminSidebar/AdminSidebar';
-import type { Enquiry } from '@/lib/types';
 import styles from './admin.module.css';
 
 export const metadata: Metadata = {
@@ -31,7 +30,7 @@ export default async function AdminLayout({
     return <>{children}</>;
   }
 
-  const enquiries = await safeReadArray<Enquiry>('enquiries.json');
+  const enquiries = await listEnquiries();
   const unreadCount = enquiries.filter((e) => !e.isRead).length;
 
   return (

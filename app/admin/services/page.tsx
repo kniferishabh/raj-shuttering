@@ -1,10 +1,9 @@
-import { safeReadArray } from '@/lib/db';
-import type { Service } from '@/lib/types';
+import { listServices } from '@/lib/data';
 import { ServicesManager } from './ServicesManager';
 import adminStyles from '../admin.module.css';
 
 export default async function AdminServicesPage() {
-  const services = (await safeReadArray<Service>('services.json')).sort((a, b) => a.sortOrder - b.sortOrder);
+  const services = (await listServices()).sort((a, b) => a.sortOrder - b.sortOrder);
 
   return (
     <div>

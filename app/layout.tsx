@@ -5,6 +5,8 @@ import { ThemeStyles } from '@/components/theme/ThemeStyles';
 import { PublicChrome } from '@/components/layout/PublicChrome/PublicChrome';
 import './globals.css';
 
+export const dynamic = 'force-dynamic';
+
 const bebas = Bebas_Neue({
   subsets: ['latin'],
   weight: '400',

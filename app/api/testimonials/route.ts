@@ -2,8 +2,9 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { v4 as uuid } from 'uuid';
 import { auth } from '@/lib/auth';
-import { safeReadArray, writeData } from '@/lib/db';
-import type { Testimonial } from '@/lib/types';
+import { createTestimonial, listTestimonials } from '@/lib/data';
+
+export const dynamic = 'force-dynamic';
 
 const testimonialSchema = z.object({
   clientName: z.string().min(2),
@@ -18,7 +19,7 @@ const testimonialSchema = z.object({
 export async function GET(req: NextRequest) {
   const { searchParams } = new URL(req.url);
   const all = searchParams.get('all') === 'true';
-  const testimonials = await safeReadArray<Testimonial>('testimonials.json');
+  const testimonials = await listTestimonials();
 
   if (all) {
     const session = await auth();
@@ -43,15 +44,14 @@ export async function POST(req: NextRequest) {
   try {
     const body = await req.json();
     const parsed = testimonialSchema.parse(body);
-    const item: Testimonial = {
+    const item = {
       id: `rev-${uuid().slice(0, 8)}`,
       ...parsed,
       createdAt: new Date().toISOString(),
     };
-    const items = await safeReadArray<Testimonial>('testimonials.json');
-    items.push(item);
-    await writeData('testimonials.json', items);
-    return NextResponse.json(item, { status: 201 });
+
+    const created = await createTestimonial(item);
+    return NextResponse.json(created, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
       return NextResponse.json({ error: 'Invalid data', issues: error.issues }, { status: 400 });

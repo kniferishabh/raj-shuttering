@@ -1,5 +1,5 @@
 import 'server-only';
-import { readData } from './db';
+import { getSiteSettings } from '@/lib/data';
 import type { BusinessSettings } from './types';
 
 const DEFAULT_SETTINGS: BusinessSettings = {
@@ -33,7 +33,8 @@ const DEFAULT_SETTINGS: BusinessSettings = {
 
 export async function getSettings(): Promise<BusinessSettings> {
   try {
-    return await readData<BusinessSettings>('settings.json');
+    const settings = await getSiteSettings();
+    return settings ?? DEFAULT_SETTINGS;
   } catch {
     return DEFAULT_SETTINGS;
   }
