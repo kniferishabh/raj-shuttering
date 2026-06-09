@@ -148,8 +148,10 @@
       "Plain or zinc-plated finish"
     ],
     "icon": "ArrowUpDown",
-    "imageUrl": "/images/services/base-jack/base-jack-plate.png",
+    "imageUrl": "/images/services/base-jack/base-jack-white-bg.png",
     "images": [
+      "/images/services/base-jack/base-jack-white-bg.png",
+      "/images/services/base-jack/base-jack-site.png",
       "/images/services/base-jack/base-jack-plate.png"
     ],
     "isActive": true,
