@@ -176,10 +176,12 @@
       "Available for hire with/without operator"
     ],
     "icon": "Building2",
-    "imageUrl": "https://images.unsplash.com/photo-1581092918484-831bc0f41713?w=800&q=80",
+    "imageUrl": "/images/services/jcb-machine/jcb-backhoe-yellow.png",
     "images": [
-      "https://images.unsplash.com/photo-1581092918484-831bc0f41713?w=800&q=80",
-      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80"
+      "/images/services/jcb-machine/jcb-backhoe-yellow.png",
+      "/images/services/jcb-machine/ace-backhoe-orange-front.png",
+      "/images/services/jcb-machine/ace-backhoe-yellow-side.png",
+      "/images/services/jcb-machine/ace-backhoe-orange-raised.png"
     ],
     "isActive": true,
     "sortOrder": 7,
