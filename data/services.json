@@ -95,9 +95,12 @@
       "Max user weight 120 kg"
     ],
     "icon": "HardHat",
-    "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "imageUrl": "/images/services/construction-safety-belt/harness-tool-belt.png",
     "images": [
-      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
+      "/images/services/construction-safety-belt/harness-tool-belt.png",
+      "/images/services/construction-safety-belt/harness-scaffolding.png",
+      "/images/services/construction-safety-belt/harness-rope-access.png",
+      "/images/services/construction-safety-belt/harness-elevated-work.png"
     ],
     "isActive": true,
     "sortOrder": 4,
