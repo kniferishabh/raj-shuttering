@@ -229,9 +229,10 @@
       "Reusable 100+ cycles"
     ],
     "icon": "Wrench",
-    "imageUrl": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
+    "imageUrl": "/images/services/gugu-nut/wing-nuts-galvanized.png",
     "images": [
-      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80"
+      "/images/services/gugu-nut/wing-nuts-galvanized.png",
+      "/images/services/gugu-nut/gugu-nut-formwork-diagram.png"
     ],
     "isActive": true,
     "sortOrder": 9,
