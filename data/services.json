@@ -42,8 +42,9 @@
       "IS 15298 compliant"
     ],
     "icon": "HardHat",
-    "imageUrl": "/images/services/construction-safety-shoes/safety-boots-yellow.png",
+    "imageUrl": "/images/services/construction-safety-shoes/safety-boots-black.png",
     "images": [
+      "/images/services/construction-safety-shoes/safety-boots-black.png",
       "/images/services/construction-safety-shoes/safety-boots-yellow.png"
     ],
     "isActive": true,
