@@ -1,173 +1,707 @@
 [
   {
     "id": "svc-001",
-    "name": "Steel Shuttering Plates",
-    "shortDescription": "Heavy-duty steel plates for concrete formwork in all standard sizes.",
-    "fullDescription": "Our steel shuttering plates are manufactured from high-grade MS steel, ensuring flatness and reuse up to 200 cycles. Available in sizes from 1ft x 2ft to 4ft x 8ft. Ideal for slabs, beams, columns, and walls.",
-    "category": "shuttering",
-    "availableFor": [
-      "rent",
-      "sale"
-    ],
+    "name": "Construction Cap (Safety Helmet)",
+    "shortDescription": "Industrial-grade hard hat for head protection on construction sites.",
+    "fullDescription": "Our construction safety caps are made from high-density polyethylene (HDPE) with a 6-point ratchet suspension system for superior impact absorption and all-day comfort. They comply with IS 2925 standards and are suitable for use in construction, mining, and industrial environments. Available in yellow, white, blue, orange, and red. Features ventilation slots and an adjustable headband fitting head sizes 52–63 cm.",
+    "category": "equipment",
+    "availableFor": ["rent", "sale"],
     "features": [
-      "High-grade MS steel",
-      "200+ reuse cycles",
-      "Multiple sizes",
-      "Anti-corrosion coating",
-      "Same-day delivery available"
+      "HDPE shell",
+      "6-point ratchet suspension",
+      "IS 2925 certified",
+      "UV-resistant",
+      "Adjustable headband (52–63 cm)",
+      "Ventilated design"
     ],
-    "icon": "Square",
-    "imageUrl": "/images/shuttering-slab.jpg",
+    "icon": "HardHat",
+    "imageUrl": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80",
     "images": [
-      "/images/shuttering-slab.jpg",
-      "/images/shuttering-steel.jpg",
-      "/images/blueprint.jpg"
+      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80",
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80"
     ],
     "isActive": true,
     "sortOrder": 1,
-    "createdAt": "2024-01-01T00:00:00Z",
-    "updatedAt": "2026-06-07T15:57:52.334Z"
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
   },
   {
     "id": "svc-002",
-    "name": "Aluminium Scaffolding Systems",
-    "shortDescription": "Lightweight, rust-free aluminium scaffolding for safe elevated work.",
-    "fullDescription": "Our aluminium scaffolding towers are ideal for construction, painting, plastering, and maintenance work. Lightweight yet load-bearing up to 250 kg per platform. Easy to assemble without tools. Complies with IS standards.",
-    "category": "scaffolding",
-    "availableFor": [
-      "rent",
-      "sale"
-    ],
+    "name": "Construction Safety Shoes",
+    "shortDescription": "Steel-toe safety boots with oil-resistant soles for site protection.",
+    "fullDescription": "Heavy-duty construction safety shoes featuring a steel toe cap rated for 200 joules of impact resistance and a puncture-proof steel midsole. The upper is made from genuine buffalo leather with a PU sole that is oil, acid, and slip-resistant. Ankle-high design provides additional support on uneven terrain. Compliant with IS 15298 Part 2 safety standards. Available in sizes 6–12.",
+    "category": "equipment",
+    "availableFor": ["rent", "sale"],
     "features": [
-      "250 kg load capacity",
-      "Tool-free assembly",
-      "IS compliant",
-      "Anti-slip platforms",
-      "Adjustable height"
+      "Steel toe cap (200J impact)",
+      "Puncture-proof midsole",
+      "Genuine leather upper",
+      "Oil & acid-resistant PU sole",
+      "Anti-slip tread",
+      "IS 15298 compliant"
     ],
-    "icon": "Layers",
-    "imageUrl": "/images/scaffolding-towers.jpg",
+    "icon": "HardHat",
+    "imageUrl": "https://images.unsplash.com/photo-1608256246200-53bd37537867?w=800&q=80",
     "images": [
-      "/images/scaffolding-towers.jpg",
-      "/images/scaffolding-highrise.jpg",
-      "/images/project-modern.jpg"
+      "https://images.unsplash.com/photo-1608256246200-53bd37537867?w=800&q=80"
     ],
     "isActive": true,
     "sortOrder": 2,
-    "createdAt": "2024-01-01T00:00:00Z",
-    "updatedAt": "2024-01-01T00:00:00Z"
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
   },
   {
     "id": "svc-003",
-    "name": "Steel Props (Acrow Props)",
-    "shortDescription": "Adjustable steel props for supporting slabs and beams during construction.",
-    "fullDescription": "Heavy-duty adjustable acrow props for temporary support of formwork and slabs. Height range: 1.8m to 3.3m. Load capacity up to 3 tonnes. Available in bulk quantities for large projects.",
-    "category": "shuttering",
-    "availableFor": [
-      "rent"
-    ],
+    "name": "Construction Jacket (High-Visibility Safety Vest)",
+    "shortDescription": "Fluorescent reflective safety jacket for high visibility on construction sites.",
+    "fullDescription": "High-visibility reflective safety jacket designed for construction workers, road crews, and site supervisors. Made from breathable polyester mesh with 2-inch retro-reflective silver tape on the chest, back, and shoulders for 360° visibility. Available in fluorescent orange and fluorescent green. Features front zipper closure and two interior pockets. Conforms to IS 15809 standards for high-visibility warning garments.",
+    "category": "equipment",
+    "availableFor": ["rent", "sale"],
     "features": [
-      "1.8m-3.3m height range",
-      "3-tonne load capacity",
-      "Bulk availability",
-      "Regular inspection certified",
-      "Free delivery in Varanasi"
+      "Fluorescent polyester mesh",
+      "2-inch reflective tape (360°)",
+      "Breathable & lightweight",
+      "Front zipper closure",
+      "IS 15809 compliant",
+      "Available in orange & green"
+    ],
+    "icon": "HardHat",
+    "imageUrl": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 3,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-004",
+    "name": "Construction Safety Belt (Full Body Harness)",
+    "shortDescription": "Full-body safety harness with double lanyard for fall protection at height.",
+    "fullDescription": "Premium full-body safety harness designed for fall arrest and restraint during work at heights. Constructed from high-tenacity polyester webbing (45 mm width) with forged steel D-rings and quick-connect buckles. Includes a double lanyard with shock absorber rated for falls up to 1.8 meters. Adjustable chest, waist, and leg straps accommodate a wide range of body sizes. Certified to IS 3521 and EN 361 standards. Maximum user weight: 120 kg.",
+    "category": "equipment",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "High-tenacity polyester webbing",
+      "Forged steel D-rings",
+      "Double lanyard with shock absorber",
+      "Quick-connect buckles",
+      "IS 3521 & EN 361 certified",
+      "Max user weight 120 kg"
+    ],
+    "icon": "HardHat",
+    "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 4,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-005",
+    "name": "U Jack (U-Head Jack / Fork Head)",
+    "shortDescription": "Adjustable U-head jack for supporting horizontal beams in formwork systems.",
+    "fullDescription": "Heavy-duty U-head jack (also called fork head jack) used as the top component of scaffolding props to support horizontal wooden beams or H-beams during slab formwork. The U-shaped cradle holds beams securely while the threaded stem allows fine height adjustment of up to 600 mm. Manufactured from mild steel with a base plate and 38 mm diameter rod. Load capacity: 3 to 5 tonnes depending on extension. Zinc-plated for corrosion resistance.",
+    "category": "scaffolding",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "Mild steel construction",
+      "600 mm adjustment range",
+      "3–5 tonne load capacity",
+      "38 mm threaded rod",
+      "Zinc-plated finish",
+      "Universal beam compatibility"
+    ],
+    "icon": "ArrowUpDown",
+    "imageUrl": "https://images.unsplash.com/photo-1504307651254-3561207c4988?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1504307651254-3561207c4988?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 5,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-006",
+    "name": "Base Jack (Base Plate Jack)",
+    "shortDescription": "Adjustable base jack for leveling scaffolding and props on uneven ground.",
+    "fullDescription": "Adjustable base jack used at the bottom of scaffolding pipes and props to provide a stable, level foundation on uneven terrain. Features a 150 mm × 150 mm base plate with a 38 mm diameter threaded rod for smooth height adjustment up to 600 mm. The base plate distributes the load evenly on the ground surface. Manufactured from forged mild steel and available in plain or zinc-plated finishes. Load bearing capacity: 3–5 tonnes.",
+    "category": "scaffolding",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "150×150 mm base plate",
+      "600 mm height adjustment",
+      "38 mm threaded stem",
+      "3–5 tonne load capacity",
+      "Forged mild steel",
+      "Plain or zinc-plated finish"
+    ],
+    "icon": "ArrowUpDown",
+    "imageUrl": "https://images.unsplash.com/photo-1541976590-713941681591?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1541976590-713941681591?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 6,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-007",
+    "name": "JCB Machine (Backhoe Loader)",
+    "shortDescription": "Versatile backhoe loader for excavation, loading, and material handling on construction sites.",
+    "fullDescription": "The JCB backhoe loader is a multi-purpose construction machine combining a front-end loader bucket with a rear-mounted backhoe excavator. Ideal for digging trenches, excavating foundations, loading trucks, grading surfaces, and material handling. Powered by a fuel-efficient diesel engine delivering 75–100 HP with 4WD capability. Features a dig depth of up to 4.5 meters and a loader bucket capacity of 1 cubic meter. Available for rent on hourly, daily, and monthly basis with or without operator.",
+    "category": "equipment",
+    "availableFor": ["rent"],
+    "features": [
+      "Dual-function (loader + excavator)",
+      "75–100 HP diesel engine",
+      "4WD capability",
+      "4.5 m dig depth",
+      "1 m³ loader bucket",
+      "Available for hire with/without operator"
+    ],
+    "icon": "Building2",
+    "imageUrl": "https://images.unsplash.com/photo-1581092918484-831bc0f41713?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1581092918484-831bc0f41713?w=800&q=80",
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 7,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-008",
+    "name": "Tie Rod (Shuttering Tie Rod)",
+    "shortDescription": "Threaded tie rod for holding shuttering plates together during concrete pouring.",
+    "fullDescription": "High-strength shuttering tie rods used to maintain uniform spacing between opposing formwork panels during concrete casting. Manufactured from cold-drawn mild steel wire rod with rolled threads on both ends. Works in conjunction with wing nuts (butterfly nuts) and plate washers to apply clamping pressure. Available in standard lengths of 1 ft, 1.5 ft, 2 ft, 2.5 ft, and 3 ft with 12 mm and 15 mm diameter options. Reusable for 50+ cycles with proper maintenance.",
+    "category": "shuttering",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "Cold-drawn mild steel",
+      "Rolled threads on both ends",
+      "12 mm & 15 mm diameter options",
+      "Lengths: 1 ft to 3 ft",
+      "50+ reuse cycles",
+      "Works with wing nuts & washers"
+    ],
+    "icon": "Wrench",
+    "imageUrl": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 8,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-009",
+    "name": "Gugu Nut (Wing Nut / Butterfly Nut)",
+    "shortDescription": "Cast-iron wing nut for quick tightening of shuttering tie rods without tools.",
+    "fullDescription": "Heavy-duty gugu nuts (also called wing nuts or butterfly nuts) designed for securing shuttering tie rods during concrete formwork assembly. Made from ductile cast iron with a two-wing design for easy hand-tightening and rapid removal. The wing design allows quick installation and dismantling without the need for spanners, significantly reducing formwork turnaround time. Available for 12 mm and 15 mm tie rods. Load-rated for standard wall, column, and beam shuttering pressures.",
+    "category": "shuttering",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "Ductile cast iron",
+      "Two-wing design for tool-free operation",
+      "Quick install & removal",
+      "Fits 12 mm & 15 mm tie rods",
+      "High clamping force",
+      "Reusable 100+ cycles"
+    ],
+    "icon": "Wrench",
+    "imageUrl": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 9,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-010",
+    "name": "Shikanja (L-Bolt / Anchor Bolt)",
+    "shortDescription": "L-shaped anchor bolts for securing formwork panels and structural connections.",
+    "fullDescription": "Shikanja (L-bolts) are L-shaped fasteners used in formwork assembly and structural anchoring applications. Made from high-tensile mild steel, these bolts feature a threaded end for nut fastening and a bent end that hooks into concrete or formwork channels. Commonly used to tie shuttering plates, align column formwork, and provide temporary anchoring during construction. Available in sizes 8 mm to 16 mm diameter and lengths from 4 inches to 12 inches. Hot-dip galvanized options available for corrosion resistance.",
+    "category": "shuttering",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "High-tensile mild steel",
+      "L-shaped for hooking/anchoring",
+      "Threaded end for nut fastening",
+      "8–16 mm diameter range",
+      "4–12 inch lengths",
+      "Galvanized option available"
+    ],
+    "icon": "Wrench",
+    "imageUrl": "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 10,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-011",
+    "name": "Shuttering Plywood",
+    "shortDescription": "Film-faced waterproof plywood sheets for smooth concrete finishes in formwork.",
+    "fullDescription": "High-density shuttering plywood designed specifically for concrete formwork applications. Made from hardwood veneers bonded with phenolic resin (BWP grade) and coated with a smooth film face on both sides for a superior concrete finish. The film coating prevents concrete adhesion, making stripping easy and clean. Standard sheet size: 8 ft × 4 ft with thickness options of 12 mm and 18 mm. Can be reused for 10–15 cycles (film-faced) or 5–8 cycles (non-film). Suitable for slabs, walls, columns, and beams.",
+    "category": "shuttering",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "Hardwood veneer with phenolic resin",
+      "Film-faced both sides",
+      "BWP (Boiling Water Proof) grade",
+      "8×4 ft standard size",
+      "12 mm & 18 mm thickness",
+      "10–15 reuse cycles"
+    ],
+    "icon": "Square",
+    "imageUrl": "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 11,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-012",
+    "name": "Wooden Beat (Wooden Batten / Plank)",
+    "shortDescription": "Seasoned wooden battens and planks for formwork support and beam centering.",
+    "fullDescription": "Wooden beats (battens/planks) are essential timber components used in traditional formwork systems for supporting shuttering plywood, centering beams, and creating temporary structures. Cut from seasoned sal wood or pine, these battens provide excellent load-bearing strength while being lightweight and easy to handle. Standard cross-section sizes include 2\"×3\", 3\"×4\", and 4\"×4\" with lengths from 6 ft to 12 ft. Used alongside jack props and U-heads for slab and beam shuttering. Treated for termite resistance.",
+    "category": "shuttering",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "Seasoned sal wood / pine",
+      "Multiple cross-sections (2×3, 3×4, 4×4 inches)",
+      "6–12 ft lengths",
+      "Termite-treated",
+      "Lightweight & easy to handle",
+      "15–20 reuse cycles"
+    ],
+    "icon": "Hammer",
+    "imageUrl": "https://images.unsplash.com/photo-1513828583688-c52645db1f28?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1513828583688-c52645db1f28?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 12,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-013",
+    "name": "Jack Props (Adjustable Steel Props / Acro Props)",
+    "shortDescription": "Height-adjustable steel props for supporting slabs, beams, and formwork during curing.",
+    "fullDescription": "Heavy-duty adjustable steel props (also known as acro props or jack props) used to provide temporary vertical support for freshly poured concrete slabs, beams, and formwork until the concrete achieves adequate strength. Constructed from ERW steel tubes with inner and outer pipes for telescopic height adjustment via a pin-and-collar locking mechanism. Available in five standard sizes: 0–6 ft, 4–7 ft, 5–9 ft, 8–12 ft, and 10–16 ft. Load capacity ranges from 1.5 to 3.5 tonnes depending on extension length. Powder-coated for rust protection.",
+    "category": "scaffolding",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "ERW steel tube construction",
+      "Telescopic height adjustment",
+      "Pin-and-collar locking",
+      "5 standard sizes (0–16 ft range)",
+      "1.5–3.5 tonne load capacity",
+      "Powder-coated finish"
     ],
     "icon": "ArrowUpDown",
     "imageUrl": "/images/shuttering-steel.jpg",
     "images": [
       "/images/shuttering-steel.jpg",
-      "/images/shuttering-slab.jpg",
-      "/images/equipment-worker.jpg"
+      "/images/shuttering-slab.jpg"
     ],
     "isActive": true,
-    "sortOrder": 3,
-    "createdAt": "2024-01-01T00:00:00Z",
-    "updatedAt": "2024-01-01T00:00:00Z"
+    "sortOrder": 13,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
   },
   {
-    "id": "svc-004",
-    "name": "H-Frame Scaffolding",
-    "shortDescription": "Traditional H-frame scaffold systems for large-scale construction facades.",
-    "fullDescription": "Robust H-frame scaffolding for multi-storey building construction, bridge work, and industrial sites. Galvanised finish for weather resistance. Compatible with standard cross-braces and walk boards.",
-    "category": "scaffolding",
-    "availableFor": [
-      "rent",
-      "sale"
-    ],
-    "features": [
-      "Galvanised finish",
-      "Multi-storey compatible",
-      "Cross-brace included",
-      "Flexible configuration",
-      "Large inventory"
-    ],
-    "icon": "LayoutGrid",
-    "imageUrl": "/images/scaffolding-highrise.jpg",
-    "images": [
-      "/images/scaffolding-highrise.jpg",
-      "/images/scaffolding-towers.jpg",
-      "/images/project-skyline.jpg"
-    ],
-    "isActive": true,
-    "sortOrder": 4,
-    "createdAt": "2024-01-01T00:00:00Z",
-    "updatedAt": "2024-01-01T00:00:00Z"
-  },
-  {
-    "id": "svc-005",
-    "name": "Centering Plates & Jacks",
-    "shortDescription": "Complete centering systems for floor slab construction.",
-    "fullDescription": "Full range of centering equipment including plates, beams, and adjustable jacks. Available as complete sets or individual components. Suitable for residential and commercial slab work of all spans.",
+    "id": "svc-014",
+    "name": "Column Clamp",
+    "shortDescription": "Adjustable steel clamp for holding column formwork panels tightly during concrete pouring.",
+    "fullDescription": "Column clamps are robust adjustable clamping devices used to secure and align column formwork panels (shuttering plates or plywood) during concrete pouring. Made from heavy-gauge mild steel with a threaded bolt-and-nut tightening mechanism, they provide uniform pressure around the column perimeter to prevent bulging and misalignment. Available in adjustable sizes to accommodate square and rectangular columns from 9\"×9\" up to 30\"×30\". Each set typically includes 4 clamps per column. Easy to assemble, strip, and reuse for 200+ cycles.",
     "category": "shuttering",
-    "availableFor": [
-      "rent"
-    ],
+    "availableFor": ["rent", "sale"],
     "features": [
-      "Complete set rental",
-      "All spans covered",
-      "Flat plates for smooth finish",
-      "Accessories included",
-      "Technical guidance"
+      "Heavy-gauge mild steel",
+      "Adjustable size (9×9 to 30×30 inches)",
+      "Bolt-and-nut tightening",
+      "Prevents bulging & misalignment",
+      "200+ reuse cycles",
+      "Quick assembly & stripping"
     ],
-    "icon": "Grid3X3",
-    "imageUrl": "/images/equipment-worker.jpg",
+    "icon": "Square",
+    "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
     "images": [
-      "/images/equipment-worker.jpg",
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 14,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-015",
+    "name": "Scaffolding Pipe Clamp (Scaffold Coupler)",
+    "shortDescription": "Drop-forged couplers for joining scaffolding pipes at right angles or swivel connections.",
+    "fullDescription": "Scaffolding pipe clamps (couplers) are used to connect two scaffolding pipes (48.3 mm OD) together securely. Available in three types: right-angle couplers (for 90° connections), swivel couplers (for angled connections), and sleeve couplers (for extending pipe length in-line). Manufactured from drop-forged steel with T-bolt and nut fastening. Each coupler is individually tested to a slip load of 6.1 kN (right-angle) and 6.1 kN (swivel). Zinc-plated for corrosion resistance. Conforms to IS 2750 standards.",
+    "category": "scaffolding",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "Drop-forged steel",
+      "Right-angle / swivel / sleeve types",
+      "Fits 48.3 mm OD pipes",
+      "6.1 kN slip load rating",
+      "Zinc-plated finish",
+      "IS 2750 compliant"
+    ],
+    "icon": "Layers",
+    "imageUrl": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1504307651254-3561207c4988?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 15,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-016",
+    "name": "Wing Nuts (Formwork Wing Nuts)",
+    "shortDescription": "Pressed steel wing nuts for fast tightening of tie rods in shuttering systems.",
+    "fullDescription": "Pressed steel wing nuts used in conjunction with tie rods to secure formwork panels during concrete casting. Unlike cast gugu nuts, these wing nuts are pressed/stamped from sheet steel, making them lighter and more economical. The wing design allows for quick hand tightening without tools. Available in 12 mm, 15 mm, and 17 mm sizes to match standard tie rod diameters. Designed for moderate-duty formwork applications such as walls and smaller columns. Load capacity suitable for concrete pressures up to standard wall heights.",
+    "category": "shuttering",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "Pressed/stamped steel",
+      "Lightweight & economical",
+      "Tool-free hand tightening",
+      "Fits 12/15/17 mm tie rods",
+      "Moderate-duty applications",
+      "80+ reuse cycles"
+    ],
+    "icon": "Wrench",
+    "imageUrl": "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1581092160562-40aa08e78837?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 16,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-017",
+    "name": "Chain Pulley (Chain Pulley Block / Chain Hoist)",
+    "shortDescription": "Manual chain pulley block for lifting heavy construction materials to height.",
+    "fullDescription": "Manual chain pulley block designed for lifting and lowering heavy loads on construction sites. Features a robust alloy steel load chain, heat-treated gears, and a precision load sheave for smooth operation. The hand chain wheel includes a ratchet and pawl mechanism for load holding at any height. Available in capacities from 0.5 tonne to 10 tonnes with standard lift heights of 3 m, 5 m, and 10 m. Compact and portable, requiring no electricity. Overload protection and safety latch on the hook. Conforms to IS 3832 standards.",
+    "category": "equipment",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "Alloy steel load chain",
+      "Heat-treated precision gears",
+      "0.5–10 tonne capacity",
+      "3/5/10 m lift heights",
+      "No electricity required",
+      "IS 3832 compliant with overload protection"
+    ],
+    "icon": "ArrowUpDown",
+    "imageUrl": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 17,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-018",
+    "name": "Roller Compactor (Vibratory Road Roller)",
+    "shortDescription": "Ride-on vibratory roller compactor for soil, gravel, and asphalt compaction.",
+    "fullDescription": "Vibratory roller compactor used for compacting soil, gravel, sand, and asphalt layers during road construction, foundation preparation, and site grading. Features a heavy steel drum with built-in vibration mechanism that delivers high compaction force with fewer passes. Available in various capacities: mini rollers (1–3 tonnes) for confined areas and standard rollers (8–12 tonnes) for road and highway work. Diesel-powered with hydrostatic drive for smooth forward/reverse operation. Available for rent on daily, weekly, and monthly basis.",
+    "category": "equipment",
+    "availableFor": ["rent"],
+    "features": [
+      "Vibratory compaction mechanism",
+      "1–12 tonne weight range",
+      "Diesel-powered hydrostatic drive",
+      "Smooth forward/reverse operation",
+      "Suitable for soil & asphalt",
+      "Available for hire"
+    ],
+    "icon": "Building2",
+    "imageUrl": "https://images.unsplash.com/photo-1581092918484-831bc0f41713?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1590490360182-c33d57733427?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 18,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-019",
+    "name": "Jhula Lift (Suspended Platform / Hanging Scaffold Cradle)",
+    "shortDescription": "Motorized suspended platform for exterior plastering, painting, and facade work at height.",
+    "fullDescription": "Jhula lift (suspended platform/cradle) is a motorized suspended access system used for working on building exteriors — including plastering, painting, cladding, waterproofing, and glass cleaning. The platform is suspended from the building's rooftop using wire ropes and powered by electric hoisting motors for smooth vertical travel. Standard platform lengths include 2 m, 4 m, and 6 m with a safe working load of 250 kg per motor (500 kg total for dual-motor systems). Features safety locks, emergency descent mechanism, and tilt protection. Maximum working height: up to 100 meters.",
+    "category": "equipment",
+    "availableFor": ["rent"],
+    "features": [
+      "Electric motor-powered hoists",
+      "2/4/6 m platform lengths",
+      "500 kg safe working load (dual motor)",
+      "Safety lock & emergency descent",
+      "Tilt protection",
+      "Working height up to 100 m"
+    ],
+    "icon": "ArrowUpDown",
+    "imageUrl": "https://images.unsplash.com/photo-1541888946425-d81bb19240f5?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 19,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-020",
+    "name": "Saria Folding Machine (Rebar Bending Machine)",
+    "shortDescription": "Electric/manual rebar bending machine for shaping TMT bars for RCC construction.",
+    "fullDescription": "Saria folding machine (rebar bender) is used to bend TMT (Thermo-Mechanically Treated) reinforcement steel bars into required shapes for RCC (Reinforced Cement Concrete) construction — including stirrups, cranks, hooks, and ring bars. Available in manual, semi-automatic, and fully automatic electric models. Electric models feature a 2–5 HP motor and can bend bars from 6 mm to 32 mm diameter. The adjustable bending disc allows setting bend angles from 0° to 180°. Portable and compact design suitable for on-site operation. Reduces manual labor and improves bending accuracy.",
+    "category": "equipment",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "Bends TMT bars 6–32 mm diameter",
+      "0°–180° adjustable bend angle",
+      "Manual / semi-auto / electric models",
+      "2–5 HP motor (electric)",
+      "Portable on-site operation",
+      "Reduces labor & improves accuracy"
+    ],
+    "icon": "Building2",
+    "imageUrl": "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1503387762-592deb58ef4e?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 20,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-021",
+    "name": "Ajax Fiori Self Loader (Self-Loading Concrete Mixer)",
+    "shortDescription": "Self-loading mobile concrete mixer that loads, mixes, transports, and pours concrete independently.",
+    "fullDescription": "The Ajax Fiori self-loading concrete mixer is a 4-in-1 machine that independently loads raw materials (sand, gravel, cement), mixes concrete, transports it to the pour location, and discharges it — all without auxiliary equipment. Features a self-loading bucket with 400-liter capacity, a rotating drum mixer, electronic weigh batching system, and a 270° slewing discharge chute. Drum capacity options include 1 m³, 2.5 m³, and 4 m³. 4WD diesel-powered with articulated steering for tight-site maneuverability. Eliminates the need for separate loaders, transit mixers, and batching plants on small-to-medium projects.",
+    "category": "equipment",
+    "availableFor": ["rent"],
+    "features": [
+      "4-in-1: load + mix + transport + pour",
+      "1/2.5/4 m³ drum capacity",
+      "Electronic weigh batching",
+      "270° slewing discharge",
+      "4WD articulated steering",
+      "Eliminates multiple machines"
+    ],
+    "icon": "Building2",
+    "imageUrl": "https://images.unsplash.com/photo-1581092160607-ee2261fb488a?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1581092160607-ee2261fb488a?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 21,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-022",
+    "name": "Iron Garter (Iron Girder / Steel I-Beam)",
+    "shortDescription": "Structural steel I-beams for heavy load-bearing in formwork and construction.",
+    "fullDescription": "Iron girders (I-beams / H-beams) are structural steel sections used for heavy load-bearing support in formwork systems, bridge construction, industrial buildings, and temporary structures. The I-shaped cross-section provides an excellent strength-to-weight ratio, enabling them to span long distances without intermediate supports. Available in ISMB (Indian Standard Medium Weight Beam) sizes from 100 mm to 600 mm depth. Manufactured from IS 2062 Grade E250 structural steel. Commonly used as primary beams in slab formwork over U-heads and props, or as permanent structural elements in buildings.",
+    "category": "other",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "IS 2062 Grade E250 steel",
+      "I-shaped cross-section",
+      "ISMB sizes 100–600 mm",
+      "Excellent strength-to-weight ratio",
+      "Long span capability",
+      "For formwork & structural use"
+    ],
+    "icon": "Package",
+    "imageUrl": "https://images.unsplash.com/photo-1513828583688-c52645db1f28?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1513828583688-c52645db1f28?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 22,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-023",
+    "name": "Shuttering Plate (Steel Shuttering Plate)",
+    "shortDescription": "Heavy-duty steel plates for concrete formwork in all standard sizes.",
+    "fullDescription": "Our steel shuttering plates are manufactured from high-grade MS (Mild Steel) sheet, ensuring excellent flatness, rigidity, and reusability up to 200+ cycles. The plates feature welded edge channels for added stiffness and pre-drilled holes for tie rod connections. Available in standard sizes from 1 ft × 2 ft to 4 ft × 8 ft with thickness of 2.5 mm to 3 mm. Suitable for all formwork applications including slabs, beams, columns, walls, and retaining structures. Anti-corrosion primer coating applied as standard. Same-day delivery available in Varanasi.",
+    "category": "shuttering",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "High-grade MS steel (2.5–3 mm)",
+      "Welded edge channels",
+      "Pre-drilled tie rod holes",
+      "Sizes 1×2 ft to 4×8 ft",
+      "200+ reuse cycles",
+      "Anti-corrosion primer coating"
+    ],
+    "icon": "Square",
+    "imageUrl": "/images/shuttering-slab.jpg",
+    "images": [
       "/images/shuttering-slab.jpg",
       "/images/shuttering-steel.jpg"
     ],
     "isActive": true,
-    "sortOrder": 5,
-    "createdAt": "2024-01-01T00:00:00Z",
-    "updatedAt": "2024-01-01T00:00:00Z"
+    "sortOrder": 23,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
   },
   {
-    "id": "svc-006",
-    "name": "Wholesale Supply",
-    "shortDescription": "Bulk procurement of shuttering and scaffolding materials for dealers.",
-    "fullDescription": "We supply to contractors, sub-dealers, and construction companies across Uttar Pradesh at wholesale rates. Minimum order quantities apply. GST invoice provided. Credit available for regular buyers.",
-    "category": "other",
-    "availableFor": [
-      "sale"
-    ],
+    "id": "svc-024",
+    "name": "Monkey Lift (Material Hoist / Builder's Hoist)",
+    "shortDescription": "Tower-mounted material hoist for lifting bricks, concrete, and supplies to upper floors.",
+    "fullDescription": "Monkey lift (builder's hoist) is a tower-mounted lifting device used for vertical transportation of construction materials such as bricks, cement bags, sand, concrete buckets, and steel to upper floors of a building under construction. Features a mast-climbing platform powered by a 3–5 HP electric winch motor with wire rope. Standard lifting capacity: 200–500 kg with lifting speeds of 15–30 m/min. Tower mast height can be extended up to 50 meters by adding mast sections. Equipped with safety devices including overload cut-off, limit switches, and emergency brake. Significantly faster and safer than manual material handling via ramps.",
+    "category": "equipment",
+    "availableFor": ["rent"],
     "features": [
-      "Wholesale pricing",
-      "GST invoice",
-      "Credit facility",
-      "Pan-UP delivery",
-      "Dedicated account manager"
+      "3–5 HP electric winch motor",
+      "200–500 kg lifting capacity",
+      "15–30 m/min lift speed",
+      "Extendable mast up to 50 m",
+      "Overload cut-off & limit switches",
+      "Emergency brake system"
     ],
-    "icon": "Package",
-    "imageUrl": "/images/project-skyline.jpg",
+    "icon": "ArrowUpDown",
+    "imageUrl": "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80",
     "images": [
-      "/images/project-skyline.jpg",
-      "/images/project-modern.jpg",
-      "/images/scaffolding-towers.jpg"
+      "https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?w=800&q=80"
     ],
     "isActive": true,
-    "sortOrder": 6,
-    "createdAt": "2024-01-01T00:00:00Z",
-    "updatedAt": "2024-01-01T00:00:00Z"
+    "sortOrder": 24,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-025",
+    "name": "Mixture Machine (Concrete Mixer)",
+    "shortDescription": "Portable drum-type concrete mixer for on-site mixing of cement, sand, and aggregate.",
+    "fullDescription": "Portable concrete mixer (mixture machine) for on-site preparation of fresh concrete. Features a tilting drum design powered by a diesel engine or electric motor (5–10 HP) for uniform mixing of cement, sand, aggregate, and water. Available in drum capacities of 5/7, 8/12, 10/7, and 12/8 cubic feet (half-bag and full-bag models). The drum interior has fixed blades that tumble and fold the mix for consistent quality. Mounted on a towable chassis with pneumatic tires for easy site mobility. Hopper-fed or direct-loading configurations available.",
+    "category": "equipment",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "5–10 HP diesel / electric motor",
+      "5/7 to 12/8 cft drum capacity",
+      "Tilting drum with mixing blades",
+      "Towable chassis with pneumatic tires",
+      "Half-bag & full-bag models",
+      "Hopper-fed or direct-load options"
+    ],
+    "icon": "Building2",
+    "imageUrl": "https://images.unsplash.com/photo-1581092160607-ee2261fb488a?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1581092160607-ee2261fb488a?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 25,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-026",
+    "name": "Column Box (Steel Column Formwork Box)",
+    "shortDescription": "Pre-fabricated steel column formwork box for fast and precise column casting.",
+    "fullDescription": "Pre-fabricated steel column formwork boxes designed for rapid assembly and precise column casting. Made from 2.5–3 mm MS steel plates with angle-iron edge reinforcement, these boxes come as four interlocking panels that bolt together to form a rigid column mold. Available in standard square sizes: 9\"×9\", 12\"×12\", 15\"×15\", 18\"×18\", and custom rectangular sizes. Heights available in 4 ft, 5 ft, and 6 ft sections that can be stacked. The smooth inner surface produces a high-quality concrete finish. Reusable for 200+ pours with minimal maintenance. Significantly faster than site-fabricated plywood formwork.",
+    "category": "shuttering",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "2.5–3 mm MS steel with angle-iron",
+      "4-panel interlocking design",
+      "Standard sizes 9×9 to 18×18 inches",
+      "Stackable height sections (4/5/6 ft)",
+      "200+ reuse cycles",
+      "Smooth concrete finish"
+    ],
+    "icon": "Square",
+    "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 26,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-027",
+    "name": "Pipe (Scaffolding Pipe / GI Pipe)",
+    "shortDescription": "Galvanized iron scaffolding pipes for building temporary work platforms and support structures.",
+    "fullDescription": "Galvanized iron (GI) scaffolding pipes are the fundamental structural elements of tube-and-coupler scaffolding systems used on construction sites. Manufactured from ERW (Electric Resistance Welded) mild steel tubes with hot-dip galvanized coating for corrosion resistance. Standard outer diameter: 48.3 mm (NB 40 mm) with wall thickness of 2.5 mm to 3.2 mm. Available in standard lengths of 6 m (20 ft), 4 m (13 ft), 3 m (10 ft), and 2 m (6.5 ft). Connected using scaffolding couplers (right-angle, swivel, and sleeve). Conforms to IS 1161 and IS 2750 standards. Load capacity varies by configuration.",
+    "category": "scaffolding",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "ERW mild steel with GI coating",
+      "48.3 mm OD (NB 40 mm)",
+      "2.5–3.2 mm wall thickness",
+      "2 m to 6 m lengths",
+      "IS 1161 & IS 2750 compliant",
+      "Hot-dip galvanized for corrosion resistance"
+    ],
+    "icon": "Layers",
+    "imageUrl": "/images/scaffolding-towers.jpg",
+    "images": [
+      "/images/scaffolding-towers.jpg",
+      "/images/scaffolding-highrise.jpg"
+    ],
+    "isActive": true,
+    "sortOrder": 27,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
+  },
+  {
+    "id": "svc-028",
+    "name": "Concrete Block Testing (Cube Testing / Compression Test)",
+    "shortDescription": "On-site and lab concrete cube testing service for verifying compressive strength compliance.",
+    "fullDescription": "Concrete block testing (cube testing) is a quality assurance service for verifying the compressive strength of concrete used in construction. Fresh concrete samples are cast in standard 150 mm × 150 mm × 150 mm steel cube molds, cured for 7 days and 28 days, and then crushed in a compression testing machine (CTM) to determine compressive strength in N/mm² (MPa). Results are compared against the design mix grade (M15, M20, M25, M30, etc.) to ensure structural compliance. We provide cube molds, on-site sample collection, curing guidance, and lab testing with certified reports. Essential for quality control on all RCC construction projects.",
+    "category": "other",
+    "availableFor": ["rent", "sale"],
+    "features": [
+      "150×150×150 mm standard cube molds",
+      "7-day & 28-day testing",
+      "Compression testing machine (CTM)",
+      "Certified test reports",
+      "On-site sample collection",
+      "Compliance for M15 to M30+ grades"
+    ],
+    "icon": "Wrench",
+    "imageUrl": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
+    "images": [
+      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80"
+    ],
+    "isActive": true,
+    "sortOrder": 28,
+    "createdAt": "2026-06-07T00:00:00.000Z",
+    "updatedAt": "2026-06-07T00:00:00.000Z"
   }
 ]
