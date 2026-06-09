@@ -360,9 +360,9 @@
       "Quick assembly & stripping"
     ],
     "icon": "Square",
-    "imageUrl": "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80",
+    "imageUrl": "/images/services/column-clamp/column-clamp-spec.png",
     "images": [
-      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=800&q=80"
+      "/images/services/column-clamp/column-clamp-spec.png"
     ],
     "isActive": true,
     "sortOrder": 14,
