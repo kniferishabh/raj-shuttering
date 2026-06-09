@@ -68,9 +68,11 @@
       "Available in orange & green"
     ],
     "icon": "HardHat",
-    "imageUrl": "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80",
+    "imageUrl": "/images/services/construction-jacket/vest-green-site.png",
     "images": [
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80"
+      "/images/services/construction-jacket/vest-green-site.png",
+      "/images/services/construction-jacket/vest-orange-studio.png",
+      "/images/services/construction-jacket/vests-locker-room.png"
     ],
     "isActive": true,
     "sortOrder": 3,
