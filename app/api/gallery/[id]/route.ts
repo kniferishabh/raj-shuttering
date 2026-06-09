@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { auth } from '@/lib/auth';
 import { deleteGalleryItem, updateGalleryItem } from '@/lib/data';
+import { revalidatePublicSite } from '@/lib/revalidate-site';
 
 const updateSchema = z.object({
   title: z.string().min(2).optional(),
@@ -27,6 +28,7 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
       return NextResponse.json({ error: 'Gallery item not found' }, { status: 404 });
     }
 
+    revalidatePublicSite();
     return NextResponse.json(updated);
   } catch (error) {
     if (error instanceof z.ZodError) {
@@ -47,5 +49,6 @@ export async function DELETE(_req: NextRequest, { params }: { params: { id: stri
     return NextResponse.json({ error: 'Gallery item not found' }, { status: 404 });
   }
 
+  revalidatePublicSite();
   return NextResponse.json({ success: true });
 }

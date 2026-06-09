@@ -92,7 +92,7 @@ export function ServicesGrid({
   useEffect(() => {
     if (!fetchOnClient || initial) return;
     setLoading(true);
-    fetch('/api/services')
+    fetch('/api/services', { cache: 'no-store' })
       .then((r) => r.json())
       .then((data: Service[]) => setServices(data ?? []))
       .catch(() => setServices([]))

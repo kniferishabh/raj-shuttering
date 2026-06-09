@@ -34,6 +34,14 @@ export function getSupabaseAdmin(): SupabaseClient | null {
       autoRefreshToken: false,
       persistSession: false,
     },
+    global: {
+      // Next.js caches fetch() by default — always read fresh rows from Supabase.
+      fetch: (input, init) =>
+        fetch(input, {
+          ...init,
+          cache: 'no-store',
+        }),
+    },
   });
 
   return adminClient;

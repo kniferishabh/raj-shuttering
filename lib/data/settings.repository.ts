@@ -1,12 +1,12 @@
 import type { BusinessSettings } from '@/lib/types';
 import {
-  preferPrisma,
-  preferSupabaseRest,
   prisma,
   readJsonFile,
+  readFromBackend,
   writeJsonFile,
-  withFallback,
   getSupabaseAdmin,
+  preferPrisma,
+  preferSupabaseRest,
 } from './client';
 import {
   SETTINGS_ID,
@@ -60,20 +60,11 @@ async function saveToSupabase(settings: BusinessSettings): Promise<void> {
 }
 
 export async function getSiteSettings(): Promise<BusinessSettings | null> {
-  if (preferSupabaseRest()) {
-    return withFallback(getFromSupabase, async () => {
-      if (preferPrisma()) {
-        return withFallback(getFromPrisma, async () => readJsonFile<BusinessSettings>('settings.json'));
-      }
-      return readJsonFile<BusinessSettings>('settings.json');
-    });
-  }
-
-  if (preferPrisma()) {
-    return withFallback(getFromPrisma, async () => readJsonFile<BusinessSettings>('settings.json'));
-  }
-
-  return readJsonFile<BusinessSettings>('settings.json');
+  return readFromBackend(
+    getFromSupabase,
+    getFromPrisma,
+    async () => readJsonFile<BusinessSettings>('settings.json'),
+  );
 }
 
 export async function saveSiteSettings(settings: BusinessSettings): Promise<void> {

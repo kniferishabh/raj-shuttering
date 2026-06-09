@@ -2,6 +2,7 @@ import { NextResponse, type NextRequest } from 'next/server';
 import { z } from 'zod';
 import { auth } from '@/lib/auth';
 import { saveSiteSettings } from '@/lib/data';
+import { NO_STORE_HEADERS, revalidatePublicSite } from '@/lib/revalidate-site';
 import { getSettings } from '@/lib/settings';
 import { normalizeHexColor, PALETTE_IDS_ZOD } from '@/lib/themes';
 import type { BusinessSettings } from '@/lib/types';
@@ -48,9 +49,7 @@ const settingsSchema = z.object({
 
 export async function GET() {
   const settings = await getSettings();
-  return NextResponse.json(settings, {
-    headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' },
-  });
+  return NextResponse.json(settings, { headers: NO_STORE_HEADERS });
 }
 
 export async function PUT(req: NextRequest) {
@@ -63,6 +62,7 @@ export async function PUT(req: NextRequest) {
     const body = await req.json();
     const parsed = settingsSchema.parse(body) as BusinessSettings;
     await saveSiteSettings(parsed);
+    revalidatePublicSite();
     return NextResponse.json(parsed);
   } catch (error) {
     if (error instanceof z.ZodError) {

@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { v4 as uuid } from 'uuid';
 import { auth } from '@/lib/auth';
 import { createService, listServices } from '@/lib/data';
+import { NO_STORE_HEADERS, revalidatePublicSite } from '@/lib/revalidate-site';
 import type { Service } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
@@ -35,9 +36,7 @@ export async function GET(req: NextRequest) {
   }
 
   const active = services.filter((s) => s.isActive).sort((a, b) => a.sortOrder - b.sortOrder);
-  return NextResponse.json(active, {
-    headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' },
-  });
+  return NextResponse.json(active, { headers: NO_STORE_HEADERS });
 }
 
 export async function POST(req: NextRequest) {
@@ -58,6 +57,7 @@ export async function POST(req: NextRequest) {
     };
 
     const created = await createService(newService);
+    revalidatePublicSite();
     return NextResponse.json(created, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {

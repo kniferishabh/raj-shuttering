@@ -7,6 +7,10 @@ const nextConfig = {
   },
   experimental: {
     serverActions: { allowedOrigins: ['localhost:3000'] },
+    staleTimes: {
+      dynamic: 0,
+      static: 180,
+    },
   },
 };
 

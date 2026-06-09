@@ -1,4 +1,5 @@
 import 'server-only';
+import { unstable_noStore as noStore } from 'next/cache';
 import { getSiteSettings } from '@/lib/data';
 import type { BusinessSettings } from './types';
 
@@ -32,6 +33,7 @@ const DEFAULT_SETTINGS: BusinessSettings = {
 };
 
 export async function getSettings(): Promise<BusinessSettings> {
+  noStore();
   try {
     const settings = await getSiteSettings();
     return settings ?? DEFAULT_SETTINGS;

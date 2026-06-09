@@ -5,8 +5,8 @@ import {
   preferSupabaseRest,
   prisma,
   readJsonArrayFile,
+  readFromBackend,
   writeJsonFile,
-  withFallback,
 } from './client';
 import {
   galleryFromPrisma,
@@ -42,20 +42,7 @@ async function listFromFile(): Promise<GalleryItem[]> {
 }
 
 export async function listGalleryItems(): Promise<GalleryItem[]> {
-  if (preferSupabaseRest()) {
-    return withFallback(listFromSupabase, async () => {
-      if (preferPrisma()) {
-        return withFallback(listFromPrisma, listFromFile);
-      }
-      return listFromFile();
-    });
-  }
-
-  if (preferPrisma()) {
-    return withFallback(listFromPrisma, listFromFile);
-  }
-
-  return listFromFile();
+  return readFromBackend(listFromSupabase, listFromPrisma, listFromFile);
 }
 
 export async function getGalleryItemById(id: string): Promise<GalleryItem | null> {

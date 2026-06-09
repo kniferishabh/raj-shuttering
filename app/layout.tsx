@@ -6,6 +6,7 @@ import { PublicChrome } from '@/components/layout/PublicChrome/PublicChrome';
 import './globals.css';
 
 export const dynamic = 'force-dynamic';
+export const fetchCache = 'force-no-store';
 
 const bebas = Bebas_Neue({
   subsets: ['latin'],

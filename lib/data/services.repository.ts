@@ -5,8 +5,8 @@ import {
   preferSupabaseRest,
   prisma,
   readJsonArrayFile,
+  readFromBackend,
   writeJsonFile,
-  withFallback,
 } from './client';
 import {
   serviceFromPrisma,
@@ -42,20 +42,7 @@ async function listFromFile(): Promise<Service[]> {
 }
 
 export async function listServices(): Promise<Service[]> {
-  if (preferSupabaseRest()) {
-    return withFallback(listFromSupabase, async () => {
-      if (preferPrisma()) {
-        return withFallback(listFromPrisma, listFromFile);
-      }
-      return listFromFile();
-    });
-  }
-
-  if (preferPrisma()) {
-    return withFallback(listFromPrisma, listFromFile);
-  }
-
-  return listFromFile();
+  return readFromBackend(listFromSupabase, listFromPrisma, listFromFile);
 }
 
 export async function getServiceById(id: string): Promise<Service | null> {

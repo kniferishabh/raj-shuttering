@@ -1,5 +1,6 @@
 import fs from 'fs';
 import path from 'path';
+import { unstable_noStore as noStore } from 'next/cache';
 import { getSupabaseAdmin, isSupabaseRestEnabled } from '@/lib/supabase-admin';
 import { isDatabaseEnabled, prisma } from '@/lib/prisma';
 
@@ -42,4 +43,26 @@ export async function withFallback<T>(
   } catch {
     return fallback();
   }
+}
+
+/**
+ * Reads from the same backend used for writes.
+ * When Supabase REST is configured, never fall back to Prisma/JSON — those hold stale deploy-time data.
+ */
+export async function readFromBackend<T>(
+  supabaseRead: () => Promise<T>,
+  prismaRead: () => Promise<T>,
+  fileRead: () => Promise<T>,
+): Promise<T> {
+  noStore();
+
+  if (preferSupabaseRest()) {
+    return supabaseRead();
+  }
+
+  if (preferPrisma()) {
+    return withFallback(prismaRead, fileRead);
+  }
+
+  return fileRead();
 }

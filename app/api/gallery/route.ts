@@ -3,6 +3,7 @@ import { z } from 'zod';
 import { v4 as uuid } from 'uuid';
 import { auth } from '@/lib/auth';
 import { createGalleryItem, listGalleryItems } from '@/lib/data';
+import { NO_STORE_HEADERS, revalidatePublicSite } from '@/lib/revalidate-site';
 import type { GalleryItem } from '@/lib/types';
 
 export const dynamic = 'force-dynamic';
@@ -18,9 +19,7 @@ const gallerySchema = z.object({
 
 export async function GET() {
   const items = (await listGalleryItems()).sort((a, b) => a.sortOrder - b.sortOrder);
-  return NextResponse.json(items, {
-    headers: { 'Cache-Control': 'public, s-maxage=60, stale-while-revalidate=300' },
-  });
+  return NextResponse.json(items, { headers: NO_STORE_HEADERS });
 }
 
 export async function POST(req: NextRequest) {
@@ -39,6 +38,7 @@ export async function POST(req: NextRequest) {
     };
 
     const created = await createGalleryItem(item);
+    revalidatePublicSite();
     return NextResponse.json(created, { status: 201 });
   } catch (error) {
     if (error instanceof z.ZodError) {
