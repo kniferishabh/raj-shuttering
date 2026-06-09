@@ -15,10 +15,11 @@
       "Ventilated design"
     ],
     "icon": "HardHat",
-    "imageUrl": "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80",
+    "imageUrl": "/images/services/construction-cap/helmet-on-site.png",
     "images": [
-      "https://images.unsplash.com/photo-1504917595217-d4dc5ebe6122?w=800&q=80",
-      "https://images.unsplash.com/photo-1581094794329-c8112a89af12?w=800&q=80"
+      "/images/services/construction-cap/helmet-on-site.png",
+      "/images/services/construction-cap/helmets-wall.png",
+      "/images/services/construction-cap/helmets-stacked.png"
     ],
     "isActive": true,
     "sortOrder": 1,

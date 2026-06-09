@@ -10,7 +10,8 @@
     "postinstall": "prisma generate",
     "db:push": "dotenv -e .env.local -- prisma db push",
     "db:seed": "dotenv -e .env.local -- prisma db seed",
-    "db:import-services": "dotenv -e .env.local -- npx tsx scripts/import-services.ts"
+    "db:import-services": "dotenv -e .env.local -- npx tsx scripts/import-services.ts",
+    "db:update-service": "dotenv -e .env.local -- npx tsx scripts/update-service.ts"
   },
   "prisma": {
     "seed": "npx tsx prisma/seed.ts"
