@@ -280,9 +280,10 @@
       "10–15 reuse cycles"
     ],
     "icon": "Square",
-    "imageUrl": "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?w=800&q=80",
+    "imageUrl": "/images/services/shuttering-plywood/raj-industries-plywood.png",
     "images": [
-      "https://images.unsplash.com/photo-1595846519845-68e298c2edd8?w=800&q=80"
+      "/images/services/shuttering-plywood/raj-industries-plywood.png",
+      "/images/services/shuttering-plywood/formwork-site.png"
     ],
     "isActive": true,
     "sortOrder": 11,
