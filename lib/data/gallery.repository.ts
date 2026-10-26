@@ -1,4 +1,5 @@
 import type { GalleryItem } from '@/lib/types';
+import { unstable_cache } from 'next/cache';
 import {
   getSupabaseAdmin,
   preferPrisma,
@@ -41,9 +42,14 @@ async function listFromFile(): Promise<GalleryItem[]> {
   return readJsonArrayFile<GalleryItem>('gallery.json');
 }
 
-export async function listGalleryItems(): Promise<GalleryItem[]> {
+async function readGalleryItems(): Promise<GalleryItem[]> {
   return readFromBackend(listFromSupabase, listFromPrisma, listFromFile);
 }
+
+export const listGalleryItems = unstable_cache(readGalleryItems, ['gallery-items'], {
+  revalidate: 300,
+  tags: ['gallery-items'],
+});
 
 export async function getGalleryItemById(id: string): Promise<GalleryItem | null> {
   const items = await listGalleryItems();

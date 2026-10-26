@@ -1,4 +1,5 @@
 import type { BusinessSettings } from '@/lib/types';
+import { unstable_cache } from 'next/cache';
 import {
   prisma,
   readJsonFile,
@@ -59,13 +60,18 @@ async function saveToSupabase(settings: BusinessSettings): Promise<void> {
   }
 }
 
-export async function getSiteSettings(): Promise<BusinessSettings | null> {
+async function readSiteSettings(): Promise<BusinessSettings | null> {
   return readFromBackend(
     getFromSupabase,
     getFromPrisma,
     async () => readJsonFile<BusinessSettings>('settings.json'),
   );
 }
+
+export const getSiteSettings = unstable_cache(readSiteSettings, ['site-settings'], {
+  revalidate: 300,
+  tags: ['site-settings'],
+});
 
 export async function saveSiteSettings(settings: BusinessSettings): Promise<void> {
   if (preferSupabaseRest()) {

@@ -5,17 +5,15 @@ import { PageHero } from '@/components/sections/PageHero/PageHero';
 import { GalleryGrid } from '@/components/sections/Gallery/GalleryGrid';
 import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   title: 'Gallery',
   description:
     'Browse our work - photos from project sites, equipment in action, and the materials we supply across Varanasi.',
+  alternates: { canonical: '/gallery' },
 };
 
 export default async function GalleryPage() {
-  const settings = await getSettings();
-  const items = await listGalleryItems();
+  const [settings, items] = await Promise.all([getSettings(), listGalleryItems()]);
 
   return (
     <>

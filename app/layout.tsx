@@ -5,8 +5,9 @@ import { ThemeStyles } from '@/components/theme/ThemeStyles';
 import { PublicChrome } from '@/components/layout/PublicChrome/PublicChrome';
 import './globals.css';
 
+// Supabase's authenticated REST client is intentionally request-time, while the
+// repository layer below it caches public data and is explicitly invalidated by admin edits.
 export const dynamic = 'force-dynamic';
-export const fetchCache = 'force-no-store';
 
 const bebas = Bebas_Neue({
   subsets: ['latin'],
@@ -39,6 +40,8 @@ export async function generateMetadata(): Promise<Metadata> {
       default: settings.metaTitle,
     },
     description: settings.metaDescription,
+    applicationName: settings.businessName,
+    alternates: { canonical: '/' },
     keywords: [
       'shuttering varanasi',
       'scaffolding varanasi',
@@ -85,10 +88,33 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const settings = await getSettings();
+  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const localBusinessJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'LocalBusiness',
+    '@id': `${siteUrl}/#business`,
+    name: settings.businessName,
+    description: settings.metaDescription,
+    url: siteUrl,
+    telephone: settings.phone[0],
+    email: settings.email,
+    foundingDate: String(settings.establishedYear),
+    address: {
+      '@type': 'PostalAddress',
+      streetAddress: settings.address,
+      addressLocality: settings.city,
+      postalCode: settings.pincode,
+      addressCountry: 'IN',
+    },
+  };
 
   return (
     <html lang="en" className={`${bebas.variable} ${dmSans.variable} ${instrument.variable}`}>
       <body>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd).replace(/</g, '\\u003c') }}
+        />
         <ThemeStyles paletteId={settings.colorPalette} customColors={settings.customColors} />
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <PublicChrome settings={settings}>{children}</PublicChrome>

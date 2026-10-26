@@ -7,12 +7,11 @@ import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { ShieldCheck, Award, HeartHandshake, Truck } from 'lucide-react';
 import styles from './about.module.css';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   title: 'About Us',
   description:
     'Learn about Raj Shuttering & Scaffolding, Varanasi\'s trusted shuttering and scaffolding supplier since 2008.',
+  alternates: { canonical: '/about' },
 };
 
 const TIMELINE = [

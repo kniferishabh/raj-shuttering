@@ -14,13 +14,14 @@ import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { Reveal } from '@/components/ui/Reveal/Reveal';
 import styles from './page.module.css';
 
-export const dynamic = 'force-dynamic';
-
 export default async function HomePage() {
-  const settings = await getSettings();
-  const services = (await listServices()).filter((s) => s.isActive);
-  const gallery = await listGalleryItems();
-  const testimonials = await listTestimonials();
+  const [settings, allServices, gallery, testimonials] = await Promise.all([
+    getSettings(),
+    listServices(),
+    listGalleryItems(),
+    listTestimonials(),
+  ]);
+  const services = allServices.filter((s) => s.isActive);
 
   return (
     <div className={styles.page}>

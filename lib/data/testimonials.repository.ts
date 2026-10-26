@@ -1,4 +1,5 @@
 import type { Testimonial } from '@/lib/types';
+import { unstable_cache } from 'next/cache';
 import {
   getSupabaseAdmin,
   preferPrisma,
@@ -41,9 +42,14 @@ async function listFromFile(): Promise<Testimonial[]> {
   return readJsonArrayFile<Testimonial>('testimonials.json');
 }
 
-export async function listTestimonials(): Promise<Testimonial[]> {
+async function readTestimonials(): Promise<Testimonial[]> {
   return readFromBackend(listFromSupabase, listFromPrisma, listFromFile);
 }
+
+export const listTestimonials = unstable_cache(readTestimonials, ['testimonials'], {
+  revalidate: 300,
+  tags: ['testimonials'],
+});
 
 export async function getTestimonialById(id: string): Promise<Testimonial | null> {
   const items = await listTestimonials();

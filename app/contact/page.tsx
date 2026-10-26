@@ -6,12 +6,11 @@ import { ContactForm } from '@/components/sections/ContactForm/ContactForm';
 import { MapEmbed } from '@/components/sections/MapEmbed/MapEmbed';
 import styles from './contact.module.css';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   title: 'Contact Us',
   description:
     'Get in touch with Raj Shuttering & Scaffolding. Call, WhatsApp or email us for quotes, bulk orders, or any enquiries.',
+  alternates: { canonical: '/contact' },
 };
 
 export default async function ContactPage() {

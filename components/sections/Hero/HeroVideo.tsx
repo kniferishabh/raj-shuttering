@@ -99,7 +99,7 @@ export function HeroVideo({ video }: HeroVideoProps) {
       muted
       playsInline
       poster={video.poster}
-      preload="auto"
+      preload="metadata"
       aria-hidden="true"
     />
   );

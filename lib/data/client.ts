@@ -1,6 +1,5 @@
 import fs from 'fs';
 import path from 'path';
-import { unstable_noStore as noStore } from 'next/cache';
 import { getSupabaseAdmin, isSupabaseRestEnabled } from '@/lib/supabase-admin';
 import { isDatabaseEnabled, prisma } from '@/lib/prisma';
 
@@ -54,8 +53,6 @@ export async function readFromBackend<T>(
   prismaRead: () => Promise<T>,
   fileRead: () => Promise<T>,
 ): Promise<T> {
-  noStore();
-
   if (preferSupabaseRest()) {
     return supabaseRead();
   }

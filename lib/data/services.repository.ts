@@ -1,4 +1,5 @@
 import type { Service } from '@/lib/types';
+import { unstable_cache } from 'next/cache';
 import {
   getSupabaseAdmin,
   preferPrisma,
@@ -41,9 +42,14 @@ async function listFromFile(): Promise<Service[]> {
   return readJsonArrayFile<Service>('services.json');
 }
 
-export async function listServices(): Promise<Service[]> {
+async function readServices(): Promise<Service[]> {
   return readFromBackend(listFromSupabase, listFromPrisma, listFromFile);
 }
+
+export const listServices = unstable_cache(readServices, ['services'], {
+  revalidate: 300,
+  tags: ['services'],
+});
 
 export async function getServiceById(id: string): Promise<Service | null> {
   const services = await listServices();

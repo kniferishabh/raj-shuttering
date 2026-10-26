@@ -5,17 +5,16 @@ import { PageHero } from '@/components/sections/PageHero/PageHero';
 import { ServicesGrid } from '@/components/sections/ServicesGrid/ServicesGrid';
 import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
 
-export const dynamic = 'force-dynamic';
-
 export const metadata: Metadata = {
   title: 'Services',
   description:
     'Explore our complete range of shuttering, scaffolding, and construction formwork equipment available for rent and wholesale in Varanasi.',
+  alternates: { canonical: '/services' },
 };
 
 export default async function ServicesPage() {
-  const settings = await getSettings();
-  const services = (await listServices()).filter((s) => s.isActive);
+  const [settings, allServices] = await Promise.all([getSettings(), listServices()]);
+  const services = allServices.filter((s) => s.isActive);
 
   return (
     <>

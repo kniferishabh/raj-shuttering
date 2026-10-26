@@ -1,5 +1,5 @@
 import 'server-only';
-import { unstable_noStore as noStore } from 'next/cache';
+import { cache } from 'react';
 import { getSiteSettings } from '@/lib/data';
 import type { BusinessSettings } from './types';
 
@@ -32,12 +32,11 @@ const DEFAULT_SETTINGS: BusinessSettings = {
   },
 };
 
-export async function getSettings(): Promise<BusinessSettings> {
-  noStore();
+export const getSettings = cache(async (): Promise<BusinessSettings> => {
   try {
     const settings = await getSiteSettings();
     return settings ?? DEFAULT_SETTINGS;
   } catch {
     return DEFAULT_SETTINGS;
   }
-}
+});

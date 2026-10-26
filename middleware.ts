@@ -7,20 +7,8 @@ const SESSION_COOKIE_NAMES = [
   '__Secure-next-auth.session-token',
 ];
 
-const NO_STORE = 'private, no-cache, no-store, must-revalidate';
-
 function hasSessionCookie(req: NextRequest): boolean {
   return SESSION_COOKIE_NAMES.some((name) => req.cookies.has(name));
-}
-
-function shouldNoStore(pathname: string): boolean {
-  if (pathname.startsWith('/api/')) {
-    return true;
-  }
-  if (pathname.startsWith('/_next/') || pathname.includes('.')) {
-    return false;
-  }
-  return !pathname.startsWith('/admin');
 }
 
 export function middleware(req: NextRequest) {
@@ -41,16 +29,11 @@ export function middleware(req: NextRequest) {
     request: { headers: requestHeaders },
   });
 
-  if (shouldNoStore(pathname)) {
-    response.headers.set('Cache-Control', NO_STORE);
-  }
-
   return response;
 }
 
 export const config = {
   matcher: [
     '/admin/:path*',
-    '/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp|ico)$).*)',
   ],
 };
