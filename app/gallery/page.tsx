@@ -8,8 +8,13 @@ import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
 export const metadata: Metadata = {
   title: { absolute: 'Shuttering & Scaffolding Project Gallery | Varanasi' },
   description:
-    'View shuttering plates, scaffolding systems and construction site photos from Raj Shuttering & Scaffolding in Varanasi and nearby areas.',
+    'See shuttering plates, scaffolding installations and construction project photos from Raj Shuttering & Scaffolding in Varanasi and nearby areas.',
   alternates: { canonical: '/gallery' },
+  openGraph: {
+    title: 'Shuttering & Scaffolding Project Gallery | Varanasi',
+    description: 'See shuttering plates, scaffolding installations and construction project photos from Raj Shuttering & Scaffolding in Varanasi and nearby areas.',
+    url: '/gallery',
+  },
 };
 
 export default async function GalleryPage() {
@@ -18,7 +23,7 @@ export default async function GalleryPage() {
   return (
     <>
       <PageHero
-        title="Our Shuttering & Scaffolding Projects"
+        title="Shuttering & Scaffolding Project Gallery"
         subtitle="Real projects, real materials. A visual record of the work we've supported across Purvanchal."
         currentLabel="Gallery"
       />

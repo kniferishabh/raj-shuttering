@@ -1,6 +1,6 @@
 .bar {
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-hover));
-  color: var(--color-text-on-accent);
+  background: linear-gradient(135deg, var(--color-accent-deep), #101828);
+  color: var(--color-text-on-dark);
   padding: var(--space-2xl) 0;
   position: relative;
   overflow: hidden;
@@ -10,13 +10,7 @@
   content: '';
   position: absolute;
   inset: 0;
-  background-image: repeating-linear-gradient(
-    45deg,
-    transparent 0,
-    transparent 12px,
-    rgba(255, 255, 255, 0.06) 12px,
-    rgba(255, 255, 255, 0.06) 14px
-  );
+  background: radial-gradient(circle at 18% 50%, rgba(var(--color-accent-rgb), .32), transparent 28rem);
   pointer-events: none;
 }
 
@@ -54,8 +48,8 @@
   font-family: var(--font-display), Impact, sans-serif;
   font-size: clamp(2rem, 5vw, var(--text-5xl));
   line-height: 1;
-  letter-spacing: 0.01em;
-  color: var(--color-text-on-accent);
+  letter-spacing: -0.045em;
+  color: var(--color-text-on-dark);
 }
 
 .label {

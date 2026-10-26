@@ -279,9 +279,9 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
       <section className={styles.section}>
         <h2 className={styles.sectionTitle}>Color Palette</h2>
         <p className={styles.helpText}>
-          Choose a brand color theme for your public website. Changes apply to buttons, accents,
-          highlights, and section backgrounds. Preview updates instantly — click Save to keep your
-          choice.
+          Choose a brand color theme for your website. Buttons, accents, dark surfaces, and section
+          backgrounds update together. Readable foreground contrast and supporting shades are
+          generated automatically. Preview updates instantly — click Save to keep your choice.
         </p>
         <div className={styles.paletteGrid} role="radiogroup" aria-label="Site color palette">
           {COLOR_PALETTE_LIST.map((palette) => {
@@ -356,8 +356,8 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
         {activePalette === CUSTOM_PALETTE_ID && (
           <div className={styles.customColorsPanel}>
             <p className={styles.customColorsHint}>
-              Pick your brand colors below. Lighter backgrounds and accents are generated
-              automatically.
+              Pick your brand colors below. Readable text contrast, darker surfaces, lighter
+              backgrounds, focus rings, and accents are generated automatically.
             </p>
             <div className={styles.customColorsGrid}>
               <div className={styles.colorField}>

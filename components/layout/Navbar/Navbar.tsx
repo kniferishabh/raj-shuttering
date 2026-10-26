@@ -38,8 +38,13 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
 
   useEffect(() => {
     document.body.style.overflow = menuOpen ? 'hidden' : '';
+    const closeOnEscape = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') setMenuOpen(false);
+    };
+    if (menuOpen) document.addEventListener('keydown', closeOnEscape);
     return () => {
       document.body.style.overflow = '';
+      document.removeEventListener('keydown', closeOnEscape);
     };
   }, [menuOpen]);
 
@@ -116,6 +121,9 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
           .filter(Boolean)
           .join(' ')}
         aria-hidden={!menuOpen}
+        role={menuOpen ? 'dialog' : undefined}
+        aria-modal={menuOpen || undefined}
+        aria-label="Main navigation"
         onClick={() => setMenuOpen(false)}
       />
 
@@ -131,6 +139,7 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
                 className={[styles.mobileLink, isActive(link.href) ? styles.mobileLinkActive : '']
                   .filter(Boolean)
                   .join(' ')}
+                tabIndex={menuOpen ? 0 : -1}
               >
                 <span>{link.label}</span>
                 <ChevronRight size={18} aria-hidden="true" />
@@ -140,11 +149,11 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
         </ul>
 
         <div className={styles.mobileContact}>
-          <Button href="/contact" variant="primary" size="lg" fullWidth>
+          <Button href="/contact" variant="primary" size="lg" fullWidth tabIndex={menuOpen ? 0 : -1}>
             Get a Quote
           </Button>
           <div className={styles.mobileContactRow}>
-            <a className={styles.mobilePhone} href={`tel:${cleanPhone}`}>
+            <a className={styles.mobilePhone} href={`tel:${cleanPhone}`} tabIndex={menuOpen ? 0 : -1}>
               <Phone size={18} />
               <span>{phone}</span>
             </a>
@@ -154,6 +163,7 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Chat on WhatsApp"
+              tabIndex={menuOpen ? 0 : -1}
             >
               <MessageCircle size={18} />
             </a>

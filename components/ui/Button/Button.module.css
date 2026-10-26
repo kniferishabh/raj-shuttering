@@ -5,9 +5,9 @@
   justify-content: center;
   gap: var(--space-sm);
   font-family: var(--font-body), sans-serif;
-  font-weight: 600;
+  font-weight: 700;
   letter-spacing: 0.02em;
-  border: 2px solid transparent;
+  border: 1px solid transparent;
   border-radius: var(--radius-pill);
   cursor: pointer;
   white-space: nowrap;
@@ -53,14 +53,16 @@
 }
 
 .primary {
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-hover));
+  background: var(--color-accent-primary);
   color: var(--color-text-on-accent);
   border-color: transparent;
   box-shadow: var(--shadow-glow);
 }
 
 .primary:hover:not(:disabled) {
-  box-shadow: 0 12px 36px rgba(var(--color-accent-rgb), 0.35);
+  background: var(--color-accent-hover);
+  color: var(--color-text-on-accent-hover);
+  box-shadow: 0 14px 38px rgba(var(--color-accent-rgb), 0.3);
 }
 
 .secondary {

@@ -5,9 +5,10 @@
   min-height: 380px;
   border-radius: var(--radius-xl);
   overflow: hidden;
-  border: 1px solid var(--color-border);
-  box-shadow: var(--shadow-card);
-  background: var(--color-bg-secondary);
+  border: 1px solid var(--glass-border);
+  box-shadow: var(--glass-shadow);
+  background: var(--glass-bg);
+  backdrop-filter: var(--glass-blur);
 }
 
 .mapWrap iframe {

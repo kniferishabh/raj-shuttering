@@ -9,6 +9,7 @@ export interface ServiceLandingPage {
   serviceIds: string[];
   benefits: Array<{ title: string; text: string }>;
   applications: string[];
+  faqs: Array<{ question: string; answer: string }>;
 }
 
 export const SERVICE_LANDING_PAGES: ServiceLandingPage[] = [
@@ -29,6 +30,10 @@ export const SERVICE_LANDING_PAGES: ServiceLandingPage[] = [
       { title: 'Rental or purchase enquiry', text: 'Ask about availability for temporary rental requirements or wholesale supply.' },
     ],
     applications: ['RCC slab formwork', 'Beam and wall shuttering', 'Column construction', 'Residential and commercial projects'],
+    faqs: [
+      { question: 'Which shuttering plate sizes are currently available?', answer: 'Available plate sizes and quantities can change by project demand. Share your slab, beam, wall or column requirement with our Varanasi team so the current stock can be confirmed before booking.' },
+      { question: 'Can shuttering plates be rented for a specific project period?', answer: 'Rental duration is discussed for each project. Confirm the required quantity, expected start date, rental period and transport needs to receive an availability-based quotation.' },
+    ],
   },
   {
     slug: 'scaffolding-on-rent-varanasi',
@@ -47,6 +52,10 @@ export const SERVICE_LANDING_PAGES: ServiceLandingPage[] = [
       { title: 'Local coordination', text: 'Enquiries are handled from Pandeypur for construction requirements across Varanasi.' },
     ],
     applications: ['Building access scaffolds', 'Slab and beam support', 'Exterior repair work', 'Residential and commercial construction'],
+    faqs: [
+      { question: 'Which components should be requested with scaffolding pipes?', answer: 'The requirement may include compatible clamps or couplers, base jacks and U-head jacks. Final components and quantities depend on the intended height, access and support arrangement.' },
+      { question: 'Is scaffolding delivery available outside central Varanasi?', answer: 'Delivery location and transport charges must be confirmed for each order. Send the site address, equipment list and required dates so the team can check serviceability.' },
+    ],
   },
   {
     slug: 'steel-props-on-rent-varanasi',
@@ -65,6 +74,10 @@ export const SERVICE_LANDING_PAGES: ServiceLandingPage[] = [
       { title: 'Flexible duration', text: 'Share the expected project period to request an appropriate rental quotation.' },
     ],
     applications: ['Slab centering support', 'Beam formwork support', 'Temporary structural support', 'Residential and commercial RCC work'],
+    faqs: [
+      { question: 'How do I choose the required steel prop size?', answer: 'Prop selection depends on the working height, load arrangement and formwork plan. Share the site requirement with the team and confirm the available adjustment range before ordering.' },
+      { question: 'Are U-head or base jacks available with steel props?', answer: 'Related jack components can be requested with the prop enquiry. Availability, quantities, rental duration and transport should be confirmed together before booking.' },
+    ],
   },
 ];
 

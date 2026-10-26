@@ -52,12 +52,39 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     areaServed: { '@type': 'City', name: 'Varanasi' },
     provider: { '@id': `${SITE_URL}/#business` },
   };
+  const breadcrumbJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'BreadcrumbList',
+    itemListElement: [
+      { '@type': 'ListItem', position: 1, name: 'Home', item: SITE_URL },
+      { '@type': 'ListItem', position: 2, name: 'Services', item: `${SITE_URL}/services` },
+      { '@type': 'ListItem', position: 3, name: page.shortTitle, item: `${SITE_URL}/services/${page.slug}` },
+    ],
+  };
+  const faqJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    mainEntity: page.faqs.map((faq) => ({
+      '@type': 'Question',
+      name: faq.question,
+      acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+    })),
+  };
+  const relatedGuides = SERVICE_LANDING_PAGES.filter((item) => item.slug !== page.slug);
 
   return (
     <>
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceJsonLd).replace(/</g, '\\u003c') }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbJsonLd).replace(/</g, '\\u003c') }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd).replace(/</g, '\\u003c') }}
       />
       <header className={styles.hero}>
         <div className={styles.heroInner}>
@@ -124,6 +151,30 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
         <aside className={styles.note}>
           <strong>Before ordering:</strong> Availability, quantities, sizes, rental duration and transport requirements should be confirmed directly with our team for your project.
         </aside>
+
+        <section className={styles.faqSection} aria-labelledby="service-faq-title">
+          <div className={styles.sectionHeading}>
+            <span>Practical information</span>
+            <h2 id="service-faq-title">Frequently asked questions</h2>
+          </div>
+          <div className={styles.faqList}>
+            {page.faqs.map((faq) => (
+              <details key={faq.question} className={styles.faqItem}>
+                <summary>{faq.question}</summary>
+                <p>{faq.answer}</p>
+              </details>
+            ))}
+          </div>
+        </section>
+
+        <nav className={styles.relatedGuides} aria-label="Related rental guides">
+          <strong>Related rental guides</strong>
+          <div>
+            {relatedGuides.map((guide) => (
+              <Link key={guide.slug} href={`/services/${guide.slug}`}>{guide.shortTitle}<ArrowRight size={15} /></Link>
+            ))}
+          </div>
+        </nav>
       </main>
 
       <ContactCTA phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />

@@ -10,10 +10,15 @@ import { SERVICE_LANDING_PAGES } from '@/lib/service-landing-pages';
 import styles from './services.module.css';
 
 export const metadata: Metadata = {
-  title: { absolute: 'Shuttering & Scaffolding Services in Varanasi | Raj' },
+  title: { absolute: 'Shuttering & Scaffolding Equipment in Varanasi | Raj Shuttering' },
   description:
-    'Explore shuttering plates, scaffolding pipes, steel props, jacks and construction equipment available for rent or wholesale in Varanasi.',
+    'Explore shuttering plates, scaffolding pipes, clamps, steel props, jacks and construction equipment for rent or purchase in Varanasi.',
   alternates: { canonical: '/services' },
+  openGraph: {
+    title: 'Shuttering & Scaffolding Equipment in Varanasi | Raj Shuttering',
+    description: 'Explore shuttering plates, scaffolding pipes, clamps, steel props, jacks and construction equipment for rent or purchase in Varanasi.',
+    url: '/services',
+  },
 };
 
 export default async function ServicesPage() {

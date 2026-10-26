@@ -7,7 +7,7 @@ interface Stat {
 
 const STATS: Stat[] = [
   { value: 'Since 2008', label: 'Serving Contractors' },
-  { value: 'Varanasi', label: 'Local Service Area' },
+  { value: 'Pan India', label: 'Nationwide Service' },
   { value: 'Rent & Sale', label: 'Flexible Supply' },
   { value: 'Mon–Sat', label: 'Open for Enquiries' },
 ];

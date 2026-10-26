@@ -278,12 +278,33 @@ function mixHex(hex1: string, hex2: string, weight: number): string {
   );
 }
 
+function relativeLuminance(hex: string): number {
+  const channels = hexToRgb(hex).map((value) => {
+    const channel = value / 255;
+    return channel <= 0.03928 ? channel / 12.92 : Math.pow((channel + 0.055) / 1.055, 2.4);
+  });
+  return 0.2126 * channels[0] + 0.7152 * channels[1] + 0.0722 * channels[2];
+}
+
+function readableTextColor(background: string): string {
+  const luminance = relativeLuminance(background);
+  const whiteContrast = 1.05 / (luminance + 0.05);
+  const darkContrast = (luminance + 0.05) / 0.062;
+  return whiteContrast >= darkContrast ? '#FFFFFF' : '#101828';
+}
+
 function withDerivedVars(vars: Record<string, string>): Record<string, string> {
   const rgb = vars['--color-accent-rgb'];
+  const primary = vars['--color-accent-primary'];
   return {
     ...vars,
-    '--color-border-accent': `rgba(${rgb}, 0.35)`,
-    '--shadow-glow': `0 8px 32px rgba(${rgb}, 0.22)`,
+    '--color-text-on-accent': readableTextColor(primary),
+    '--color-text-on-accent-hover': readableTextColor(vars['--color-accent-hover']),
+    '--color-accent-deep': mixHex(primary, '#101828', 0.88),
+    '--color-accent-muted': mixHex(primary, '#FFFFFF', 0.82),
+    '--color-border-accent': `rgba(${rgb}, 0.30)`,
+    '--color-focus-ring': `rgba(${rgb}, 0.24)`,
+    '--shadow-glow': `0 14px 38px rgba(${rgb}, 0.24)`,
   };
 }
 

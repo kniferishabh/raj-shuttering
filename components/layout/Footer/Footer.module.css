@@ -1,8 +1,8 @@
 .footer {
-  background: var(--color-bg-secondary);
-  border-top: 1px solid var(--color-border);
+  background: linear-gradient(145deg, var(--color-accent-deep), #101828 60%);
+  border-top: 0;
   padding: var(--space-3xl) 0 var(--space-lg);
-  margin-top: var(--space-3xl);
+  margin-top: 0;
 }
 
 .footer::before {
@@ -32,14 +32,14 @@
   grid-template-columns: 1.4fr 1fr 1fr 1.2fr;
   gap: var(--space-2xl);
   padding-bottom: var(--space-2xl);
-  border-bottom: 1px solid var(--color-border);
+  border-bottom: 1px solid rgba(255,255,255,.12);
 }
 
 .column h4 {
   font-family: var(--font-display), sans-serif;
   font-size: var(--text-lg);
   letter-spacing: 0.04em;
-  color: var(--color-text-primary);
+  color: #fff;
   text-transform: uppercase;
   margin-bottom: var(--space-lg);
 }
@@ -74,7 +74,7 @@
   font-family: var(--font-display), sans-serif;
   font-size: var(--text-xl);
   letter-spacing: 0.02em;
-  color: var(--color-text-primary);
+  color: #fff;
   text-transform: uppercase;
 }
 
@@ -82,7 +82,7 @@
   font-family: var(--font-accent), serif;
   font-style: italic;
   font-size: var(--text-lg);
-  color: var(--color-text-secondary);
+  color: rgba(255,255,255,.64);
   line-height: 1.5;
   max-width: 320px;
 }
@@ -105,12 +105,12 @@
   width: 42px;
   height: 42px;
   border-radius: var(--radius-pill);
-  background: var(--color-bg-surface);
-  border: 1px solid var(--color-border);
+  background: rgba(255,255,255,.07);
+  border: 1px solid rgba(255,255,255,.12);
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  color: var(--color-text-secondary);
+  color: rgba(255,255,255,.72);
   transition: background var(--duration-base) var(--ease-smooth),
               color var(--duration-base) var(--ease-smooth),
               border-color var(--duration-base) var(--ease-smooth),
@@ -138,7 +138,7 @@
   display: inline-flex;
   align-items: flex-start;
   gap: var(--space-sm);
-  color: var(--color-text-secondary);
+  color: rgba(255,255,255,.64);
   font-size: var(--text-sm);
   transition: color var(--duration-base) var(--ease-smooth);
   width: fit-content;
@@ -160,7 +160,7 @@
   align-items: center;
   padding-top: var(--space-lg);
   font-size: var(--text-xs);
-  color: var(--color-text-muted);
+  color: rgba(255,255,255,.46);
   letter-spacing: 0.03em;
   flex-wrap: wrap;
   gap: var(--space-md);

@@ -119,7 +119,7 @@ export function Hero({ headline, subheadline, video }: HeroProps) {
               <span className={styles.trustValue}>
                 Since <span>2008</span>
               </span>
-              <span className={styles.trustLabel}>Local Experience</span>
+              <span className={styles.trustLabel}>Industry Experience</span>
             </div>
             <div className={styles.trustItem}>
               <span className={styles.trustValue}>
@@ -129,9 +129,9 @@ export function Hero({ headline, subheadline, video }: HeroProps) {
             </div>
             <div className={styles.trustItem}>
               <span className={styles.trustValue}>
-                Varanasi
+                Pan India
               </span>
-              <span className={styles.trustLabel}>Local Service</span>
+              <span className={styles.trustLabel}>Nationwide Service</span>
             </div>
           </div>
         </div>
@@ -157,8 +157,8 @@ export function Hero({ headline, subheadline, video }: HeroProps) {
             <span className={styles.cardIcon}>
               <MapPin size={20} />
             </span>
-            <span className={styles.cardSub}>Local Equipment Supplier</span>
-            <span className={styles.cardRating}>Varanasi</span>
+            <span className={styles.cardSub}>Nationwide Equipment Supply</span>
+            <span className={styles.cardRating}>Pan India</span>
           </div>
         </div>
       </div>

@@ -22,6 +22,7 @@ export interface ButtonProps {
   target?: string;
   rel?: string;
   className?: string;
+  tabIndex?: number;
   'aria-label'?: string;
 }
 
@@ -40,6 +41,7 @@ export function Button({
   target,
   rel,
   className = '',
+  tabIndex,
   'aria-label': ariaLabel,
 }: ButtonProps) {
   const classes = [
@@ -76,13 +78,14 @@ export function Button({
           rel={rel}
           className={classes}
           aria-label={ariaLabel}
+          tabIndex={tabIndex}
         >
           {content}
         </a>
       );
     }
     return (
-      <Link href={href} className={classes} aria-label={ariaLabel}>
+      <Link href={href} className={classes} aria-label={ariaLabel} tabIndex={tabIndex}>
         {content}
       </Link>
     );
@@ -96,6 +99,7 @@ export function Button({
       disabled={disabled || loading}
       aria-label={ariaLabel}
       aria-busy={loading}
+      tabIndex={tabIndex}
     >
       {content}
     </button>

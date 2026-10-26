@@ -57,6 +57,7 @@ interface ServicesGridProps {
   limit?: number;
   showFooter?: boolean;
   fetchOnClient?: boolean;
+  preserveOrder?: boolean;
 }
 
 export function ServicesGrid({
@@ -64,6 +65,7 @@ export function ServicesGrid({
   limit,
   showFooter = true,
   fetchOnClient = false,
+  preserveOrder = false,
 }: ServicesGridProps) {
   const [services, setServices] = useState<Service[]>(initial ?? []);
   const [loading, setLoading] = useState(fetchOnClient && !initial);
@@ -100,10 +102,10 @@ export function ServicesGrid({
   }, [fetchOnClient, initial]);
 
   const filtered = useMemo(() => {
-    const sorted = [...services].sort((a, b) => a.sortOrder - b.sortOrder);
+    const sorted = preserveOrder ? [...services] : [...services].sort((a, b) => a.sortOrder - b.sortOrder);
     const filteredItems = tab === 'all' ? sorted : sorted.filter((s) => s.category === tab);
     return limit ? filteredItems.slice(0, limit) : filteredItems;
-  }, [services, tab, limit]);
+  }, [services, tab, limit, preserveOrder]);
 
   return (
     <section className={styles.section} id="services">
@@ -112,7 +114,7 @@ export function ServicesGrid({
         <div className={styles.headRow}>
           <SectionHeader
             eyebrow="What We Offer"
-            heading={'Complete Shuttering &\nScaffolding Solutions'}
+            heading="Complete Shuttering & Scaffolding Solutions"
             subtitle="From small residential slabs to multi-storey commercial projects - we have the right materials and the right expertise."
           />
 

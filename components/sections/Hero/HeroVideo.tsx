@@ -1,5 +1,6 @@
 'use client';
 
+import Image from 'next/image';
 import { useEffect, useRef, useState } from 'react';
 import type { HeroVideoConfig } from '@/lib/media';
 import styles from './Hero.module.css';
@@ -8,99 +9,94 @@ interface HeroVideoProps {
   video: HeroVideoConfig;
 }
 
-/** Reliable mobile check — <source media> is ignored by iOS Safari and many Android browsers */
 function pickVideoSrc(config: HeroVideoConfig): string {
   const narrow = window.matchMedia('(max-width: 768px)').matches;
   const touch = window.matchMedia('(hover: none) and (pointer: coarse)').matches;
-  const useMobile = narrow || (touch && window.innerWidth < 1024);
-  return useMobile ? config.srcMobile : config.src;
+  return narrow || (touch && window.innerWidth < 1024) ? config.srcMobile : config.src;
 }
 
 export function HeroVideo({ video }: HeroVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
-  const [usePosterOnly, setUsePosterOnly] = useState(false);
+  const [usePosterOnly, setUsePosterOnly] = useState(true);
   const [activeSrc, setActiveSrc] = useState<string | null>(null);
+  const [videoReady, setVideoReady] = useState(false);
 
   useEffect(() => {
     const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const connection = (navigator as Navigator & {
+      connection?: { saveData?: boolean; effectiveType?: string };
+    }).connection;
+    const constrainedConnection = Boolean(
+      connection?.saveData || connection?.effectiveType === 'slow-2g' || connection?.effectiveType === '2g',
+    );
+    const updatePreference = () => setUsePosterOnly(motionQuery.matches || constrainedConnection);
 
-    const updateMotion = () => setUsePosterOnly(motionQuery.matches);
-
-    updateMotion();
-    motionQuery.addEventListener('change', updateMotion);
-
-    return () => motionQuery.removeEventListener('change', updateMotion);
+    updatePreference();
+    motionQuery.addEventListener('change', updatePreference);
+    return () => motionQuery.removeEventListener('change', updatePreference);
   }, []);
 
   useEffect(() => {
+    if (usePosterOnly) return;
+
     const mobileQuery = window.matchMedia('(max-width: 768px)');
     const touchQuery = window.matchMedia('(hover: none) and (pointer: coarse)');
+    let timer: ReturnType<typeof setTimeout> | undefined;
 
-    const updateSrc = () => setActiveSrc(pickVideoSrc(video));
+    const scheduleVideo = () => {
+      if (timer) clearTimeout(timer);
+      timer = setTimeout(() => setActiveSrc(pickVideoSrc(video)), 900);
+    };
 
-    updateSrc();
-    mobileQuery.addEventListener('change', updateSrc);
-    touchQuery.addEventListener('change', updateSrc);
-    window.addEventListener('resize', updateSrc);
+    if (document.readyState === 'complete') scheduleVideo();
+    else window.addEventListener('load', scheduleVideo, { once: true });
+    mobileQuery.addEventListener('change', scheduleVideo);
+    touchQuery.addEventListener('change', scheduleVideo);
 
     return () => {
-      mobileQuery.removeEventListener('change', updateSrc);
-      touchQuery.removeEventListener('change', updateSrc);
-      window.removeEventListener('resize', updateSrc);
+      if (timer) clearTimeout(timer);
+      window.removeEventListener('load', scheduleVideo);
+      mobileQuery.removeEventListener('change', scheduleVideo);
+      touchQuery.removeEventListener('change', scheduleVideo);
     };
-  }, [video]);
+  }, [video, usePosterOnly]);
 
   useEffect(() => {
-    const el = videoRef.current;
-    if (!el || usePosterOnly || !activeSrc) return;
-
-    const play = () => {
-      el.play().catch(() => {
-        /* Autoplay blocked — poster remains visible */
-      });
-    };
-
-    play();
-    el.addEventListener('loadeddata', play);
-    return () => el.removeEventListener('loadeddata', play);
-  }, [usePosterOnly, activeSrc]);
-
-  if (usePosterOnly) {
-    return (
-      <div
-        className={styles.videoPoster}
-        style={{ backgroundImage: `url(${video.poster})` }}
-        role="img"
-        aria-label={video.alt}
-      />
-    );
-  }
-
-  /* Poster until client picks the correct src — avoids loading desktop video on phones */
-  if (!activeSrc) {
-    return (
-      <div
-        className={styles.videoPoster}
-        style={{ backgroundImage: `url(${video.poster})` }}
-        role="img"
-        aria-label={video.alt}
-      />
-    );
-  }
+    const element = videoRef.current;
+    if (!element || !activeSrc) return;
+    element.play().catch(() => {
+      // The optimized poster remains visible when autoplay is unavailable.
+    });
+  }, [activeSrc]);
 
   return (
-    <video
-      key={activeSrc}
-      ref={videoRef}
-      className={styles.video}
-      src={activeSrc}
-      autoPlay
-      loop
-      muted
-      playsInline
-      poster={video.poster}
-      preload="metadata"
-      aria-hidden="true"
-    />
+    <>
+      <Image
+        src={video.poster}
+        alt={video.alt}
+        fill
+        priority
+        fetchPriority="high"
+        quality={76}
+        sizes="100vw"
+        className={styles.videoPosterImage}
+      />
+      {!usePosterOnly && activeSrc && (
+        <video
+          key={activeSrc}
+          ref={videoRef}
+          className={`${styles.video} ${videoReady ? styles.videoReady : ''}`}
+          src={activeSrc}
+          autoPlay
+          loop
+          muted
+          playsInline
+          poster={video.poster}
+          preload="none"
+          onCanPlay={() => setVideoReady(true)}
+          aria-hidden="true"
+        />
+      )}
+    </>
   );
 }

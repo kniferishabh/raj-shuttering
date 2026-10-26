@@ -19,28 +19,18 @@ export function isSupabaseRestEnabled(): boolean {
 }
 
 export function getSupabaseAdmin(): SupabaseClient | null {
-  if (adminClient) {
-    return adminClient;
-  }
+  if (adminClient) return adminClient;
 
   const url = getSupabaseUrl();
   const key = getSupabaseKey();
-  if (!url || !key) {
-    return null;
-  }
+  if (!url || !key) return null;
 
+  // Public reads inherit the route's ISR policy. Admin writes explicitly
+  // invalidate repository tags and the public layout after successful saves.
   adminClient = createClient(url, key, {
     auth: {
       autoRefreshToken: false,
       persistSession: false,
-    },
-    global: {
-      // Next.js caches fetch() by default — always read fresh rows from Supabase.
-      fetch: (input, init) =>
-        fetch(input, {
-          ...init,
-          cache: 'no-store',
-        }),
     },
   });
 
