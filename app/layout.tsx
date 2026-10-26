@@ -3,6 +3,7 @@ import { Bebas_Neue, DM_Sans, Instrument_Serif } from 'next/font/google';
 import { getSettings } from '@/lib/settings';
 import { ThemeStyles } from '@/components/theme/ThemeStyles';
 import { PublicChrome } from '@/components/layout/PublicChrome/PublicChrome';
+import { SITE_URL } from '@/lib/site';
 import './globals.css';
 
 // Supabase's authenticated REST client is intentionally request-time, while the
@@ -34,7 +35,7 @@ const instrument = Instrument_Serif({
 export async function generateMetadata(): Promise<Metadata> {
   const settings = await getSettings();
   return {
-    metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000'),
+    metadataBase: new URL(SITE_URL),
     title: {
       template: `%s | ${settings.businessName}`,
       default: settings.metaTitle,
@@ -88,7 +89,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const settings = await getSettings();
-  const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || 'http://localhost:3000';
+  const siteUrl = SITE_URL;
   const localBusinessJsonLd = {
     '@context': 'https://schema.org',
     '@type': 'LocalBusiness',
@@ -98,6 +99,7 @@ export default async function RootLayout({
     url: siteUrl,
     telephone: settings.phone[0],
     email: settings.email,
+    openingHours: 'Mo-Sa 08:30-19:00',
     foundingDate: String(settings.establishedYear),
     address: {
       '@type': 'PostalAddress',

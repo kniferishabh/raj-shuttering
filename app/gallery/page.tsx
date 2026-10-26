@@ -6,9 +6,9 @@ import { GalleryGrid } from '@/components/sections/Gallery/GalleryGrid';
 import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
 
 export const metadata: Metadata = {
-  title: 'Gallery',
+  title: { absolute: 'Shuttering & Scaffolding Project Gallery | Varanasi' },
   description:
-    'Browse our work - photos from project sites, equipment in action, and the materials we supply across Varanasi.',
+    'View shuttering plates, scaffolding systems and construction site photos from Raj Shuttering & Scaffolding in Varanasi and nearby areas.',
   alternates: { canonical: '/gallery' },
 };
 
@@ -18,7 +18,7 @@ export default async function GalleryPage() {
   return (
     <>
       <PageHero
-        title="Project Gallery"
+        title="Our Shuttering & Scaffolding Projects"
         subtitle="Real projects, real materials. A visual record of the work we've supported across Purvanchal."
         currentLabel="Gallery"
       />

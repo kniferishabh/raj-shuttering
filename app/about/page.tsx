@@ -8,9 +8,9 @@ import { ShieldCheck, Award, HeartHandshake, Truck } from 'lucide-react';
 import styles from './about.module.css';
 
 export const metadata: Metadata = {
-  title: 'About Us',
+  title: { absolute: 'About Raj Shuttering & Scaffolding | Varanasi' },
   description:
-    'Learn about Raj Shuttering & Scaffolding, Varanasi\'s trusted shuttering and scaffolding supplier since 2008.',
+    'Learn about Raj Shuttering & Scaffolding, serving construction projects in Varanasi since 2008 with rental and wholesale shuttering equipment.',
   alternates: { canonical: '/about' },
 };
 
@@ -19,14 +19,14 @@ const TIMELINE = [
   { year: '2012', title: 'Expanded Inventory', desc: 'Added aluminium scaffolding and H-frame systems to our catalogue.' },
   { year: '2016', title: 'Pan-Purvanchal Reach', desc: 'Began serving customers in Chandauli, Mirzapur, Jaunpur and beyond.' },
   { year: '2020', title: 'Wholesale Operations', desc: 'Launched wholesale supply for sub-dealers and contractors across UP.' },
-  { year: '2024', title: '500+ Projects Strong', desc: 'Trusted by 500+ contractors with a 4.5-star rating from 61+ reviews.' },
+  { year: '2024', title: 'Expanded Product Range', desc: 'Added more formwork, access and construction equipment options for local projects.' },
 ];
 
 const VALUES = [
   {
     icon: ShieldCheck,
     title: 'Quality',
-    text: 'Every plate, every frame is inspected. IS-compliant materials only.',
+    text: 'Equipment condition is checked before it is supplied for a project.',
   },
   {
     icon: HeartHandshake,
@@ -36,12 +36,12 @@ const VALUES = [
   {
     icon: Truck,
     title: 'Service',
-    text: 'Same-day dispatch across Varanasi. On-time delivery is non-negotiable.',
+    text: 'Clear coordination for collection or delivery based on current availability.',
   },
   {
     icon: Award,
     title: 'Experience',
-    text: '16+ years of helping shape Varanasi\'s skyline. We know construction.',
+    text: 'Serving Varanasi construction projects since 2008.',
   },
 ];
 
@@ -51,7 +51,7 @@ export default async function AboutPage() {
   return (
     <>
       <PageHero
-        title="About Us"
+        title="About Raj Shuttering & Scaffolding"
         subtitle={`The story of ${settings.businessName} - a Pandeypur, ${settings.city} family business serving construction since ${settings.establishedYear}.`}
         currentLabel="About"
       />

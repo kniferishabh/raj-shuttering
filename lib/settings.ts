@@ -22,9 +22,9 @@ const DEFAULT_SETTINGS: BusinessSettings = {
   heroVideoUrlMobile: '',
   heroVideoPoster: '',
   aboutText:
-    'Raj Shuttering & Scaffolding has been the backbone of construction projects across Varanasi for over 16 years.',
-  metaTitle: 'Raj Shuttering & Scaffolding | Varanasi',
-  metaDescription: 'Trusted shuttering and scaffolding rental and wholesale in Varanasi since 2008.',
+    'Raj Shuttering & Scaffolding has served construction projects across Varanasi since 2008 with shuttering, scaffolding and formwork equipment for rent and wholesale supply.',
+  metaTitle: 'Shuttering & Scaffolding on Rent in Varanasi | Raj Shuttering',
+  metaDescription: 'Rent shuttering plates, scaffolding, steel props and construction formwork equipment in Varanasi. Contact Raj Shuttering & Scaffolding for a quote.',
   colorPalette: 'construction-orange',
   customColors: {
     accentPrimary: '#E07B00',
@@ -35,7 +35,13 @@ const DEFAULT_SETTINGS: BusinessSettings = {
 export const getSettings = cache(async (): Promise<BusinessSettings> => {
   try {
     const settings = await getSiteSettings();
-    return settings ?? DEFAULT_SETTINGS;
+    if (!settings) return DEFAULT_SETTINGS;
+
+    const hasLegacyClaims = /over 16 years|4\.5-star rating|61\+ client reviews/i.test(settings.aboutText);
+    return {
+      ...settings,
+      aboutText: hasLegacyClaims ? DEFAULT_SETTINGS.aboutText : settings.aboutText,
+    };
   } catch {
     return DEFAULT_SETTINGS;
   }

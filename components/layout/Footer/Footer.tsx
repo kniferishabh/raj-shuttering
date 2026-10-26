@@ -76,12 +76,10 @@ export function Footer({ settings }: FooterProps) {
           <div className={styles.column}>
             <h4>Services</h4>
             <ul className={styles.linkList}>
-              <li><Link href="/services">Steel Shuttering Plates</Link></li>
-              <li><Link href="/services">Aluminium Scaffolding</Link></li>
-              <li><Link href="/services">Steel Props</Link></li>
-              <li><Link href="/services">H-Frame Scaffolding</Link></li>
-              <li><Link href="/services">Centering Equipment</Link></li>
-              <li><Link href="/services">Wholesale Supply</Link></li>
+              <li><Link href="/services/shuttering-plates-on-rent-varanasi">Shuttering Plates on Rent</Link></li>
+              <li><Link href="/services/scaffolding-on-rent-varanasi">Scaffolding on Rent</Link></li>
+              <li><Link href="/services/steel-props-on-rent-varanasi">Steel Props on Rent</Link></li>
+              <li><Link href="/services">All Equipment</Link></li>
             </ul>
           </div>
 

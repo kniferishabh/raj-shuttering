@@ -7,9 +7,9 @@ import { MapEmbed } from '@/components/sections/MapEmbed/MapEmbed';
 import styles from './contact.module.css';
 
 export const metadata: Metadata = {
-  title: 'Contact Us',
+  title: { absolute: 'Contact Raj Shuttering | Equipment Rental in Varanasi' },
   description:
-    'Get in touch with Raj Shuttering & Scaffolding. Call, WhatsApp or email us for quotes, bulk orders, or any enquiries.',
+    'Contact Raj Shuttering & Scaffolding in Pandeypur, Varanasi for scaffolding, shuttering material rentals, wholesale enquiries and quotations.',
   alternates: { canonical: '/contact' },
 };
 
@@ -47,7 +47,7 @@ export default async function ContactPage() {
   return (
     <>
       <PageHero
-        title="Get in Touch"
+        title="Contact Raj Shuttering & Scaffolding"
         subtitle="Have a project, a question, or need a bulk quote? We're a call or message away."
         currentLabel="Contact"
       />

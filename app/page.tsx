@@ -14,6 +14,13 @@ import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { Reveal } from '@/components/ui/Reveal/Reveal';
 import styles from './page.module.css';
 
+export const metadata: Metadata = {
+  title: { absolute: 'Shuttering & Scaffolding on Rent in Varanasi | Raj Shuttering' },
+  description:
+    'Rent shuttering plates, scaffolding, steel props and construction formwork equipment in Varanasi. Contact Raj Shuttering & Scaffolding for a quote.',
+  alternates: { canonical: '/' },
+};
+
 export default async function HomePage() {
   const [settings, allServices, gallery, testimonials] = await Promise.all([
     getSettings(),
@@ -26,7 +33,7 @@ export default async function HomePage() {
   return (
     <div className={styles.page}>
       <Hero
-        headline={settings.heroHeadline}
+        headline="Shuttering & Scaffolding Rental in Varanasi"
         subheadline={settings.heroSubheadline}
         video={getHeroVideoConfig(settings)}
       />
@@ -75,7 +82,7 @@ export default async function HomePage() {
             <SectionHeader
               eyebrow="Get in Touch"
               heading="Talk to Our Team"
-              subtitle="Send us your requirements - we typically respond within 2 working hours."
+              subtitle="Send us your equipment requirements and our team will respond as soon as possible."
             />
           </Reveal>
           <div className={styles.contactGrid}>
@@ -91,3 +98,4 @@ export default async function HomePage() {
     </div>
   );
 }
+import type { Metadata } from 'next';

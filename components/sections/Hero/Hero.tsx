@@ -1,4 +1,4 @@
-import { ArrowRight, ChevronDown, HardHat, Layers, Square, Star, Zap } from 'lucide-react';
+import { ArrowRight, ChevronDown, HardHat, Layers, Square, MapPin, Zap } from 'lucide-react';
 import { Button } from '@/components/ui/Button/Button';
 import type { HeroVideoConfig } from '@/lib/media';
 import { HeroVideo } from './HeroVideo';
@@ -63,7 +63,7 @@ export function Hero({ headline, subheadline, video }: HeroProps) {
         </span>
 
         <div className={styles.mobileOverlay}>
-          <h1 className={styles.mobileHeadline}>{formatMobileHeadline(headline)}</h1>
+          <div className={styles.mobileHeadline} aria-hidden="true">{formatMobileHeadline(headline)}</div>
           <Button
             href="/contact"
             variant="primary"
@@ -117,21 +117,21 @@ export function Hero({ headline, subheadline, video }: HeroProps) {
           <div className={styles.trust}>
             <div className={styles.trustItem}>
               <span className={styles.trustValue}>
-                <span>&#9733;</span> 4.5
+                Since <span>2008</span>
               </span>
-              <span className={styles.trustLabel}>Customer Rating</span>
+              <span className={styles.trustLabel}>Local Experience</span>
             </div>
             <div className={styles.trustItem}>
               <span className={styles.trustValue}>
-                16<span>+</span>
+                Rent <span>&</span> Sale
               </span>
-              <span className={styles.trustLabel}>Years Experience</span>
+              <span className={styles.trustLabel}>Flexible Supply</span>
             </div>
             <div className={styles.trustItem}>
               <span className={styles.trustValue}>
-                500<span>+</span>
+                Varanasi
               </span>
-              <span className={styles.trustLabel}>Projects Done</span>
+              <span className={styles.trustLabel}>Local Service</span>
             </div>
           </div>
         </div>
@@ -155,10 +155,10 @@ export function Hero({ headline, subheadline, video }: HeroProps) {
 
           <div className={`${styles.floatCard} ${styles.card3}`}>
             <span className={styles.cardIcon}>
-              <Star size={20} fill="currentColor" />
+              <MapPin size={20} />
             </span>
-            <span className={styles.cardSub}>61+ Reviews</span>
-            <span className={styles.cardRating}>4.5 &#9733; Rating</span>
+            <span className={styles.cardSub}>Local Equipment Supplier</span>
+            <span className={styles.cardRating}>Varanasi</span>
           </div>
         </div>
       </div>

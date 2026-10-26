@@ -1,4 +1,4 @@
-import { ArrowRight, Check, Calendar, MapPin, Star, ShieldCheck } from 'lucide-react';
+import { ArrowRight, Check, Calendar, MapPin, ClipboardCheck, PackageCheck } from 'lucide-react';
 import { Button } from '@/components/ui/Button/Button';
 import { Reveal } from '@/components/ui/Reveal/Reveal';
 import styles from './WhyUs.module.css';
@@ -11,10 +11,10 @@ interface WhyUsProps {
 }
 
 const BULLETS = [
-  { title: 'Certified Materials', desc: 'IS-compliant quality you can trust' },
-  { title: 'On-Time Delivery', desc: 'Same-day dispatch in Varanasi' },
-  { title: 'Transparent Pricing', desc: 'Fair rates with GST invoices' },
-  { title: '16+ Years Local', desc: 'Deep Purvanchal market roots' },
+  { title: 'Inspected Inventory', desc: 'Equipment checked before supply' },
+  { title: 'Local Coordination', desc: 'Practical support for Varanasi sites' },
+  { title: 'Clear Quotations', desc: 'Discuss quantities, duration and pricing upfront' },
+  { title: 'Serving Since 2008', desc: 'Local construction equipment experience' },
 ];
 
 export function WhyUs({ aboutText, establishedYear, city, area }: WhyUsProps) {
@@ -63,24 +63,24 @@ export function WhyUs({ aboutText, establishedYear, city, area }: WhyUsProps) {
 
             <div className={styles.infoCard}>
               <span className={styles.infoIcon}>
-                <Star size={22} fill="currentColor" />
+                <PackageCheck size={22} />
               </span>
               <div className={styles.bulletText}>
-                <span className={styles.infoLabel}>4.5 Rating</span>
+                <span className={styles.infoLabel}>Flexible Supply</span>
                 <span className={styles.bulletTitle}>
-                  61+ Verified Reviews
+                  Rental & Wholesale Options
                 </span>
               </div>
             </div>
 
             <div className={styles.infoCard}>
               <span className={styles.infoIcon}>
-                <ShieldCheck size={22} />
+                <ClipboardCheck size={22} />
               </span>
               <div className={styles.bulletText}>
-                <span className={styles.infoLabel}>Quality Assured</span>
+                <span className={styles.infoLabel}>Before Dispatch</span>
                 <span className={styles.bulletTitle}>
-                  IS Compliant Materials
+                  Inventory Condition Checked
                 </span>
               </div>
             </div>

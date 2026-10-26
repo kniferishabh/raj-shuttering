@@ -1,6 +1,7 @@
 'use client';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import { motion, useReducedMotion } from 'framer-motion';
 import { ArrowRight, Check, Images, type LucideIcon } from 'lucide-react';
 import type { Service } from '@/lib/types';
@@ -11,6 +12,13 @@ const CATEGORY_LABELS: Record<Service['category'], string> = {
   scaffolding: 'Scaffolding',
   equipment: 'Equipment',
   other: 'Wholesale',
+};
+
+const SERVICE_DETAIL_LINKS: Record<string, string> = {
+  'svc-023': '/services/shuttering-plates-on-rent-varanasi',
+  'svc-027': '/services/scaffolding-on-rent-varanasi',
+  'svc-015': '/services/scaffolding-on-rent-varanasi',
+  'svc-013': '/services/steel-props-on-rent-varanasi',
 };
 
 interface ServiceCardProps {
@@ -107,6 +115,7 @@ function CardContent({
 }) {
   const reduce = useReducedMotion();
   const showMedia = Boolean(cover);
+  const detailHref = SERVICE_DETAIL_LINKS[service.id];
 
   const FeatureTag = animated && !reduce ? motion.li : 'li';
   const featureProps = (i: number) =>
@@ -191,6 +200,16 @@ function CardContent({
               <span key={av} className={styles.availChip}>{av}</span>
             ))}
           </div>
+          {detailHref && (
+            <Link
+              href={detailHref}
+              className={styles.detailsLink}
+              onClick={(event) => event.stopPropagation()}
+              onKeyDown={(event) => event.stopPropagation()}
+            >
+              Details <ArrowRight size={16} />
+            </Link>
+          )}
           {clickable && (
             <span className={styles.viewPhotos}>
               View Gallery <ArrowRight size={16} />

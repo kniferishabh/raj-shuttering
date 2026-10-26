@@ -73,7 +73,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
           <h3 className={styles.successTitle}>Thank You!</h3>
           <p className={styles.successText}>
             Your enquiry has been received. <br />
-            We&apos;ll call you within 2 hours.
+            Our team will review the details and contact you as soon as possible.
           </p>
           <Button variant="ghost" onClick={() => setSubmitted(false)}>
             Send another enquiry
@@ -89,7 +89,7 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
         <>
           <h3 className={styles.title}>Send Us an Enquiry</h3>
           <p className={styles.subtitle}>
-            Fill in the details below and we&apos;ll get back to you within 2 hours.
+            Fill in the details below and our team will get back to you as soon as possible.
           </p>
         </>
       )}
