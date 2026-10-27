@@ -27,7 +27,7 @@ export function HeroVideo({ video }: HeroVideoProps) {
       connection?: { saveData?: boolean; effectiveType?: string };
     }).connection;
     const constrainedConnection = Boolean(
-      connection?.saveData || connection?.effectiveType === 'slow-2g' || connection?.effectiveType === '2g',
+      connection?.saveData || ['slow-2g', '2g', '3g'].includes(connection?.effectiveType ?? ''),
     );
     const updatePreference = () => setUsePosterOnly(motionQuery.matches || constrainedConnection);
 
@@ -42,10 +42,16 @@ export function HeroVideo({ video }: HeroVideoProps) {
     const mobileQuery = window.matchMedia('(max-width: 768px)');
     const touchQuery = window.matchMedia('(hover: none) and (pointer: coarse)');
     let timer: ReturnType<typeof setTimeout> | undefined;
+    let idleId: number | undefined;
 
     const scheduleVideo = () => {
       if (timer) clearTimeout(timer);
-      timer = setTimeout(() => setActiveSrc(pickVideoSrc(video)), 900);
+      const activate = () => setActiveSrc(pickVideoSrc(video));
+      if ('requestIdleCallback' in window) {
+        idleId = window.requestIdleCallback(activate, { timeout: 2400 });
+      } else {
+        timer = setTimeout(activate, 1400);
+      }
     };
 
     if (document.readyState === 'complete') scheduleVideo();
@@ -55,6 +61,7 @@ export function HeroVideo({ video }: HeroVideoProps) {
 
     return () => {
       if (timer) clearTimeout(timer);
+      if (idleId !== undefined && 'cancelIdleCallback' in window) window.cancelIdleCallback(idleId);
       window.removeEventListener('load', scheduleVideo);
       mobileQuery.removeEventListener('change', scheduleVideo);
       touchQuery.removeEventListener('change', scheduleVideo);
@@ -69,6 +76,27 @@ export function HeroVideo({ video }: HeroVideoProps) {
     });
   }, [activeSrc]);
 
+  useEffect(() => {
+    const element = videoRef.current;
+    if (!element || !activeSrc) return;
+
+    const observer = new IntersectionObserver(([entry]) => {
+      if (entry.isIntersecting && document.visibilityState === 'visible') element.play().catch(() => undefined);
+      else element.pause();
+    }, { threshold: 0.05 });
+    const onVisibility = () => {
+      if (document.visibilityState === 'hidden') element.pause();
+      else if (element.getBoundingClientRect().bottom > 0) element.play().catch(() => undefined);
+    };
+
+    observer.observe(element);
+    document.addEventListener('visibilitychange', onVisibility);
+    return () => {
+      observer.disconnect();
+      document.removeEventListener('visibilitychange', onVisibility);
+    };
+  }, [activeSrc]);
+
   return (
     <>
       <Image
@@ -77,7 +105,7 @@ export function HeroVideo({ video }: HeroVideoProps) {
         fill
         priority
         fetchPriority="high"
-        quality={76}
+        quality={72}
         sizes="100vw"
         className={styles.videoPosterImage}
       />

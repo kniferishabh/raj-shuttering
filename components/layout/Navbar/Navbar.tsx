@@ -10,6 +10,7 @@ import styles from './Navbar.module.css';
 interface NavbarProps {
   phone: string;
   whatsapp: string;
+  integrated?: boolean;
 }
 
 const NAV_LINKS = [
@@ -20,7 +21,7 @@ const NAV_LINKS = [
   { href: '/contact', label: 'Contact' },
 ];
 
-export function Navbar({ phone, whatsapp }: NavbarProps) {
+export function Navbar({ phone, whatsapp, integrated = false }: NavbarProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -53,12 +54,14 @@ export function Navbar({ phone, whatsapp }: NavbarProps) {
 
   const cleanPhone = phone.replace(/[^\d+]/g, '');
   const cleanWa = whatsapp.replace(/[^\d]/g, '');
+  const useIntegratedStyle = integrated || pathname === '/';
 
   return (
     <>
       <nav
         className={[
           styles.navbar,
+          useIntegratedStyle ? styles.integrated : '',
           scrolled ? styles.scrolled : '',
           menuOpen ? styles.navbarMenuOpen : '',
         ]

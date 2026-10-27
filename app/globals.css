@@ -99,6 +99,7 @@
 
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: 76px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-size-adjust: 100%;
@@ -190,6 +191,21 @@ ul, ol {
   background: linear-gradient(180deg, #fbbf24, var(--color-accent-hover));
 }
 
+@supports (animation-timeline: view()) {
+  @media (prefers-reduced-motion: no-preference) {
+    #main-content section:not(:first-child) > * {
+      animation: section-reveal both linear;
+      animation-timeline: view();
+      animation-range: entry 0% cover 22%;
+    }
+
+    @keyframes section-reveal {
+      from { opacity: .2; transform: translateY(22px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+  }
+}
+
 /* Mobile browsers and device emulators can render the desktop scrollbar track
    inside the visual viewport. Keep touch scrolling, but remove that white rail. */
 @media (max-width: 768px), (hover: none) and (pointer: coarse) {
@@ -251,6 +267,13 @@ ul, ol {
 
 section {
   position: relative;
+}
+
+/* Skip paint/layout work for below-the-fold page sections until they approach
+   the viewport. The intrinsic size prevents layout shifts while skipped. */
+#main-content > section:not(:first-child) {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 720px;
 }
 
 @media (prefers-reduced-motion: reduce) {

@@ -3,6 +3,10 @@ import { Instrument_Serif, Manrope, Space_Grotesk } from 'next/font/google';
 import { getSettings } from '@/lib/settings';
 import { ThemeStyles } from '@/components/theme/ThemeStyles';
 import { PublicChrome } from '@/components/layout/PublicChrome/PublicChrome';
+import { Navbar } from '@/components/layout/Navbar/Navbar';
+import { Footer } from '@/components/layout/Footer/Footer';
+import { WhatsAppFloat } from '@/components/sections/WhatsAppFloat/WhatsAppFloat';
+import { ScrollProgress } from '@/components/ui/ScrollProgress/ScrollProgress';
 import { SITE_URL } from '@/lib/site';
 import './globals.css';
 
@@ -11,14 +15,14 @@ export const revalidate = 300;
 
 const spaceGrotesk = Space_Grotesk({
   subsets: ['latin'],
-  weight: ['500', '600', '700'],
+  weight: 'variable',
   display: 'swap',
   variable: '--font-display',
 });
 
 const manrope = Manrope({
   subsets: ['latin'],
-  weight: ['400', '500', '600', '700'],
+  weight: 'variable',
   display: 'swap',
   variable: '--font-body',
 });
@@ -28,6 +32,7 @@ const instrument = Instrument_Serif({
   weight: '400',
   style: 'italic',
   display: 'swap',
+  preload: false,
   variable: '--font-accent',
 });
 
@@ -142,7 +147,22 @@ export default async function RootLayout({
         />
         <ThemeStyles paletteId={settings.colorPalette} customColors={settings.customColors} />
         <a href="#main-content" className="skip-link">Skip to main content</a>
-        <PublicChrome settings={settings}>{children}</PublicChrome>
+        <PublicChrome
+          header={
+            <>
+              <ScrollProgress />
+              <Navbar phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />
+            </>
+          }
+          footer={
+            <>
+              <Footer settings={settings} />
+              <WhatsAppFloat whatsapp={settings.whatsapp} />
+            </>
+          }
+        >
+          {children}
+        </PublicChrome>
       </body>
     </html>
   );

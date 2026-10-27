@@ -2,18 +2,14 @@
 
 import { usePathname } from 'next/navigation';
 import { type ReactNode } from 'react';
-import { Navbar } from '@/components/layout/Navbar/Navbar';
-import { Footer } from '@/components/layout/Footer/Footer';
-import { WhatsAppFloat } from '@/components/sections/WhatsAppFloat/WhatsAppFloat';
-import { ScrollProgress } from '@/components/ui/ScrollProgress/ScrollProgress';
-import type { BusinessSettings } from '@/lib/types';
 
 interface PublicChromeProps {
-  settings: BusinessSettings;
+  header: ReactNode;
+  footer: ReactNode;
   children: ReactNode;
 }
 
-export function PublicChrome({ settings, children }: PublicChromeProps) {
+export function PublicChrome({ header, footer, children }: PublicChromeProps) {
   const pathname = usePathname();
   const isAdmin = pathname?.startsWith('/admin') ?? false;
 
@@ -23,11 +19,9 @@ export function PublicChrome({ settings, children }: PublicChromeProps) {
 
   return (
     <>
-      <ScrollProgress />
-      <Navbar phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />
+      {header}
       <main id="main-content">{children}</main>
-      <Footer settings={settings} />
-      <WhatsAppFloat whatsapp={settings.whatsapp} />
+      {footer}
     </>
   );
 }

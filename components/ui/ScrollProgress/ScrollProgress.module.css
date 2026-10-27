@@ -15,5 +15,18 @@
   transform-origin: left center;
   background: linear-gradient(90deg, var(--color-accent-primary), var(--color-accent-hover));
   box-shadow: 0 0 10px rgba(var(--color-accent-rgb), 0.45);
-  will-change: transform;
+  transform: scaleX(0);
+}
+
+@supports (animation-timeline: scroll()) {
+  @media (prefers-reduced-motion: no-preference) {
+    .bar {
+      animation: scroll-progress linear both;
+      animation-timeline: scroll(root block);
+    }
+  }
+}
+
+@keyframes scroll-progress {
+  to { transform: scaleX(1); }
 }

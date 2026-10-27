@@ -4,15 +4,41 @@
   left: 0;
   right: 0;
   z-index: 100;
-  padding: max(12px, env(safe-area-inset-top)) 0 12px;
-  background: transparent;
+  padding: max(7px, env(safe-area-inset-top)) 0;
+  background: rgba(252, 252, 250, 0.96);
+  border-bottom: 1px solid rgba(16, 24, 40, 0.07);
+  backdrop-filter: blur(16px) saturate(1.15);
   transition: padding var(--duration-base) var(--ease-smooth),
               box-shadow var(--duration-base) var(--ease-smooth),
               background var(--duration-base) var(--ease-smooth);
 }
 
 .scrolled {
-  padding: 8px 0;
+  padding: max(5px, env(safe-area-inset-top)) 0 5px;
+  background: rgba(252, 252, 250, 0.985);
+  box-shadow: 0 8px 28px rgba(16, 24, 40, 0.08);
+}
+
+.integrated:not(.scrolled) {
+  background: linear-gradient(180deg, rgba(5, 17, 32, .72), rgba(5, 17, 32, .2));
+  border-bottom-color: rgba(255, 255, 255, .15);
+  backdrop-filter: none;
+}
+
+.integrated:not(.scrolled) .logoTitle,
+.integrated:not(.scrolled) .navLink,
+.integrated:not(.scrolled) .callBtn {
+  color: #fff;
+}
+
+.integrated:not(.scrolled) .logoSub {
+  color: var(--color-accent-hover);
+}
+
+.integrated:not(.scrolled) .hamburger {
+  color: #fff;
+  background: rgba(255, 255, 255, .1);
+  border-color: rgba(255, 255, 255, .28);
 }
 
 .inner {
@@ -24,19 +50,17 @@
   align-items: center;
   justify-content: space-between;
   gap: var(--space-lg);
-  min-height: 62px;
-  background: rgba(252, 252, 250, 0.86);
-  backdrop-filter: blur(24px) saturate(1.4);
-  -webkit-backdrop-filter: blur(24px) saturate(1.4);
-  border: 1px solid rgba(255, 255, 255, 0.74);
-  border-radius: 20px;
-  box-shadow: 0 10px 36px rgba(16, 24, 40, 0.09), inset 0 0 0 1px rgba(16, 24, 40, 0.035);
+  min-height: 58px;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
   transition: min-height var(--duration-base) var(--ease-smooth), box-shadow var(--duration-base) var(--ease-smooth);
 }
 
 .scrolled .inner {
-  min-height: 56px;
-  box-shadow: 0 16px 44px rgba(16, 24, 40, 0.14), inset 0 0 0 1px rgba(16, 24, 40, 0.04);
+  min-height: 54px;
+  box-shadow: none;
 }
 
 .logo {
@@ -55,9 +79,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 13px;
+  border-radius: 8px;
   color: var(--color-text-on-accent);
-  box-shadow: var(--shadow-glow);
+  box-shadow: none;
   flex-shrink: 0;
 }
 
@@ -98,9 +122,9 @@
 .navLinks {
   display: flex;
   gap: 5px;
-  padding: 5px;
-  background: rgba(16, 24, 40, 0.045);
-  border-radius: var(--radius-pill);
+  padding: 0;
+  background: transparent;
+  border-radius: 0;
   align-items: center;
 }
 
@@ -112,28 +136,36 @@
   letter-spacing: 0.02em;
   color: var(--color-text-secondary);
   padding: 8px 14px;
-  border-radius: var(--radius-pill);
+  border-radius: 0;
   transition: color var(--duration-base) var(--ease-smooth);
 }
 
 .navLink::after {
-  display: none;
+  content: '';
+  position: absolute;
+  right: 14px;
+  bottom: 1px;
+  left: 14px;
+  height: 2px;
+  background: var(--color-accent-primary);
+  transform: scaleX(0);
+  transition: transform var(--duration-base) var(--ease-smooth);
 }
 
 .navLink:hover {
   color: var(--color-text-primary);
-  background: rgba(255, 255, 255, 0.72);
+  background: transparent;
 }
 
 .navLink:hover::after,
 .navLinkActive::after {
-  width: 100%;
+  transform: scaleX(1);
 }
 
 .navLinkActive {
   color: var(--color-text-primary);
-  background: #fff;
-  box-shadow: var(--shadow-sm);
+  background: transparent;
+  box-shadow: none;
 }
 
 .cta {
@@ -218,7 +250,9 @@
     position: fixed;
     inset: 0;
     z-index: 101;
-    background: rgba(15, 23, 42, 0.45);
+    background: rgba(3, 12, 24, 0.68);
+    backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     opacity: 0;
     pointer-events: none;
     transition: opacity var(--duration-base) var(--ease-smooth);
@@ -233,15 +267,18 @@
     position: fixed;
     top: calc(60px + max(var(--space-md), env(safe-area-inset-top)));
     right: 0;
-    bottom: 0;
+    bottom: auto;
     width: min(340px, 88vw);
-    background: rgba(252, 252, 250, 0.97);
-    backdrop-filter: blur(26px);
+    max-height: calc(100dvh - 92px);
+    color: #fff;
+    background: linear-gradient(145deg, rgba(25, 47, 72, 0.88), rgba(7, 24, 43, 0.94));
+    backdrop-filter: blur(28px) saturate(1.3);
+    -webkit-backdrop-filter: blur(28px) saturate(1.3);
     z-index: 102;
     display: flex;
     flex-direction: column;
     gap: 0;
-    padding: var(--space-md) var(--space-lg) calc(var(--space-xl) + env(safe-area-inset-bottom));
+    padding: 14px;
     transform: translateX(calc(100% + 32px));
     visibility: hidden;
     pointer-events: none;
@@ -249,8 +286,9 @@
       transform var(--duration-slow) var(--ease-smooth),
       visibility 0s linear var(--duration-slow);
     overflow-y: auto;
-    box-shadow: -12px 0 40px rgba(0, 0, 0, 0.12);
-    border-left: 1px solid var(--color-border);
+    box-shadow: 0 24px 65px rgba(0, 0, 0, 0.42), inset 0 1px rgba(255, 255, 255, 0.18);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 22px 0 0 22px;
   }
 
   .mobileMenuOpen {
@@ -263,7 +301,7 @@
   .mobileLinks {
     display: flex;
     flex-direction: column;
-    gap: 6px;
+    gap: 8px;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -273,9 +311,9 @@
     font-family: var(--font-body), sans-serif;
     font-size: var(--text-base);
     font-weight: 600;
-    color: var(--color-text-primary);
-    padding: 14px var(--space-md);
-    border-radius: var(--radius-md);
+    color: rgba(255, 255, 255, 0.88);
+    padding: 13px 15px;
+    border-radius: 14px;
     transition: background var(--duration-fast) var(--ease-smooth),
                 color var(--duration-fast) var(--ease-smooth);
     min-height: var(--touch-min);
@@ -283,14 +321,22 @@
     align-items: center;
     justify-content: space-between;
     gap: var(--space-sm);
-    background: var(--color-bg-secondary);
-    border: 1px solid transparent;
+    background: rgba(255, 255, 255, 0.075);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.05);
+  }
+
+  .mobileLink:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.13);
+    border-color: rgba(255, 255, 255, 0.2);
   }
 
   .mobileLinkActive {
-    color: var(--color-accent-primary);
-    background: var(--color-accent-subtle);
-    border-color: var(--color-border-accent);
+    color: #fff;
+    background: linear-gradient(135deg, rgba(var(--color-accent-rgb), 0.34), rgba(var(--color-accent-rgb), 0.16));
+    border-color: rgba(var(--color-accent-rgb), 0.75);
+    box-shadow: inset 0 1px rgba(255, 255, 255, 0.16), 0 8px 22px rgba(var(--color-accent-rgb), 0.14);
   }
 
   .mobileContact {
@@ -298,8 +344,9 @@
     flex-direction: column;
     align-items: stretch;
     gap: var(--space-md);
-    margin-top: auto;
-    padding-top: var(--space-xl);
+    margin-top: 16px;
+    padding-top: 16px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
   }
 
   .mobileContactRow {
@@ -316,12 +363,12 @@
     font-family: var(--font-body), sans-serif;
     font-size: var(--text-sm);
     font-weight: 700;
-    color: var(--color-accent-primary);
+    color: rgba(255, 255, 255, 0.92);
     letter-spacing: 0.01em;
     padding: var(--space-md);
-    background: var(--color-accent-subtle);
+    background: rgba(255, 255, 255, 0.09);
     border-radius: var(--radius-lg);
-    border: 1px solid var(--color-border-accent);
+    border: 1px solid rgba(255, 255, 255, 0.16);
     min-height: var(--touch-min);
   }
 
@@ -330,19 +377,20 @@
     align-items: center;
     justify-content: center;
     color: #fff;
-    background: #25D366;
+    background: rgba(37, 211, 102, 0.88);
     padding: var(--space-md);
     border-radius: var(--radius-lg);
     min-height: var(--touch-min);
     min-width: var(--touch-min);
-    box-shadow: 0 4px 14px rgba(37, 211, 102, 0.35);
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    box-shadow: 0 8px 22px rgba(37, 211, 102, 0.28), inset 0 1px rgba(255, 255, 255, 0.28);
   }
 }
 
 @media (max-width: 768px) {
   .navbar,
   .scrolled {
-    padding: max(10px, env(safe-area-inset-top)) 12px 0;
+    padding: max(7px, env(safe-area-inset-top)) 12px 7px;
   }
 
   .inner {
@@ -350,7 +398,7 @@
     margin: 0;
     padding: 0 10px 0 12px;
     min-height: 54px;
-    border-radius: 18px;
+    border-radius: 0;
   }
 
   .logoSub {
@@ -374,10 +422,10 @@
   .mobileMenu {
     top: calc(64px + max(10px, env(safe-area-inset-top)));
     right: 12px;
-    bottom: 12px;
+    bottom: auto;
     max-width: calc(100vw - 24px);
-    border: 1px solid rgba(255,255,255,.7);
-    border-radius: var(--radius-xl);
+    border: 1px solid rgba(255,255,255,.22);
+    border-radius: 22px;
   }
 }
 

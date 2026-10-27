@@ -2,7 +2,6 @@ import type { Metadata } from 'next';
 import { getSettings } from '@/lib/settings';
 import { PageHero } from '@/components/sections/PageHero/PageHero';
 import { StatsBar } from '@/components/sections/StatsBar/StatsBar';
-import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
 import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { ShieldCheck, Award, HeartHandshake, Truck } from 'lucide-react';
 import styles from './about.module.css';
@@ -115,7 +114,6 @@ export default async function AboutPage() {
 
       <StatsBar />
 
-      <ContactCTA phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />
     </>
   );
 }

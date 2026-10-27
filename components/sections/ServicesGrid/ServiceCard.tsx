@@ -2,7 +2,7 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import { motion, useReducedMotion } from 'framer-motion';
+import type { CSSProperties } from 'react';
 import { ArrowRight, Check, Images, type LucideIcon } from 'lucide-react';
 import type { Service } from '@/lib/types';
 import styles from './ServicesGrid.module.css';
@@ -30,7 +30,6 @@ interface ServiceCardProps {
 }
 
 export function ServiceCard({ service, index, Icon, images, onOpen }: ServiceCardProps) {
-  const reduce = useReducedMotion();
   const photoCount = images.length;
   const cover = images[0] ?? service.imageUrl;
   const clickable = photoCount > 0;
@@ -47,44 +46,15 @@ export function ServiceCard({ service, index, Icon, images, onOpen }: ServiceCar
     .filter(Boolean)
     .join(' ');
 
-  if (reduce) {
-    return (
-      <article
-        className={cardClass}
-        onClick={clickable ? onOpen : undefined}
-        onKeyDown={handleKeyDown}
-        role={clickable ? 'button' : undefined}
-        tabIndex={clickable ? 0 : undefined}
-        aria-label={clickable ? `View ${photoCount} photos of ${service.name}` : undefined}
-      >
-        <CardContent
-          service={service}
-          Icon={Icon}
-          cover={cover}
-          photoCount={photoCount}
-          clickable={clickable}
-        />
-      </article>
-    );
-  }
-
   return (
-    <motion.article
+    <article
       className={cardClass}
+      style={{ '--card-index': index % 6 } as CSSProperties}
       onClick={clickable ? onOpen : undefined}
       onKeyDown={handleKeyDown}
       role={clickable ? 'button' : undefined}
       tabIndex={clickable ? 0 : undefined}
       aria-label={clickable ? `View ${photoCount} photos of ${service.name}` : undefined}
-      initial={{ opacity: 0, y: 48, scale: 0.94 }}
-      whileInView={{ opacity: 1, y: 0, scale: 1 }}
-      viewport={{ once: true, margin: '-50px' }}
-      transition={{
-        duration: 0.6,
-        delay: (index % 6) * 0.09,
-        ease: [0.22, 1, 0.36, 1],
-      }}
-      whileTap={clickable ? { scale: 0.97 } : undefined}
     >
       <CardContent
         service={service}
@@ -92,9 +62,8 @@ export function ServiceCard({ service, index, Icon, images, onOpen }: ServiceCar
         cover={cover}
         photoCount={photoCount}
         clickable={clickable}
-        animated
       />
-    </motion.article>
+    </article>
   );
 }
 
@@ -104,47 +73,21 @@ function CardContent({
   cover,
   photoCount,
   clickable,
-  animated = false,
 }: {
   service: Service;
   Icon: LucideIcon;
   cover?: string;
   photoCount: number;
   clickable: boolean;
-  animated?: boolean;
 }) {
-  const reduce = useReducedMotion();
   const showMedia = Boolean(cover);
   const detailHref = SERVICE_DETAIL_LINKS[service.id];
-
-  const FeatureTag = animated && !reduce ? motion.li : 'li';
-  const featureProps = (i: number) =>
-    animated && !reduce
-      ? {
-          initial: { opacity: 0, x: -14 },
-          whileInView: { opacity: 1, x: 0 },
-          viewport: { once: true },
-          transition: { delay: 0.2 + i * 0.07, duration: 0.4 },
-        }
-      : {};
-
-  const MediaInner = animated && !reduce ? motion.div : 'div';
-  const mediaInnerProps =
-    animated && !reduce
-      ? {
-          initial: { scale: 1.08 },
-          whileInView: { scale: 1 },
-          viewport: { once: true },
-          transition: { duration: 0.9, ease: [0.22, 1, 0.36, 1] },
-          className: styles.cardMediaInner,
-        }
-      : { className: styles.cardMediaInner };
 
   return (
     <>
       {showMedia && (
         <div className={styles.cardMedia}>
-          <MediaInner {...mediaInnerProps}>
+          <div className={styles.cardMediaInner}>
             <Image
               src={cover!}
               alt={service.name}
@@ -152,7 +95,7 @@ function CardContent({
               sizes="(max-width: 768px) 100vw, 400px"
               className={styles.cardMediaImg}
             />
-          </MediaInner>
+          </div>
           <div className={styles.cardMediaShade} aria-hidden="true" />
           <span className={styles.cardCategory}>{CATEGORY_LABELS[service.category]}</span>
           {photoCount > 0 && (
@@ -186,11 +129,11 @@ function CardContent({
         <p className={styles.cardDesc}>{service.shortDescription}</p>
 
         <ul className={styles.features}>
-          {service.features.slice(0, 3).map((f, i) => (
-            <FeatureTag key={f} className={styles.featurePill} {...featureProps(i)}>
+          {service.features.slice(0, 3).map((f) => (
+            <li key={f} className={styles.featurePill}>
               <Check size={12} className={styles.featureIcon} aria-hidden="true" />
               <span>{f}</span>
-            </FeatureTag>
+            </li>
           ))}
         </ul>
 
