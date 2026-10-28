@@ -2,6 +2,7 @@ import Link from 'next/link';
 import { Facebook, Instagram, Youtube, Phone, MessageCircle, MapPin, Clock, Mail } from 'lucide-react';
 import type { BusinessSettings } from '@/lib/types';
 import styles from './Footer.module.css';
+import { mergeSiteContent } from '@/lib/site-content';
 
 interface FooterProps {
   settings: BusinessSettings;
@@ -11,6 +12,7 @@ export function Footer({ settings }: FooterProps) {
   const cleanPhone = settings.phone[0]?.replace(/[^\d+]/g, '') ?? '';
   const cleanWa = settings.whatsapp.replace(/[^\d]/g, '');
   const year = new Date().getFullYear();
+  const c = mergeSiteContent(settings.siteContent);
 
   return (
     <footer className={styles.footer}>
@@ -63,18 +65,18 @@ export function Footer({ settings }: FooterProps) {
           </div>
 
           <div className={styles.column}>
-            <h4>Quick Links</h4>
+            <h4>{c['footer.quickLinksTitle']}</h4>
             <ul className={styles.linkList}>
-              <li><Link href="/">Home</Link></li>
-              <li><Link href="/about">About Us</Link></li>
-              <li><Link href="/services">Services</Link></li>
-              <li><Link href="/gallery">Gallery</Link></li>
-              <li><Link href="/contact">Contact</Link></li>
+              <li><Link href="/">{c['nav.home']}</Link></li>
+              <li><Link href="/about">{c['nav.about']}</Link></li>
+              <li><Link href="/services">{c['nav.services']}</Link></li>
+              <li><Link href="/gallery">{c['nav.gallery']}</Link></li>
+              <li><Link href="/contact">{c['nav.contact']}</Link></li>
             </ul>
           </div>
 
           <div className={styles.column}>
-            <h4>Services</h4>
+            <h4>{c['footer.servicesTitle']}</h4>
             <ul className={styles.linkList}>
               <li><Link href="/services/shuttering-plates-on-rent-varanasi">Shuttering Plates on Rent</Link></li>
               <li><Link href="/services/scaffolding-on-rent-varanasi">Scaffolding on Rent</Link></li>
@@ -84,7 +86,7 @@ export function Footer({ settings }: FooterProps) {
           </div>
 
           <div className={styles.column}>
-            <h4>Contact</h4>
+            <h4>{c['footer.contactTitle']}</h4>
             <ul className={styles.linkList}>
               <li>
                 <a href={`tel:${cleanPhone}`}>
@@ -121,7 +123,7 @@ export function Footer({ settings }: FooterProps) {
         </div>
 
         <div className={styles.bottom}>
-          <span>&copy; {year} {settings.businessName}. All rights reserved.</span>
+          <span>&copy; {year} {settings.businessName}. {c['footer.rights']}</span>
           <span>{settings.city}, UP - {settings.pincode}</span>
         </div>
       </div>

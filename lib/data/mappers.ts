@@ -6,6 +6,7 @@ import type {
   Testimonial,
 } from '@/lib/types';
 import type { CustomColors } from '@/lib/themes';
+import { mergeSiteContent, type SiteContent } from '@/lib/site-content';
 import type { Prisma, Service as PrismaService, GalleryItem as PrismaGalleryItem, Testimonial as PrismaTestimonial, Enquiry as PrismaEnquiry } from '@prisma/client';
 
 const SETTINGS_ID = 'default';
@@ -46,6 +47,13 @@ function parseCustomColors(value: unknown): CustomColors | undefined {
   };
 }
 
+function parseSiteContent(value: unknown): SiteContent {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return mergeSiteContent();
+  const entries = Object.entries(value as Record<string, unknown>)
+    .filter((entry): entry is [string, string] => typeof entry[1] === 'string');
+  return mergeSiteContent(Object.fromEntries(entries));
+}
+
 export function settingsFromPrisma(row: {
   businessName: string;
   tagline: string;
@@ -67,8 +75,10 @@ export function settingsFromPrisma(row: {
   aboutText: string;
   metaTitle: string;
   metaDescription: string;
+  metaKeywords: string;
   colorPalette: string | null;
   customColors: unknown;
+  pageContent?: unknown;
 }): BusinessSettings {
   return {
     businessName: row.businessName,
@@ -91,8 +101,10 @@ export function settingsFromPrisma(row: {
     aboutText: row.aboutText,
     metaTitle: row.metaTitle,
     metaDescription: row.metaDescription,
+    metaKeywords: row.metaKeywords,
     colorPalette: (row.colorPalette as BusinessSettings['colorPalette']) ?? undefined,
     customColors: parseCustomColors(row.customColors),
+    siteContent: parseSiteContent(row.pageContent),
   };
 }
 
@@ -119,8 +131,10 @@ export function settingsToPrisma(settings: BusinessSettings) {
     aboutText: settings.aboutText,
     metaTitle: settings.metaTitle,
     metaDescription: settings.metaDescription,
+    metaKeywords: settings.metaKeywords,
     colorPalette: settings.colorPalette ?? null,
     customColors: (settings.customColors as Prisma.InputJsonValue | undefined) ?? undefined,
+    pageContent: (settings.siteContent ?? {}) as Prisma.InputJsonValue,
   };
 }
 
@@ -147,8 +161,10 @@ export function settingsFromSupabase(row: Record<string, unknown>): BusinessSett
     aboutText: String(row.about_text ?? ''),
     metaTitle: String(row.meta_title ?? ''),
     metaDescription: String(row.meta_description ?? ''),
+    metaKeywords: String(row.meta_keywords ?? ''),
     colorPalette: row.color_palette ? String(row.color_palette) : null,
     customColors: row.custom_colors ?? null,
+    pageContent: row.page_content ?? {},
   });
 }
 
@@ -176,8 +192,10 @@ export function settingsToSupabase(settings: BusinessSettings) {
     about_text: row.aboutText,
     meta_title: row.metaTitle,
     meta_description: row.metaDescription,
+    meta_keywords: row.metaKeywords,
     color_palette: row.colorPalette,
     custom_colors: row.customColors,
+    page_content: row.pageContent,
     updated_at: new Date().toISOString(),
   };
 }

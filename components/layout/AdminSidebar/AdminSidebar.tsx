@@ -10,6 +10,7 @@ import {
   MessageSquare,
   Inbox,
   Settings,
+  FileText,
   LogOut,
   Menu,
   X,
@@ -27,6 +28,7 @@ const ITEMS = [
   { href: '/admin/gallery', label: 'Gallery', icon: ImageIcon },
   { href: '/admin/testimonials', label: 'Testimonials', icon: MessageSquare },
   { href: '/admin/enquiries', label: 'Enquiries', icon: Inbox, badgeKey: 'unread' as const },
+  { href: '/admin/content', label: 'Website Content', icon: FileText },
   { href: '/admin/settings', label: 'Settings', icon: Settings },
 ];
 

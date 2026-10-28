@@ -4,6 +4,7 @@ import { getSettings } from '@/lib/settings';
 import { PageHero } from '@/components/sections/PageHero/PageHero';
 import { GalleryGrid } from '@/components/sections/Gallery/GalleryGrid';
 import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
+import { mergeSiteContent } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: { absolute: 'Shuttering & Scaffolding Project Gallery | Varanasi' },
@@ -19,18 +20,19 @@ export const metadata: Metadata = {
 
 export default async function GalleryPage() {
   const [settings, items] = await Promise.all([getSettings(), listGalleryItems()]);
+  const c = mergeSiteContent(settings.siteContent);
 
   return (
     <>
       <PageHero
-        title="Shuttering & Scaffolding Project Gallery"
-        subtitle="Real projects, real materials. A visual record of the work we've supported across Purvanchal."
+        title={c['gallery.heroTitle']}
+        subtitle={c['gallery.heroSubtitle']}
         currentLabel="Gallery"
       />
 
       <GalleryGrid items={items} />
 
-      <ContactCTA phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />
+      <ContactCTA phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} content={{ eyebrow:c['shared.ctaEyebrow'], heading:c['shared.ctaTitle'], call:c['shared.callLabel'], whatsapp:c['shared.whatsappLabel'] }} />
     </>
   );
 }

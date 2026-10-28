@@ -8,20 +8,14 @@ import { Button } from '@/components/ui/Button/Button';
 import styles from './Navbar.module.css';
 
 interface NavbarProps {
+  businessName: string;
   phone: string;
   whatsapp: string;
   integrated?: boolean;
+  labels?: { home: string; about: string; services: string; gallery: string; contact: string; quote: string };
 }
 
-const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/services', label: 'Services' },
-  { href: '/gallery', label: 'Gallery' },
-  { href: '/contact', label: 'Contact' },
-];
-
-export function Navbar({ phone, whatsapp, integrated = false }: NavbarProps) {
+export function Navbar({ businessName, phone, whatsapp, integrated = false, labels }: NavbarProps) {
   const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -55,6 +49,11 @@ export function Navbar({ phone, whatsapp, integrated = false }: NavbarProps) {
   const cleanPhone = phone.replace(/[^\d+]/g, '');
   const cleanWa = whatsapp.replace(/[^\d]/g, '');
   const useIntegratedStyle = integrated || pathname === '/';
+  const navLinks = [
+    { href: '/', label: labels?.home ?? 'Home' }, { href: '/about', label: labels?.about ?? 'About' },
+    { href: '/services', label: labels?.services ?? 'Services' }, { href: '/gallery', label: labels?.gallery ?? 'Gallery' },
+    { href: '/contact', label: labels?.contact ?? 'Contact' },
+  ];
 
   return (
     <>
@@ -74,13 +73,13 @@ export function Navbar({ phone, whatsapp, integrated = false }: NavbarProps) {
               <img className={styles.logoIcon} src="/logo-mark.svg" alt="" width={26} height={26} />
             </span>
             <span className={styles.logoText}>
-              <span className={styles.logoTitle}>Raj Shuttering</span>
+              <span className={styles.logoTitle}>{businessName}</span>
               <span className={styles.logoSub}>Est. 2008 &middot; Varanasi</span>
             </span>
           </Link>
 
           <ul className={styles.navLinks}>
-            {NAV_LINKS.map((link) => (
+            {navLinks.map((link) => (
               <li key={link.href}>
                 <Link
                   href={link.href}
@@ -102,7 +101,7 @@ export function Navbar({ phone, whatsapp, integrated = false }: NavbarProps) {
             </a>
             <span className={styles.desktopCta}>
               <Button href="/contact" variant="primary" size="sm">
-                Get a Quote
+                {labels?.quote ?? 'Get a Quote'}
               </Button>
             </span>
 
@@ -135,7 +134,7 @@ export function Navbar({ phone, whatsapp, integrated = false }: NavbarProps) {
         aria-hidden={!menuOpen}
       >
         <ul className={styles.mobileLinks}>
-          {NAV_LINKS.map((link) => (
+          {navLinks.map((link) => (
             <li key={link.href}>
               <Link
                 href={link.href}
@@ -153,7 +152,7 @@ export function Navbar({ phone, whatsapp, integrated = false }: NavbarProps) {
 
         <div className={styles.mobileContact}>
           <Button href="/contact" variant="primary" size="lg" fullWidth tabIndex={menuOpen ? 0 : -1}>
-            Get a Quote
+            {labels?.quote ?? 'Get a Quote'}
           </Button>
           <div className={styles.mobileContactRow}>
             <a className={styles.mobilePhone} href={`tel:${cleanPhone}`} tabIndex={menuOpen ? 0 : -1}>

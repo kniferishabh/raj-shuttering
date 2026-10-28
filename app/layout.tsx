@@ -9,6 +9,7 @@ import { WhatsAppFloat } from '@/components/sections/WhatsAppFloat/WhatsAppFloat
 import { ScrollProgress } from '@/components/ui/ScrollProgress/ScrollProgress';
 import { SITE_URL } from '@/lib/site';
 import './globals.css';
+import { mergeSiteContent } from '@/lib/site-content';
 
 // Public data is cached and explicitly invalidated by admin edits.
 export const revalidate = 300;
@@ -47,18 +48,7 @@ export async function generateMetadata(): Promise<Metadata> {
     description: settings.metaDescription,
     applicationName: settings.businessName,
     alternates: { canonical: '/' },
-    keywords: [
-      'shuttering varanasi',
-      'scaffolding varanasi',
-      'shuttering on rent varanasi',
-      'scaffolding on rent',
-      'steel shuttering plates',
-      'aluminium scaffolding',
-      'acrow props',
-      'centering plates',
-      'construction equipment varanasi',
-      'pandeypur shuttering',
-    ],
+    keywords: settings.metaKeywords?.split(',').map((keyword) => keyword.trim()).filter(Boolean),
     openGraph: {
       type: 'website',
       url: SITE_URL,
@@ -94,6 +84,7 @@ export default async function RootLayout({
   children: React.ReactNode;
 }) {
   const settings = await getSettings();
+  const content = mergeSiteContent(settings.siteContent);
   const siteUrl = SITE_URL;
   const verifiedSocialProfiles = Object.values(settings.socialLinks).filter((url): url is string => {
     if (!url) return false;
@@ -151,7 +142,7 @@ export default async function RootLayout({
           header={
             <>
               <ScrollProgress />
-              <Navbar phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />
+              <Navbar businessName={settings.businessName} phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} labels={{ home:content['nav.home'], about:content['nav.about'], services:content['nav.services'], gallery:content['nav.gallery'], contact:content['nav.contact'], quote:content['nav.quote'] }} />
             </>
           }
           footer={

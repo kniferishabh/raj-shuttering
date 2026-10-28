@@ -447,6 +447,13 @@ export function SettingsManager({ initialSettings }: { initialSettings: Business
           value={settings.metaDescription}
           onChange={(e) => update('metaDescription', e.target.value)}
         />
+        <Textarea
+          label="Meta Keywords"
+          rows={3}
+          value={settings.metaKeywords}
+          onChange={(e) => update('metaKeywords', e.target.value)}
+          placeholder="shuttering, scaffolding, construction equipment"
+        />
       </section>
 
       <section className={styles.section}>

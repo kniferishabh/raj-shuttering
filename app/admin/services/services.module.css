@@ -94,8 +94,71 @@
   border-top: 1px solid var(--color-border);
 }
 
+.imageUploader {
+  padding: var(--space-md);
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--glass-shadow);
+}
+
+.uploadDrop {
+  min-height: 92px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 18px;
+  color: var(--color-text-secondary);
+  text-align: left;
+  background: rgba(var(--color-accent-rgb), .055);
+  border: 1.5px dashed rgba(var(--color-accent-rgb), .48);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: border-color var(--duration-fast), background var(--duration-fast), transform var(--duration-fast);
+}
+
+.uploadDrop:hover {
+  color: var(--color-text-primary);
+  background: rgba(var(--color-accent-rgb), .1);
+  border-color: var(--color-accent-primary);
+  transform: translateY(-1px);
+}
+
+.uploadDrop svg { flex: none; color: var(--color-accent-primary); }
+.uploadDrop span,.uploadDrop strong,.uploadDrop small { display: block; }
+.uploadDrop strong { color: var(--color-text-primary); font-size: .92rem; }
+.uploadDrop small { margin-top: 3px; font-size: .72rem; }
+.uploadDrop input { position: absolute; width: 1px; height: 1px; opacity: 0; pointer-events: none; }
+
+.imageGrid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 10px;
+  margin-top: 14px;
+}
+
+.imageItem {
+  position: relative;
+  aspect-ratio: 4 / 3;
+  overflow: hidden;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.imageItem img { width: 100%; height: 100%; object-fit: cover; }
+.coverBadge,.pendingBadge { position: absolute; top: 7px; padding: 3px 7px; color: #fff; border-radius: 999px; font-size: .62rem; font-weight: 800; text-transform: uppercase; }
+.coverBadge { left: 7px; background: var(--color-accent-primary); }
+.pendingBadge { right: 35px; background: #2563eb; }
+.removeImage { position: absolute; top: 6px; right: 6px; width: 27px; height: 27px; display: grid; place-items: center; color: #fff; background: rgba(15,23,42,.76); border: 1px solid rgba(255,255,255,.38); border-radius: 50%; }
+.removeImage:hover { background: var(--color-error); }
+.noImages { display: flex; align-items: center; justify-content: center; gap: 8px; padding: 17px 8px 3px; color: var(--color-text-muted); font-size: .8rem; }
+
 @media (max-width: 640px) {
   .row {
     grid-template-columns: 1fr;
   }
+
+  .imageGrid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }

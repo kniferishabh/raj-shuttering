@@ -8,6 +8,7 @@ import { ServicesGrid } from '@/components/sections/ServicesGrid/ServicesGrid';
 import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
 import { SERVICE_LANDING_PAGES } from '@/lib/service-landing-pages';
 import styles from './services.module.css';
+import { mergeSiteContent } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: { absolute: 'Shuttering & Scaffolding Equipment in Varanasi | Raj Shuttering' },
@@ -24,20 +25,21 @@ export const metadata: Metadata = {
 export default async function ServicesPage() {
   const [settings, allServices] = await Promise.all([getSettings(), listServices()]);
   const services = allServices.filter((s) => s.isActive);
+  const c = mergeSiteContent(settings.siteContent);
 
   return (
     <>
       <PageHero
-        title="Shuttering & Scaffolding Equipment in Varanasi"
-        subtitle="A complete catalogue of shuttering, scaffolding, and construction equipment - available on rent or for wholesale purchase."
+        title={c['services.heroTitle']}
+        subtitle={c['services.heroSubtitle']}
         currentLabel="Services"
       />
 
       <section className={styles.popular} aria-labelledby="popular-services-title">
         <div className={styles.inner}>
-          <span className={styles.eyebrow}>Popular rental requirements</span>
-          <h2 id="popular-services-title">Explore equipment by project need</h2>
-          <p className={styles.intro}>Practical information for frequently requested shuttering and scaffolding equipment in Varanasi.</p>
+          <span className={styles.eyebrow}>{c['services.popularEyebrow']}</span>
+          <h2 id="popular-services-title">{c['services.popularTitle']}</h2>
+          <p className={styles.intro}>{c['services.popularText']}</p>
           <div className={styles.linkGrid}>
             {SERVICE_LANDING_PAGES.map((page) => (
               <Link key={page.slug} href={`/services/${page.slug}`} className={styles.linkCard}>
@@ -51,9 +53,9 @@ export default async function ServicesPage() {
         </div>
       </section>
 
-      <ServicesGrid services={services} showFooter={false} />
+      <ServicesGrid services={services} showFooter={false} content={{ eyebrow:c['services.gridEyebrow'], heading:c['services.gridTitle'], subtitle:c['services.gridText'] }} />
 
-      <ContactCTA phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} />
+      <ContactCTA phone={settings.phone[0] ?? ''} whatsapp={settings.whatsapp} content={{ eyebrow:c['shared.ctaEyebrow'], heading:c['shared.ctaTitle'], call:c['shared.callLabel'], whatsapp:c['shared.whatsappLabel'] }} />
     </>
   );
 }

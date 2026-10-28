@@ -38,6 +38,7 @@ const settingsSchema = z.object({
   aboutText: z.string(),
   metaTitle: z.string(),
   metaDescription: z.string(),
+  metaKeywords: z.string(),
   colorPalette: z.enum(PALETTE_IDS_ZOD).optional(),
   customColors: z
     .object({
@@ -45,6 +46,7 @@ const settingsSchema = z.object({
       accentHover: hexColorSchema.optional(),
     })
     .optional(),
+  siteContent: z.record(z.string(), z.string()).optional(),
 });
 
 export async function GET() {

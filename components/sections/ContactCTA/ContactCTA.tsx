@@ -4,9 +4,10 @@ import styles from './ContactCTA.module.css';
 interface ContactCTAProps {
   phone: string;
   whatsapp: string;
+  content?: { eyebrow: string; heading: string; call: string; whatsapp: string };
 }
 
-export function ContactCTA({ phone, whatsapp }: ContactCTAProps) {
+export function ContactCTA({ phone, whatsapp, content }: ContactCTAProps) {
   const cleanPhone = phone.replace(/[^\d+]/g, '');
   const cleanWa = whatsapp.replace(/[^\d]/g, '');
   const waMessage = encodeURIComponent(
@@ -17,15 +18,15 @@ export function ContactCTA({ phone, whatsapp }: ContactCTAProps) {
     <section className={styles.section}>
       <div className={styles.inner}>
         <div className={styles.text}>
-          <span className={styles.eyebrow}>Ready to Build?</span>
-          <h2 className={styles.heading}>Ready to Start Your Project?</h2>
+          <span className={styles.eyebrow}>{content?.eyebrow ?? 'Ready to Build?'}</span>
+          <h2 className={styles.heading}>{content?.heading ?? 'Ready to Start Your Project?'}</h2>
           <a className={styles.phone} href={`tel:${cleanPhone}`}>{phone}</a>
         </div>
 
         <div className={styles.actions}>
           <a className={`${styles.btn} ${styles.btnPrimary}`} href={`tel:${cleanPhone}`}>
             <Phone size={18} />
-            Call Now
+            {content?.call ?? 'Call Now'}
           </a>
           <a
             className={`${styles.btn} ${styles.whatsappBtn}`}
@@ -34,7 +35,7 @@ export function ContactCTA({ phone, whatsapp }: ContactCTAProps) {
             rel="noopener noreferrer"
           >
             <MessageCircle size={18} />
-            WhatsApp Us
+            {content?.whatsapp ?? 'WhatsApp Us'}
           </a>
         </div>
       </div>

@@ -5,6 +5,7 @@ import { StatsBar } from '@/components/sections/StatsBar/StatsBar';
 import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { ShieldCheck, Award, HeartHandshake, Truck } from 'lucide-react';
 import styles from './about.module.css';
+import { interpolateContent, mergeSiteContent, parseRows } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: { absolute: 'About Raj Shuttering & Scaffolding | Varanasi' },
@@ -13,45 +14,19 @@ export const metadata: Metadata = {
   alternates: { canonical: '/about' },
 };
 
-const TIMELINE = [
-  { year: '2008', title: 'Founded in Pandeypur', desc: 'Started with a small inventory serving local Varanasi contractors.' },
-  { year: '2012', title: 'Expanded Inventory', desc: 'Added aluminium scaffolding and H-frame systems to our catalogue.' },
-  { year: '2016', title: 'Pan-Purvanchal Reach', desc: 'Began serving customers in Chandauli, Mirzapur, Jaunpur and beyond.' },
-  { year: '2020', title: 'Wholesale Operations', desc: 'Launched wholesale supply for sub-dealers and contractors across UP.' },
-  { year: '2024', title: 'Expanded Product Range', desc: 'Added more formwork, access and construction equipment options for local projects.' },
-];
-
-const VALUES = [
-  {
-    icon: ShieldCheck,
-    title: 'Quality',
-    text: 'Equipment condition is checked before it is supplied for a project.',
-  },
-  {
-    icon: HeartHandshake,
-    title: 'Trust',
-    text: 'Transparent pricing, GST invoices, and honest dealings with every customer.',
-  },
-  {
-    icon: Truck,
-    title: 'Service',
-    text: 'Clear coordination for collection or delivery based on current availability.',
-  },
-  {
-    icon: Award,
-    title: 'Experience',
-    text: 'Serving Varanasi construction projects since 2008.',
-  },
-];
-
 export default async function AboutPage() {
   const settings = await getSettings();
+  const c = mergeSiteContent(settings.siteContent);
+  const vars = { year: settings.establishedYear, city: settings.city, businessName: settings.businessName };
+  const timeline = parseRows(c['about.timeline'], 3).map(([year,title,desc]) => ({ year,title,desc }));
+  const valueIcons = [ShieldCheck, HeartHandshake, Truck, Award];
+  const values = parseRows(c['about.values'], 2).map(([title,text], index) => ({ title, text, icon: valueIcons[index] ?? ShieldCheck }));
 
   return (
     <>
       <PageHero
-        title="About Raj Shuttering & Scaffolding"
-        subtitle={`The story of ${settings.businessName} - a Pandeypur, ${settings.city} family business serving construction since ${settings.establishedYear}.`}
+        title={c['about.heroTitle']}
+        subtitle={interpolateContent(c['about.heroSubtitle'], vars)}
         currentLabel="About"
       />
 
@@ -60,19 +35,17 @@ export default async function AboutPage() {
           <div className={styles.storyGrid}>
             <div>
               <SectionHeader
-                eyebrow="Our Story"
-                heading="From a Small Yard to Varanasi's Trusted Name"
+                eyebrow={c['about.storyEyebrow']}
+                heading={c['about.storyTitle']}
               />
               <p className={styles.storyText}>{settings.aboutText}</p>
               <p className={styles.storyText}>
-                What began as a small operation in Pandeypur has grown into one of Varanasi&apos;s most
-                reliable shuttering and scaffolding suppliers. Through every project, our focus has
-                stayed the same - deliver quality materials, on time, at fair prices.
+                {c['about.storyText2']}
               </p>
             </div>
 
             <ol className={styles.timeline}>
-              {TIMELINE.map((item) => (
+              {timeline.map((item) => (
                 <li key={item.year} className={styles.timelineItem}>
                   <span className={styles.timelineDot} aria-hidden="true" />
                   <div className={styles.timelineContent}>
@@ -90,13 +63,13 @@ export default async function AboutPage() {
       <section className={styles.valuesSection}>
         <div className={styles.inner}>
           <SectionHeader
-            eyebrow="What We Stand For"
-            heading="Our Core Values"
-            subtitle="The principles that guide every decision and every delivery."
+            eyebrow={c['about.valuesEyebrow']}
+            heading={c['about.valuesTitle']}
+            subtitle={c['about.valuesSubtitle']}
             align="center"
           />
           <div className={styles.valuesGrid}>
-            {VALUES.map((v) => {
+            {values.map((v) => {
               const Icon = v.icon;
               return (
                 <div key={v.title} className={styles.valueCard}>

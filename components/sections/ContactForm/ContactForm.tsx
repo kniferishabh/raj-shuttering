@@ -30,7 +30,12 @@ const PROJECT_TYPES = [
   'Other',
 ];
 
-export function ContactForm({ compact = false }: { compact?: boolean }) {
+interface ContactFormProps {
+  compact?: boolean;
+  content?: { title: string; subtitle: string; successTitle: string; successText: string };
+}
+
+export function ContactForm({ compact = false, content }: ContactFormProps) {
   const [submitted, setSubmitted] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
@@ -70,10 +75,9 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
           <span className={styles.successIcon}>
             <CheckCircle2 size={32} />
           </span>
-          <h3 className={styles.successTitle}>Thank You!</h3>
+          <h3 className={styles.successTitle}>{content?.successTitle ?? 'Thank You!'}</h3>
           <p className={styles.successText}>
-            Your enquiry has been received. <br />
-            Our team will review the details and contact you as soon as possible.
+            {content?.successText ?? 'Your enquiry has been received. Our team will review the details and contact you as soon as possible.'}
           </p>
           <Button variant="ghost" onClick={() => setSubmitted(false)}>
             Send another enquiry
@@ -87,9 +91,9 @@ export function ContactForm({ compact = false }: { compact?: boolean }) {
     <form className={styles.formCard} onSubmit={handleSubmit(onSubmit)} noValidate>
       {!compact && (
         <>
-          <h3 className={styles.title}>Send Us an Enquiry</h3>
+          <h3 className={styles.title}>{content?.title ?? 'Send Us an Enquiry'}</h3>
           <p className={styles.subtitle}>
-            Fill in the details below and our team will get back to you as soon as possible.
+            {content?.subtitle ?? 'Fill in the details below and our team will get back to you as soon as possible.'}
           </p>
         </>
       )}

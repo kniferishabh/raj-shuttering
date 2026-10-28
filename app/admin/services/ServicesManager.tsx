@@ -1,7 +1,7 @@
 'use client';
 
 import { useState } from 'react';
-import { Pencil, Plus, Trash2, X } from 'lucide-react';
+import { ImagePlus, Pencil, Plus, Trash2, Upload, X } from 'lucide-react';
 import { Button } from '@/components/ui/Button/Button';
 import { Modal } from '@/components/ui/Modal/Modal';
 import { Badge } from '@/components/ui/Badge/Badge';
@@ -43,6 +43,12 @@ interface FormState {
   sortOrder: number;
 }
 
+interface PendingImage {
+  id: string;
+  file: File;
+  preview: string;
+}
+
 const EMPTY_FORM: FormState = {
   name: '',
   shortDescription: '',
@@ -51,7 +57,7 @@ const EMPTY_FORM: FormState = {
   availableFor: ['rent'],
   features: [''],
   icon: 'Wrench',
-  images: [''],
+  images: [],
   isActive: true,
   sortOrder: 99,
 };
@@ -62,12 +68,14 @@ export function ServicesManager({ initialServices }: { initialServices: Service[
   const [creating, setCreating] = useState(false);
   const [form, setForm] = useState<FormState>(EMPTY_FORM);
   const [saving, setSaving] = useState(false);
+  const [pendingImages, setPendingImages] = useState<PendingImage[]>([]);
   const [error, setError] = useState<string | null>(null);
 
   const openCreate = () => {
     setEditing(null);
     setForm({ ...EMPTY_FORM, sortOrder: (services.at(-1)?.sortOrder ?? 0) + 1 });
     setError(null);
+    setPendingImages([]);
     setCreating(true);
   };
 
@@ -90,10 +98,13 @@ export function ServicesManager({ initialServices }: { initialServices: Service[
       sortOrder: service.sortOrder,
     });
     setError(null);
+    setPendingImages([]);
     setCreating(true);
   };
 
   const close = () => {
+    pendingImages.forEach((image) => URL.revokeObjectURL(image.preview));
+    setPendingImages([]);
     setCreating(false);
     setEditing(null);
     setError(null);
@@ -110,16 +121,53 @@ export function ServicesManager({ initialServices }: { initialServices: Service[
   const removeFeature = (idx: number) =>
     setForm((f) => ({ ...f, features: f.features.filter((_, i) => i !== idx) }));
 
-  const updateImage = (idx: number, value: string) => {
-    setForm((f) => ({
-      ...f,
-      images: f.images.map((img, i) => (i === idx ? value : img)),
-    }));
-  };
-
-  const addImage = () => setForm((f) => ({ ...f, images: [...f.images, ''] }));
   const removeImage = (idx: number) =>
     setForm((f) => ({ ...f, images: f.images.filter((_, i) => i !== idx) }));
+
+  const addSelectedImages = (files: FileList | null) => {
+    if (!files?.length) return;
+    const allowed = ['image/jpeg', 'image/png', 'image/webp', 'image/avif'];
+    const selected = Array.from(files);
+    const invalid = selected.find((file) => !allowed.includes(file.type) || file.size > 4 * 1024 * 1024);
+    if (invalid) {
+      setError('Use JPG, PNG, WebP or AVIF images up to 4 MB each.');
+      return;
+    }
+    if (form.images.length + pendingImages.length + selected.length > 12) {
+      setError('A service can contain up to 12 images.');
+      return;
+    }
+    setError(null);
+    setPendingImages((current) => [
+      ...current,
+      ...selected.map((file) => ({
+        id: `${file.name}-${file.lastModified}-${crypto.randomUUID()}`,
+        file,
+        preview: URL.createObjectURL(file),
+      })),
+    ]);
+  };
+
+  const removePendingImage = (id: string) => {
+    setPendingImages((current) => {
+      const selected = current.find((image) => image.id === id);
+      if (selected) URL.revokeObjectURL(selected.preview);
+      return current.filter((image) => image.id !== id);
+    });
+  };
+
+  const uploadPendingImages = async (): Promise<string[]> => {
+    const uploaded: string[] = [];
+    for (const image of pendingImages) {
+      const data = new FormData();
+      data.append('file', image.file);
+      const response = await fetch('/api/uploads/services', { method: 'POST', body: data });
+      const json = await response.json().catch(() => ({}));
+      if (!response.ok) throw new Error(json?.error || `Could not upload ${image.file.name}`);
+      uploaded.push(json.url);
+    }
+    return uploaded;
+  };
 
   const toggleAvailable = (val: AvailableFor) => {
     setForm((f) => ({
@@ -134,21 +182,21 @@ export function ServicesManager({ initialServices }: { initialServices: Service[
     e.preventDefault();
     setError(null);
 
-    const cleanImages = form.images.map((i) => i.trim()).filter(Boolean);
-    const payload = {
-      ...form,
-      features: form.features.map((f) => f.trim()).filter(Boolean),
-      images: cleanImages,
-      imageUrl: cleanImages[0] || undefined,
-    };
-
-    if (payload.availableFor.length === 0) {
+    if (form.availableFor.length === 0) {
       setError('Select at least one availability (Rent or Sale).');
       return;
     }
 
     setSaving(true);
     try {
+      const uploadedImages = await uploadPendingImages();
+      const cleanImages = [...form.images.map((image) => image.trim()).filter(Boolean), ...uploadedImages];
+      const payload = {
+        ...form,
+        features: form.features.map((feature) => feature.trim()).filter(Boolean),
+        images: cleanImages,
+        imageUrl: cleanImages[0] ?? '',
+      };
       const res = await fetch(editing ? `/api/services/${editing.id}` : '/api/services', {
         method: editing ? 'PUT' : 'POST',
         headers: { 'Content-Type': 'application/json' },
@@ -389,31 +437,54 @@ export function ServicesManager({ initialServices }: { initialServices: Service[
 
           <div>
             <label className={styles.fieldLabel}>
-              Images (shown when a service card is clicked &mdash; first image is the cover)
+              Service Images (the first image is used as the cover)
             </label>
-            <div className={styles.featuresList}>
-              {form.images.map((img, i) => (
-                <div key={i} className={styles.featureRow}>
-                  <input
-                    className={styles.featureInput}
-                    value={img}
-                    onChange={(e) => updateImage(i, e.target.value)}
-                    placeholder="/images/shuttering-slab.jpg or https://..."
-                  />
+            <div className={styles.imageUploader}>
+              <label className={styles.uploadDrop}>
+                <Upload size={22} />
+                <span><strong>Choose images</strong><small>JPG, PNG, WebP or AVIF &middot; maximum 4 MB each</small></span>
+                <input
+                  type="file"
+                  accept="image/jpeg,image/png,image/webp,image/avif"
+                  multiple
+                  onChange={(event) => {
+                    addSelectedImages(event.target.files);
+                    event.target.value = '';
+                  }}
+                />
+              </label>
+
+              {(form.images.length > 0 || pendingImages.length > 0) && <div className={styles.imageGrid}>
+                {form.images.map((image, index) => (
+                  <div key={`${image}-${index}`} className={styles.imageItem}>
+                    {/* Admin previews may contain local or remote URLs. */}
+                    <img src={image} alt={`Service image ${index + 1}`} />
+                    {index === 0 && <span className={styles.coverBadge}>Cover</span>}
                   <button
                     type="button"
-                    className={`${adminStyles.iconBtn} ${adminStyles.iconBtnDanger}`}
-                    onClick={() => removeImage(i)}
-                    disabled={form.images.length === 1}
+                    className={styles.removeImage}
+                    onClick={() => removeImage(index)}
                     aria-label="Remove image"
                   >
                     <X size={14} />
                   </button>
-                </div>
-              ))}
-              <Button type="button" variant="ghost" size="sm" onClick={addImage} icon={<Plus size={14} />}>
-                Add Image
-              </Button>
+                  </div>
+                ))}
+                {pendingImages.map((image, index) => (
+                  <div key={image.id} className={styles.imageItem}>
+                    <img src={image.preview} alt={image.file.name} />
+                    {form.images.length === 0 && index === 0 && <span className={styles.coverBadge}>Cover</span>}
+                    <span className={styles.pendingBadge}>New</span>
+                    <button type="button" className={styles.removeImage} onClick={() => removePendingImage(image.id)} aria-label={`Remove ${image.file.name}`}>
+                      <X size={14} />
+                    </button>
+                  </div>
+                ))}
+              </div>}
+
+              {form.images.length === 0 && pendingImages.length === 0 && (
+                <div className={styles.noImages}><ImagePlus size={20} /> No service images selected yet.</div>
+              )}
             </div>
           </div>
 

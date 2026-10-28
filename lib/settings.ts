@@ -2,6 +2,7 @@ import 'server-only';
 import { cache } from 'react';
 import { getSiteSettings } from '@/lib/data';
 import type { BusinessSettings } from './types';
+import { DEFAULT_SITE_CONTENT, mergeSiteContent } from './site-content';
 
 const DEFAULT_SETTINGS: BusinessSettings = {
   businessName: 'Raj Shuttering & Scaffolding',
@@ -25,11 +26,13 @@ const DEFAULT_SETTINGS: BusinessSettings = {
     'Raj Shuttering & Scaffolding has served construction projects across Varanasi since 2008 with shuttering, scaffolding and formwork equipment for rent and wholesale supply.',
   metaTitle: 'Shuttering & Scaffolding on Rent in Varanasi | Raj Shuttering',
   metaDescription: 'Rent shuttering plates, scaffolding, steel props and construction formwork equipment in Varanasi. Contact Raj Shuttering & Scaffolding for a quote.',
+  metaKeywords: 'shuttering, scaffolding, shuttering on rent, scaffolding on rent, steel shuttering plates, construction equipment, formwork equipment, Raj Shuttering',
   colorPalette: 'construction-orange',
   customColors: {
     accentPrimary: '#E07B00',
     accentHover: '#F59E0B',
   },
+  siteContent: DEFAULT_SITE_CONTENT,
 };
 
 export const getSettings = cache(async (): Promise<BusinessSettings> => {
@@ -40,6 +43,7 @@ export const getSettings = cache(async (): Promise<BusinessSettings> => {
     const hasLegacyClaims = /over 16 years|4\.5-star rating|61\+ client reviews/i.test(settings.aboutText);
     return {
       ...settings,
+      siteContent: mergeSiteContent(settings.siteContent),
       aboutText: hasLegacyClaims ? DEFAULT_SETTINGS.aboutText : settings.aboutText,
     };
   } catch {

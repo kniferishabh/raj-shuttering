@@ -5,6 +5,7 @@ import { PageHero } from '@/components/sections/PageHero/PageHero';
 import { ContactForm } from '@/components/sections/ContactForm/ContactForm';
 import { MapEmbed } from '@/components/sections/MapEmbed/MapEmbed';
 import styles from './contact.module.css';
+import { mergeSiteContent } from '@/lib/site-content';
 
 export const metadata: Metadata = {
   title: { absolute: 'Contact Raj Shuttering | Equipment Rental in Varanasi' },
@@ -18,6 +19,7 @@ export default async function ContactPage() {
   const cleanPhone = settings.phone[0]?.replace(/[^\d+]/g, '') ?? '';
   const cleanWa = settings.whatsapp.replace(/[^\d]/g, '');
   const waMessage = encodeURIComponent('Hello Raj Shuttering, I need a quote.');
+  const c = mergeSiteContent(settings.siteContent);
 
   const contactCards = [
     {
@@ -47,8 +49,8 @@ export default async function ContactPage() {
   return (
     <>
       <PageHero
-        title="Contact Raj Shuttering & Scaffolding"
-        subtitle="Have a project, a question, or need a bulk quote? We're a call or message away."
+        title={c['contact.heroTitle']}
+        subtitle={c['contact.heroSubtitle']}
         currentLabel="Contact"
       />
 
@@ -77,10 +79,10 @@ export default async function ContactPage() {
           </div>
 
           <div className={styles.formGrid}>
-            <ContactForm />
+            <ContactForm content={{ title:c['contact.formTitle'], subtitle:c['contact.formSubtitle'], successTitle:c['contact.successTitle'], successText:c['contact.successText'] }} />
             <div className={styles.sideCol}>
               <div className={styles.infoCard}>
-                <h3 className={styles.infoTitle}>Visit Our Yard</h3>
+                <h3 className={styles.infoTitle}>{c['contact.visitTitle']}</h3>
                 <ul className={styles.infoList}>
                   <li>
                     <MapPin size={16} />

@@ -31,8 +31,10 @@ model SiteSettings {
   aboutText          String   @map("about_text") @db.Text
   metaTitle          String   @map("meta_title")
   metaDescription    String   @map("meta_description") @db.Text
+  metaKeywords       String   @default("") @map("meta_keywords") @db.Text
   colorPalette       String?  @map("color_palette")
-  customColors       Json?    @map("custom_colors")
+    customColors       Json?    @map("custom_colors")
+    pageContent        Json     @default("{}") @map("page_content")
   updatedAt          DateTime @updatedAt @map("updated_at")
 
   @@map("site_settings")

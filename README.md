@@ -79,6 +79,15 @@ middleware.ts              # Admin route protection
 
 The site uses local JSON files in `/data` as the storage layer. Each request reads/writes these directly.
 
+### Service image uploads
+
+Admin service image uploads use Supabase Storage in deployed environments. Configure
+`NEXT_PUBLIC_SUPABASE_URL` (or `SUPABASE_URL`) and `SUPABASE_SERVICE_ROLE_KEY` in the
+deployment environment. The application creates a public `service-images` bucket on
+the first upload; override its name with `SUPABASE_SERVICE_IMAGES_BUCKET` if needed.
+Local development without Supabase credentials stores uploads under
+`public/uploads/services`.
+
 **For Vercel / serverless deployment**, JSON writes are ephemeral and will be lost on every cold start. For production, swap `lib/db.ts` to use Vercel KV, Vercel Postgres / Neon, Supabase, or any other persistent store.
 
 ## Build & Deploy

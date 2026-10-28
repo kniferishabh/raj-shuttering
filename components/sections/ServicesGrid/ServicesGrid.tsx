@@ -58,6 +58,7 @@ interface ServicesGridProps {
   showFooter?: boolean;
   fetchOnClient?: boolean;
   preserveOrder?: boolean;
+  content?: { eyebrow: string; heading: string; subtitle: string };
 }
 
 export function ServicesGrid({
@@ -66,6 +67,7 @@ export function ServicesGrid({
   showFooter = true,
   fetchOnClient = false,
   preserveOrder = false,
+  content,
 }: ServicesGridProps) {
   const [services, setServices] = useState<Service[]>(initial ?? []);
   const [loading, setLoading] = useState(fetchOnClient && !initial);
@@ -113,9 +115,9 @@ export function ServicesGrid({
         <Reveal y={24}>
         <div className={styles.headRow}>
           <SectionHeader
-            eyebrow="What We Offer"
-            heading="Complete Shuttering & Scaffolding Solutions"
-            subtitle="From small residential slabs to multi-storey commercial projects - we have the right materials and the right expertise."
+            eyebrow={content?.eyebrow ?? 'What We Offer'}
+            heading={content?.heading ?? 'Complete Shuttering & Scaffolding Solutions'}
+            subtitle={content?.subtitle ?? 'From small residential slabs to multi-storey commercial projects - we have the right materials and the right expertise.'}
           />
 
           <div className={styles.tabsWrap}>
