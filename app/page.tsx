@@ -13,7 +13,6 @@ import {
   Landmark,
   Layers3,
   MapPin,
-  MessageCircle,
   PackageCheck,
   Phone,
   Plane,
@@ -30,6 +29,7 @@ import { listGalleryItems, listServices, listTestimonials } from '@/lib/data';
 import { getHeroVideoConfig } from '@/lib/media';
 import { getSettings } from '@/lib/settings';
 import { HeroVideo } from '@/components/sections/Hero/HeroVideo';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon/WhatsAppIcon';
 import { interpolateContent, mergeSiteContent } from '@/lib/site-content';
 import styles from './page.module.css';
 
@@ -180,7 +180,7 @@ export default async function HomePage() {
       <section className={styles.ctaSection}>
         <Image src="/images/project-modern.jpg" alt="Modern construction project" fill sizes="100vw" />
         <div className={styles.ctaShade} />
-        <div className={styles.ctaContent}><span>{c['home.ctaEyebrow']}</span><h2>{c['home.ctaTitle']}</h2><p>{c['home.ctaText']}</p><div className={styles.heroActions}><a className={styles.primaryButton} href={`tel:${cleanPhone}`}><Phone size={17} /> {c['shared.callLabel']} {settings.phone[0]}</a><a className={styles.whatsappButton} href={`https://wa.me/${cleanWhatsapp}`} target="_blank" rel="noreferrer"><MessageCircle size={17} /> {c['shared.whatsappLabel']}</a></div></div>
+        <div className={styles.ctaContent}><span>{c['home.ctaEyebrow']}</span><h2>{c['home.ctaTitle']}</h2><p>{c['home.ctaText']}</p><div className={styles.heroActions}><a className={styles.primaryButton} href={`tel:${cleanPhone}`}><Phone size={17} /> {c['shared.callLabel']} {settings.phone[0]}</a><a className={styles.whatsappButton} href={`https://wa.me/${cleanWhatsapp}`} target="_blank" rel="noreferrer"><WhatsAppIcon size={17} /> {c['shared.whatsappLabel']}</a></div></div>
       </section>
     </div>
   );

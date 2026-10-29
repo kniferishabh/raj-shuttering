@@ -1,4 +1,5 @@
-import { Phone, MessageCircle } from 'lucide-react';
+import { Phone } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon/WhatsAppIcon';
 import styles from './ContactCTA.module.css';
 
 interface ContactCTAProps {
@@ -34,7 +35,7 @@ export function ContactCTA({ phone, whatsapp, content }: ContactCTAProps) {
             target="_blank"
             rel="noopener noreferrer"
           >
-            <MessageCircle size={18} />
+            <WhatsAppIcon size={18} />
             {content?.whatsapp ?? 'WhatsApp Us'}
           </a>
         </div>

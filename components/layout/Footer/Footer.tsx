@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { Facebook, Instagram, Youtube, Phone, MessageCircle, MapPin, Clock, Mail } from 'lucide-react';
+import { Facebook, Instagram, Youtube, Phone, MapPin, Clock, Mail } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon/WhatsAppIcon';
 import type { BusinessSettings } from '@/lib/types';
 import styles from './Footer.module.css';
 import { mergeSiteContent } from '@/lib/site-content';
@@ -96,7 +97,7 @@ export function Footer({ settings }: FooterProps) {
               </li>
               <li>
                 <a href={`https://wa.me/${cleanWa}`} target="_blank" rel="noopener noreferrer">
-                  <span className={styles.icon} style={{ color: '#25D366' }}><MessageCircle size={14} /></span>
+                  <span className={styles.icon} style={{ color: '#25D366' }}><WhatsAppIcon size={14} /></span>
                   WhatsApp Us
                 </a>
               </li>

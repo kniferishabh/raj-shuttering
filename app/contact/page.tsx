@@ -1,5 +1,6 @@
 import type { Metadata } from 'next';
-import { Phone, MessageCircle, Mail, MapPin, Clock } from 'lucide-react';
+import { Phone, Mail, MapPin, Clock } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon/WhatsAppIcon';
 import { getSettings } from '@/lib/settings';
 import { PageHero } from '@/components/sections/PageHero/PageHero';
 import { ContactForm } from '@/components/sections/ContactForm/ContactForm';
@@ -29,7 +30,7 @@ export default async function ContactPage() {
       action: { href: `tel:${cleanPhone}`, text: 'Call now' },
     },
     {
-      icon: MessageCircle,
+      icon: WhatsAppIcon,
       label: 'WhatsApp',
       value: settings.whatsapp,
       action: {

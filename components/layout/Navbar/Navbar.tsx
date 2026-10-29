@@ -3,7 +3,8 @@
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
-import { Menu, X, Phone, MessageCircle, ChevronRight } from 'lucide-react';
+import { Menu, X, Phone, ChevronRight } from 'lucide-react';
+import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon/WhatsAppIcon';
 import { Button } from '@/components/ui/Button/Button';
 import styles from './Navbar.module.css';
 
@@ -167,7 +168,7 @@ export function Navbar({ businessName, phone, whatsapp, integrated = false, labe
               aria-label="Chat on WhatsApp"
               tabIndex={menuOpen ? 0 : -1}
             >
-              <MessageCircle size={18} />
+              <WhatsAppIcon size={18} />
             </a>
           </div>
         </div>
