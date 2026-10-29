@@ -73,22 +73,21 @@
 }
 
 .logoMark {
-  width: 42px;
-  height: 42px;
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-hover));
+  width: 48px;
+  height: 48px;
   display: flex;
   align-items: center;
   justify-content: center;
-  border-radius: 8px;
-  color: var(--color-text-on-accent);
-  box-shadow: none;
+  border-radius: 50%;
+  box-shadow: 0 4px 14px rgba(5, 28, 65, .18);
   flex-shrink: 0;
 }
 
 .logoIcon {
-  width: 26px;
-  height: 26px;
+  width: 100%;
+  height: 100%;
   display: block;
+  object-fit: contain;
 }
 
 .logoText {
@@ -415,8 +414,8 @@
   }
 
   .logoIcon {
-    width: 23px;
-    height: 23px;
+    width: 100%;
+    height: 100%;
   }
 
   .mobileMenu {

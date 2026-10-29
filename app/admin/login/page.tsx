@@ -24,7 +24,7 @@ export default async function AdminLoginPage({
       <div className={styles.bg} aria-hidden="true" />
       <div className={styles.card}>
         <div className={styles.brand}>
-          <span className={styles.brandMark}>RS</span>
+          <img className={styles.brandMark} src="/images/brand/raj-circular-logo.png" alt="Raj Shuttering & Scaffolding" width={58} height={58} />
           <div>
             <h1 className={styles.brandTitle}>Raj Shuttering</h1>
             <p className={styles.brandSub}>Admin Panel</p>

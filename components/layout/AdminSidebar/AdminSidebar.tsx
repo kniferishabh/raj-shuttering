@@ -54,7 +54,7 @@ export function AdminSidebar({ unreadCount, signOutAction }: AdminSidebarProps) 
 
       <aside className={[styles.sidebar, open ? styles.open : ''].filter(Boolean).join(' ')}>
         <div className={styles.brand}>
-          <span className={styles.brandMark} aria-hidden="true">RS</span>
+          <img className={styles.brandMark} src="/images/brand/raj-circular-logo.png" alt="" width={48} height={48} />
           <span className={styles.brandText}>
             <span className={styles.brandTitle}>Raj Shuttering</span>
             <span className={styles.brandSub}>Admin Panel</span>

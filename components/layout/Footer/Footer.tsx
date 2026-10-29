@@ -20,7 +20,7 @@ export function Footer({ settings }: FooterProps) {
         <div className={styles.grid}>
           <div className={`${styles.column} ${styles.brand}`}>
             <Link href="/" className={styles.brandLogo}>
-              <span className={styles.logoMark} aria-hidden="true">RS</span>
+              <img className={styles.logoMark} src="/images/brand/raj-circular-logo.png" alt="" width={58} height={58} />
               <span className={styles.brandName}>{settings.businessName}</span>
             </Link>
             <p className={styles.tagline}>&ldquo;{settings.tagline}&rdquo;</p>

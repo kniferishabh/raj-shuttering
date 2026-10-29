@@ -7,6 +7,7 @@ import { Navbar } from '@/components/layout/Navbar/Navbar';
 import { Footer } from '@/components/layout/Footer/Footer';
 import { WhatsAppFloat } from '@/components/sections/WhatsAppFloat/WhatsAppFloat';
 import { ScrollProgress } from '@/components/ui/ScrollProgress/ScrollProgress';
+import { NavigationLoader } from '@/components/ui/NavigationLoader/NavigationLoader';
 import { SITE_URL } from '@/lib/site';
 import './globals.css';
 import { mergeSiteContent } from '@/lib/site-content';
@@ -65,7 +66,8 @@ export async function generateMetadata(): Promise<Metadata> {
     },
     robots: { index: true, follow: true },
     icons: {
-      icon: '/logo.svg',
+      icon: '/images/brand/raj-circular-logo.png',
+      apple: '/images/brand/raj-circular-logo.png',
     },
   };
 }
@@ -102,7 +104,7 @@ export default async function RootLayout({
     name: settings.businessName,
     description: settings.metaDescription,
     url: siteUrl,
-    logo: `${siteUrl}/logo.svg`,
+    logo: `${siteUrl}/images/brand/raj-circular-logo.png`,
     image: `${siteUrl}/og-image.svg`,
     telephone: settings.phone[0],
     email: settings.email,
@@ -137,6 +139,7 @@ export default async function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd).replace(/</g, '\\u003c') }}
         />
         <ThemeStyles paletteId={settings.colorPalette} customColors={settings.customColors} />
+        <NavigationLoader />
         <a href="#main-content" className="skip-link">Skip to main content</a>
         <PublicChrome
           header={

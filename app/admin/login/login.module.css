@@ -43,17 +43,12 @@
 }
 
 .brandMark {
-  width: 52px;
-  height: 52px;
-  border-radius: var(--radius-md);
-  background: linear-gradient(135deg, var(--color-accent-primary), var(--color-accent-hover));
-  color: var(--color-text-on-accent);
-  font-family: var(--font-display), sans-serif;
-  font-size: var(--text-xl);
-  font-weight: 700;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
+  width: 58px;
+  height: 58px;
+  display: block;
+  flex: 0 0 auto;
+  object-fit: contain;
+  filter: drop-shadow(0 5px 12px rgba(5, 28, 65, .2));
 }
 
 .brandTitle {

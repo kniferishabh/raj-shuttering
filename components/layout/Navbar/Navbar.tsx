@@ -70,7 +70,7 @@ export function Navbar({ businessName, phone, whatsapp, integrated = false, labe
         <div className={styles.inner}>
           <Link href="/" className={styles.logo} aria-label="Raj Shuttering home">
             <span className={styles.logoMark} aria-hidden="true">
-              <img className={styles.logoIcon} src="/logo-mark.svg" alt="" width={26} height={26} />
+              <img className={styles.logoIcon} src="/images/brand/raj-circular-logo.png" alt="" width={48} height={48} />
             </span>
             <span className={styles.logoText}>
               <span className={styles.logoTitle}>{businessName}</span>
