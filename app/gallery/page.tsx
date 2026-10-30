@@ -5,18 +5,12 @@ import { PageHero } from '@/components/sections/PageHero/PageHero';
 import { GalleryGrid } from '@/components/sections/Gallery/GalleryGrid';
 import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
 import { mergeSiteContent } from '@/lib/site-content';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: { absolute: 'Shuttering & Scaffolding Project Gallery | Varanasi' },
-  description:
-    'See shuttering plates, scaffolding installations and construction project photos from Raj Shuttering & Scaffolding in Varanasi and nearby areas.',
-  alternates: { canonical: '/gallery' },
-  openGraph: {
-    title: 'Shuttering & Scaffolding Project Gallery | Varanasi',
-    description: 'See shuttering plates, scaffolding installations and construction project photos from Raj Shuttering & Scaffolding in Varanasi and nearby areas.',
-    url: '/gallery',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  return createPageMetadata({ settings, title: `Shuttering & Scaffolding Project Gallery | ${settings.businessName}`, description: `View shuttering plates, scaffolding systems, steel props and formwork equipment used on real construction project sites supported by ${settings.businessName}.`, path: '/gallery', image: '/images/project-skyline.jpg', keywords: ['shuttering project gallery', 'scaffolding project photos', 'formwork equipment India'] });
+}
 
 export default async function GalleryPage() {
   const [settings, items] = await Promise.all([getSettings(), listGalleryItems()]);
@@ -28,6 +22,7 @@ export default async function GalleryPage() {
         title={c['gallery.heroTitle']}
         subtitle={c['gallery.heroSubtitle']}
         currentLabel="Gallery"
+        path="/gallery"
       />
 
       <GalleryGrid items={items} />

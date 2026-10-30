@@ -7,13 +7,12 @@ import { ContactForm } from '@/components/sections/ContactForm/ContactForm';
 import { MapEmbed } from '@/components/sections/MapEmbed/MapEmbed';
 import styles from './contact.module.css';
 import { mergeSiteContent } from '@/lib/site-content';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: { absolute: 'Contact Raj Shuttering | Equipment Rental in Varanasi' },
-  description:
-    'Contact Raj Shuttering & Scaffolding in Pandeypur, Varanasi for scaffolding, shuttering material rentals, wholesale enquiries and quotations.',
-  alternates: { canonical: '/contact' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  return createPageMetadata({ settings, title: `Contact ${settings.businessName} | Request a Quote`, description: `Contact ${settings.businessName} in ${settings.city} for shuttering, scaffolding and formwork equipment rental, wholesale supply, availability and quotations.`, path: '/contact', image: '/images/shuttering-steel.jpg', keywords: ['shuttering quotation', 'scaffolding rental contact', `construction equipment ${settings.city}`] });
+}
 
 export default async function ContactPage() {
   const settings = await getSettings();
@@ -53,6 +52,7 @@ export default async function ContactPage() {
         title={c['contact.heroTitle']}
         subtitle={c['contact.heroSubtitle']}
         currentLabel="Contact"
+        path="/contact"
       />
 
       <section className={styles.cardSection}>

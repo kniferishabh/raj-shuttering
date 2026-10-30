@@ -9,6 +9,7 @@ import { getServiceLandingPage, SERVICE_LANDING_PAGES } from '@/lib/service-land
 import { SITE_URL } from '@/lib/site';
 import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
 import styles from './service-detail.module.css';
+import { createPageMetadata } from '@/lib/seo';
 
 interface ServicePageProps {
   params: { slug: string };
@@ -21,17 +22,8 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: ServicePageProps): Promise<Metadata> {
   const page = getServiceLandingPage(params.slug);
   if (!page) return {};
-
-  return {
-    title: { absolute: `${page.title} | Raj Shuttering` },
-    description: page.description,
-    alternates: { canonical: `/services/${page.slug}` },
-    openGraph: {
-      title: page.title,
-      description: page.description,
-      images: [{ url: page.image, alt: page.imageAlt }],
-    },
-  };
+  const settings = await getSettings();
+  return createPageMetadata({ settings, title: `${page.title} | ${settings.businessName}`, description: page.description, path: `/services/${page.slug}`, image: page.image, keywords: [page.shortTitle, `${page.shortTitle} Varanasi`, 'construction equipment rental'] });
 }
 
 export default async function ServiceDetailPage({ params }: ServicePageProps) {
@@ -49,7 +41,10 @@ export default async function ServiceDetailPage({ params }: ServicePageProps) {
     name: page.title,
     description: page.description,
     url: `${SITE_URL}/services/${page.slug}`,
-    areaServed: { '@type': 'City', name: 'Varanasi' },
+    areaServed: [
+      { '@type': 'City', name: settings.city },
+      { '@type': 'Country', name: 'India' },
+    ],
     provider: { '@id': `${SITE_URL}/#business` },
   };
   const breadcrumbJsonLd = {

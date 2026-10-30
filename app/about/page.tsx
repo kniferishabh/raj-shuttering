@@ -6,13 +6,12 @@ import { SectionHeader } from '@/components/ui/SectionHeader/SectionHeader';
 import { ShieldCheck, Award, HeartHandshake, Truck } from 'lucide-react';
 import styles from './about.module.css';
 import { interpolateContent, mergeSiteContent, parseRows } from '@/lib/site-content';
+import { createPageMetadata } from '@/lib/seo';
 
-export const metadata: Metadata = {
-  title: { absolute: 'About Raj Shuttering & Scaffolding | Varanasi' },
-  description:
-    'Learn about Raj Shuttering & Scaffolding, serving construction projects in Varanasi since 2008 with rental and wholesale shuttering equipment.',
-  alternates: { canonical: '/about' },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  return createPageMetadata({ settings, title: `About ${settings.businessName} | Since ${settings.establishedYear}`, description: `Learn about ${settings.businessName}, supplying shuttering, scaffolding and formwork equipment from ${settings.city} for rental and wholesale projects across India.`, path: '/about', image: '/images/equipment-worker.jpg', keywords: ['shuttering supplier India', 'scaffolding supplier Varanasi', 'construction equipment company'] });
+}
 
 export default async function AboutPage() {
   const settings = await getSettings();
@@ -28,6 +27,7 @@ export default async function AboutPage() {
         title={c['about.heroTitle']}
         subtitle={interpolateContent(c['about.heroSubtitle'], vars)}
         currentLabel="About"
+        path="/about"
       />
 
       <section className={styles.storySection}>

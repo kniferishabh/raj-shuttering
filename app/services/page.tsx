@@ -9,30 +9,38 @@ import { ContactCTA } from '@/components/sections/ContactCTA/ContactCTA';
 import { SERVICE_LANDING_PAGES } from '@/lib/service-landing-pages';
 import styles from './services.module.css';
 import { mergeSiteContent } from '@/lib/site-content';
+import { createPageMetadata } from '@/lib/seo';
+import { SITE_URL } from '@/lib/site';
 
-export const metadata: Metadata = {
-  title: { absolute: 'Shuttering & Scaffolding Equipment in Varanasi | Raj Shuttering' },
-  description:
-    'Explore shuttering plates, scaffolding pipes, clamps, steel props, jacks and construction equipment for rent or purchase in Varanasi.',
-  alternates: { canonical: '/services' },
-  openGraph: {
-    title: 'Shuttering & Scaffolding Equipment in Varanasi | Raj Shuttering',
-    description: 'Explore shuttering plates, scaffolding pipes, clamps, steel props, jacks and construction equipment for rent or purchase in Varanasi.',
-    url: '/services',
-  },
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const settings = await getSettings();
+  return createPageMetadata({ settings, title: `Shuttering & Scaffolding Equipment | Rent & Wholesale India`, description: `Explore shuttering plates, scaffolding pipes, clamps, adjustable steel props, jacks and formwork equipment from ${settings.businessName} for rental and wholesale supply across India.`, path: '/services', image: '/images/scaffolding-towers.jpg', keywords: ['shuttering equipment rental India', 'scaffolding equipment supplier India', 'formwork equipment wholesale', 'steel props on rent'] });
+}
 
 export default async function ServicesPage() {
   const [settings, allServices] = await Promise.all([getSettings(), listServices()]);
   const services = allServices.filter((s) => s.isActive);
   const c = mergeSiteContent(settings.siteContent);
+  const serviceListJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'ItemList',
+    name: 'Shuttering and scaffolding rental guides',
+    itemListElement: SERVICE_LANDING_PAGES.map((page, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      name: page.title,
+      url: `${SITE_URL}/services/${page.slug}`,
+    })),
+  };
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(serviceListJsonLd).replace(/</g, '\\u003c') }} />
       <PageHero
         title={c['services.heroTitle']}
         subtitle={c['services.heroSubtitle']}
         currentLabel="Services"
+        path="/services"
       />
 
       <section className={styles.popular} aria-labelledby="popular-services-title">

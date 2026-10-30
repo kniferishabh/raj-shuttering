@@ -82,6 +82,9 @@ export function Footer({ settings }: FooterProps) {
               <li><Link href="/services/shuttering-plates-on-rent-varanasi">Shuttering Plates on Rent</Link></li>
               <li><Link href="/services/scaffolding-on-rent-varanasi">Scaffolding on Rent</Link></li>
               <li><Link href="/services/steel-props-on-rent-varanasi">Steel Props on Rent</Link></li>
+              <li><Link href="/services/u-head-jack-on-rent-varanasi">U Head Jacks on Rent</Link></li>
+              <li><Link href="/services/base-jack-on-rent-varanasi">Base Jacks on Rent</Link></li>
+              <li><Link href="/services/scaffolding-clamps-on-rent-varanasi">Scaffolding Clamps on Rent</Link></li>
               <li><Link href="/services">All Equipment</Link></li>
             </ul>
           </div>

@@ -59,6 +59,8 @@ function serviceHref(id: string) {
   if (id === 'svc-023') return '/services/shuttering-plates-on-rent-varanasi';
   if (id === 'svc-027' || id === 'svc-015') return '/services/scaffolding-on-rent-varanasi';
   if (id === 'svc-013') return '/services/steel-props-on-rent-varanasi';
+  if (id === 'svc-005') return '/services/u-head-jack-on-rent-varanasi';
+  if (id === 'svc-006') return '/services/base-jack-on-rent-varanasi';
   return '/services';
 }
 

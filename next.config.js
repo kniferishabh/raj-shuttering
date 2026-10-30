@@ -15,6 +15,14 @@ const nextConfig = {
         source: '/images/:path*',
         headers: [{ key: 'Cache-Control', value: 'public, max-age=604800, stale-while-revalidate=2592000' }],
       },
+      {
+        source: '/api/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, nosnippet' }],
+      },
+      {
+        source: '/admin/:path*',
+        headers: [{ key: 'X-Robots-Tag', value: 'noindex, nofollow, nosnippet' }],
+      },
     ];
   },
   async redirects() {

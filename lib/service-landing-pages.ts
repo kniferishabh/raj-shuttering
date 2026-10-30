@@ -79,6 +79,66 @@ export const SERVICE_LANDING_PAGES: ServiceLandingPage[] = [
       { question: 'Are U-head or base jacks available with steel props?', answer: 'Related jack components can be requested with the prop enquiry. Availability, quantities, rental duration and transport should be confirmed together before booking.' },
     ],
   },
+  {
+    slug: 'u-head-jack-on-rent-varanasi',
+    title: 'U Head Jack on Rent in Varanasi',
+    shortTitle: 'U Head Jack on Rent',
+    description: 'Rent adjustable U-head jacks for beam and slab formwork support in Varanasi. Confirm compatible sizes, quantities, duration and current availability.',
+    intro: 'U-head jacks provide an adjustable top support for beams and formwork members in scaffolding and centering systems. Share the intended support arrangement, working height and quantity with our team before confirming your requirement.',
+    image: '/images/services/u-jack/u-jack-batch.png',
+    imageAlt: 'Adjustable U-head jacks for scaffolding and formwork support',
+    serviceIds: ['svc-005', 'svc-006', 'svc-013', 'svc-027'],
+    benefits: [
+      { title: 'Adjustable top support', text: 'The threaded stem allows practical height adjustment within the available product range.' },
+      { title: 'Coordinated equipment', text: 'Discuss U-head jacks with compatible props, standards, pipes or other formwork support components.' },
+      { title: 'Project-based supply', text: 'Request current rental or purchase availability based on quantity, duration and site location.' },
+    ],
+    applications: ['Beam bottom support', 'Slab formwork centering', 'Scaffolding height adjustment', 'Temporary construction support systems'],
+    faqs: [
+      { question: 'What details are needed for a U-head jack quotation?', answer: 'Share the required quantity, expected adjustment range, project duration, start date and delivery location. Current dimensions and stock should be confirmed before ordering.' },
+      { question: 'Can U-head jacks be supplied with steel props or scaffolding?', answer: 'Related support equipment can be discussed in the same enquiry. Compatibility depends on the planned arrangement, so confirm the full equipment list with your site team.' },
+    ],
+  },
+  {
+    slug: 'base-jack-on-rent-varanasi',
+    title: 'Base Jack on Rent in Varanasi',
+    shortTitle: 'Base Jack on Rent',
+    description: 'Hire adjustable scaffolding base jacks in Varanasi for stable setup and level correction. Request current sizes, quantities and rental pricing.',
+    intro: 'Adjustable base jacks sit beneath scaffolding standards and help compensate for practical level differences at the setup surface. The correct quantity and adjustment range should be planned with the overall scaffolding arrangement.',
+    image: '/images/services/base-jack/base-jack-site.png',
+    imageAlt: 'Adjustable base jacks installed beneath scaffolding standards',
+    serviceIds: ['svc-006', 'svc-005', 'svc-027', 'svc-015'],
+    benefits: [
+      { title: 'Level adjustment', text: 'Threaded adjustment supports accurate setup within the component’s available working range.' },
+      { title: 'Stable base connection', text: 'The base plate distributes contact beneath compatible scaffolding standards.' },
+      { title: 'Rental and wholesale enquiries', text: 'Discuss temporary project rental or quantity-based purchase requirements with the team.' },
+    ],
+    applications: ['Scaffolding foundation setup', 'Level correction on site', 'Formwork support towers', 'Residential and commercial construction'],
+    faqs: [
+      { question: 'How many base jacks are required for scaffolding?', answer: 'The quantity normally depends on the number of vertical standards in the planned layout. Confirm the scaffolding design and site conditions with a competent site professional before placing an order.' },
+      { question: 'Are base jacks available for short rental periods?', answer: 'Rental duration and minimum quantities depend on current availability. Share the required dates, quantity and delivery location to request a quotation.' },
+    ],
+  },
+  {
+    slug: 'scaffolding-clamps-on-rent-varanasi',
+    title: 'Scaffolding Clamps on Rent in Varanasi',
+    shortTitle: 'Scaffolding Clamps on Rent',
+    description: 'Rent scaffolding clamps and couplers in Varanasi for connecting compatible pipes. Ask about fixed, swivel and current coupler availability.',
+    intro: 'Scaffolding clamps or couplers connect compatible pipes within access and support arrangements. Clamp type, pipe compatibility and quantity should be confirmed against the intended scaffolding layout before supply.',
+    image: '/images/services/scaffolding-clamp/scaffold-coupler-spec.png',
+    imageAlt: 'Scaffolding pipe clamps and couplers for construction systems',
+    serviceIds: ['svc-015', 'svc-027', 'svc-005', 'svc-006'],
+    benefits: [
+      { title: 'Connection options', text: 'Ask about currently available fixed or swivel connection types for compatible scaffolding pipes.' },
+      { title: 'Quantity coordination', text: 'Plan coupler quantities together with pipe lengths, standards and the intended scaffold layout.' },
+      { title: 'Availability confirmation', text: 'Current types, condition, quantities and rental duration are confirmed before booking.' },
+    ],
+    applications: ['Pipe-to-pipe scaffold connections', 'Access scaffolding', 'Temporary support arrangements', 'Repair and construction work'],
+    faqs: [
+      { question: 'Which type of scaffolding clamp should I request?', answer: 'The correct coupler depends on whether pipes meet at a right angle, require rotation or serve another connection detail. Confirm the layout and compatible pipe size before ordering.' },
+      { question: 'Can clamps be rented with scaffolding pipes?', answer: 'Yes, clamps can be discussed as part of a coordinated scaffolding enquiry. Final availability, quantities, duration and transport are confirmed for each project.' },
+    ],
+  },
 ];
 
 export function getServiceLandingPage(slug: string) {
