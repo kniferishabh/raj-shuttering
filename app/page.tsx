@@ -30,7 +30,7 @@ import { getHeroVideoConfig } from '@/lib/media';
 import { getSettings } from '@/lib/settings';
 import { HeroVideo } from '@/components/sections/Hero/HeroVideo';
 import { WhatsAppIcon } from '@/components/ui/WhatsAppIcon/WhatsAppIcon';
-import { interpolateContent, mergeSiteContent } from '@/lib/site-content';
+import { interpolateContent, mergeSiteContent, parseRows } from '@/lib/site-content';
 import styles from './page.module.css';
 
 export async function generateMetadata(): Promise<Metadata> {
@@ -87,9 +87,24 @@ export default async function HomePage() {
   const locations = c['home.locationsList'].split(',').map((item) => item.trim()).filter(Boolean);
   const industryIcons: LucideIcon[] = [House, Building2, Factory, Landmark, School, TrainFront, Plane];
   const industries = c['home.industriesList'].split(',').map((item) => item.trim()).filter(Boolean);
+  const answers = parseRows(c['home.answers'], 2).map(([question, answer]) => ({
+    question: interpolateContent(question, vars),
+    answer: interpolateContent(answer, vars),
+  }));
+  const answerJsonLd = {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    '@id': 'https://www.rajshutteringandscaffolding.com/#frequently-asked-questions',
+    mainEntity: answers.map((item) => ({
+      '@type': 'Question',
+      name: item.question,
+      acceptedAnswer: { '@type': 'Answer', text: item.answer },
+    })),
+  };
 
   return (
     <div className={styles.page}>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(answerJsonLd).replace(/</g, '\\u003c') }} />
       <section className={styles.hero} aria-labelledby="home-title">
         <div className={styles.heroMedia}><HeroVideo video={hero} /></div>
         <div className={styles.heroShade} />
@@ -178,6 +193,27 @@ export default async function HomePage() {
           <div className={styles.testimonialGrid}>{testimonials.map((item) => <article key={item.id}><div className={styles.stars}>{Array.from({ length: item.rating }, (_, i) => <Star key={i} size={14} fill="currentColor" />)}</div><p>“{item.review}”</p><strong>{item.clientName}</strong><span>{item.company ? `${item.company} · ` : ''}{item.location}</span></article>)}</div>
         </div>
       </section> : null}
+
+      <section className={styles.answersSection} aria-labelledby="answers-title">
+        <div className={styles.sectionInner}>
+          <div className={styles.answersIntro}>
+            <div className={styles.sectionTitle}>
+              <span>{c['home.answersEyebrow']}</span>
+              <h2 id="answers-title">{c['home.answersTitle']}</h2>
+            </div>
+            <p>{interpolateContent(c['home.answersIntro'], vars)}</p>
+            <Link href="/services" className={styles.answerLink}>Explore equipment guides <ArrowRight size={16} /></Link>
+          </div>
+          <div className={styles.answersList}>
+            {answers.map((item, index) => (
+              <details key={item.question} open={index === 0}>
+                <summary>{item.question}</summary>
+                <p>{item.answer}</p>
+              </details>
+            ))}
+          </div>
+        </div>
+      </section>
 
       <section className={styles.ctaSection}>
         <Image src="/images/project-modern.jpg" alt="Modern construction project" fill sizes="100vw" />

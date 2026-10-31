@@ -132,6 +132,15 @@ export default async function RootLayout({
           closes: '19:00',
         },
         foundingDate: String(settings.establishedYear),
+        slogan: settings.tagline,
+        knowsAbout: [
+          'Steel shuttering plates',
+          'Scaffolding pipes and clamps',
+          'Adjustable steel props',
+          'U-head jacks and base jacks',
+          'Concrete formwork equipment',
+          'Construction equipment rental',
+        ],
         areaServed: [
           { '@type': 'City', name: settings.city },
           { '@type': 'AdministrativeArea', name: 'Uttar Pradesh' },
